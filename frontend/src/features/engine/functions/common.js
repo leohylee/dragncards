@@ -50,6 +50,7 @@ export const keyDiv = (key, extraClasses = "") => {
 }
 
 export const keysDiv = (keysString, extraClasses = "") => {
+  if (!keysString) return null;
   var keys = keysString.split("+");
   if (keysString === "+") keys = ["+"];
   return(
