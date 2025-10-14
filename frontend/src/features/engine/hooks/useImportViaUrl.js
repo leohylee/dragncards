@@ -82,11 +82,11 @@ const importViaUrlArkhamDb = async (importLoadList, doActionList, playerN) => {
 
 const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, cardDb) => {
   const dbUrl = prompt("Paste full MarvelCDB URL","");
-  if (!dbUrl.includes("marvelcdb.com")) {
-    alert("Only importing from MarvelCDB is supported at this time.");
+  if (!dbUrl.includes("marvelcdb.com") && !dbUrl.includes("localhost")) {
+    alert("Only importing from MarvelCDB or localhost is supported at this time.");
     return;
   }
-  const dbDomain = "marvelcdb";
+  const dbDomain = dbUrl.includes("localhost") ? dbUrl.split("/")[2] : "marvelcdb";
   var dbType;
   if (dbUrl.includes("/decklist/")) dbType = "decklist";
   else if (dbUrl.includes("/deck/")) dbType = "deck";
@@ -304,14 +304,14 @@ export const loadMarvelCdb = (importLoadList, doActionList, playerN, dbDomain, d
     }
   })
 
-  const urlBase = "https://marvelcdb.com/api";
+  const urlBase = dbDomain.includes("localhost") ? `http://${dbDomain}/api` : "https://marvelcdb.com/api";
   const url = `${urlBase}/public/${dbType}/${dbId}.json`;// dbType === "decklist" ? urlBase+"public/decklist/"+dbId+".json" : urlBase+"oauth2/deck/load/"+dbId;
   
   fetch(url)
   .then(response => response.json())
   .then((jsonData) => {
     console.log("card db import response", jsonData)
-    const itentityCode = jsonData.investigator_code;
+    const itentityCode = jsonData.investigator_code || jsonData.hero_code;
     const slots = jsonData.slots;
     var loadList = [];
     if (itentityCode && marvelcdbIdTodatabaseId[itentityCode]) {
