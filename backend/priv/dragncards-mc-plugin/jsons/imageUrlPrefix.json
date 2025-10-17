@@ -1,1 +1,1 @@
-{"imageUrlPrefix":{"Default":"http://localhost:3000/mc-cards","English":"http://localhost:3000/mc-cards","Italian":"http://localhost:3000/mc-cards","Portuguese":"http://localhost:3000/mc-cards"}}
+{"imageUrlPrefix":{"Default":"/mc-cards","English":"/mc-cards","Italian":"/mc-cards","Portuguese":"/mc-cards"}}

@@ -43,6 +43,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deck import from localhost:8000 to DragnCards
 - Admin account: admin/password123
 
+#### Offline-Proof Configuration
+- **Zero external dependencies** - All three services work completely offline
+- **Local card images** - 9+ GB of card images stored locally (5,355 LOTR + 3,569 MC)
+- Changed Marvel Champions `imageUrlPrefix` to use `/mc-cards` instead of `http://localhost:3000/mc-cards`
+- LOTR LCG already using `/lotrlcg-cards/` (relative path)
+- **No CDN dependencies** - No external fonts, scripts, or stylesheets required
+- **Self-contained** - All plugins, card data, and images bundled locally
+- **Complete offline gameplay** - Works with no internet connection once containers running
+
 ### Changed
 
 #### Card Structure Compatibility

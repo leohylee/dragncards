@@ -198,6 +198,32 @@ Browse to `localhost:3000` and proceed with [plugin installation](https://github
 
 ---
 
+## Offline-Proof Setup ✈️
+
+All three services are fully offline-capable with **zero external dependencies**:
+
+✅ **No Internet Required**
+- All card images stored locally (9+ GB total)
+- All card data in local databases
+- No CDN dependencies (fonts, scripts, styles)
+- No external API calls required
+- Complete offline gameplay experience
+
+✅ **Self-Contained**
+- RingsDB: 1.8 GB of card images locally
+- MarvelsDB: Images symlinked from DragnCards
+- DragnCards: 5,355 LOTR + 3,569 MC images locally
+- All plugins bundled in backend container
+- Database backups for complete restore
+
+✅ **Local-Only Paths**
+- LOTR images: `/lotrlcg-cards/` (relative path)
+- Marvel images: `/mc-cards/` (relative path)
+- No `http://` or `https://` external dependencies
+- Works completely offline once containers are running
+
+---
+
 ## Available Features
 
 ### RingsDB
@@ -207,12 +233,14 @@ Browse to `localhost:3000` and proceed with [plugin installation](https://github
 - **Character encoding fixed:** Displays É, ó, û correctly
 - **API access:** `http://localhost:8001/api/public/`
 - **Database backup:** Complete backup available for restore
+- **Offline-proof:** No external dependencies
 
 ### MarvelsDB
 - **Full card database:** 3,746+ cards (94.6% have images)
 - **Deck builder:** Create and validate Marvel Champions decks
 - **Publishing:** Share decklists (restrictions disabled for local development)
 - **API access:** `http://localhost:8000/api/public/`
+- **Offline-proof:** No external dependencies
 
 ### DragnCards
 - **Local card images:**
@@ -223,10 +251,11 @@ Browse to `localhost:3000` and proceed with [plugin installation](https://github
 - **Import support:**
   - Import from localhost:8001 (RingsDB)
   - Import from localhost:8000 (MarvelsDB)
-  - Import from marvelcdb.com and ringsdb.com
+  - Import from marvelcdb.com and ringsdb.com (when online)
 - **ALeP card support:** All 266 ALeP cards included in card database
 - **Flip function:** Working correctly in plugin v10 - cards show proper card backs when flipped
 - **Docker support:** Complete Docker Compose setup for all services
+- **Offline-proof:** All images and data local - works with no internet connection
 
 ---
 
