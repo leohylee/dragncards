@@ -25,20 +25,22 @@ IO.puts("Loading card database from: #{frontend_card_db_path}")
 {:ok, card_db_json} = File.read(frontend_card_db_path)
 {:ok, card_db_nested} = Jason.decode(card_db_json)
 
-# Transform from nested structure (sides.A) to flat structure (A)
+# Keep nested structure (sides.A and sides.B) as frontend expects it
 card_db = Enum.reduce(card_db_nested, %{}, fn {card_id, card}, acc ->
   transformed_card = if Map.has_key?(card, "sides") do
-    # Extract sides and merge with other card properties
+    # Extract sides and add imageUrl to each side
     sides = Map.get(card, "sides")
 
     # Add imageUrl and packName to each side (A and B) using the card's database ID
     sides_with_images = Enum.reduce(sides, %{}, fn {side_key, side_data}, sides_acc ->
-      # Add imageUrl as cardId.jpg if not already present
-      side_with_image = if Map.has_key?(side_data, "imageUrl") do
-        side_data
-      else
+      # Only add imageUrl to side A (front face)
+      # Side B should NOT have imageUrl so it falls back to card backs
+      side_with_image = if side_key == "A" and not Map.has_key?(side_data, "imageUrl") do
         Map.put(side_data, "imageUrl", "#{card_id}.jpg")
+      else
+        side_data
       end
+
       # Add packName and numberInPack to each side so they're accessible in the spawn modal
       side_with_pack = side_with_image
       |> Map.put("packName", Map.get(card, "cardpackname"))
@@ -47,29 +49,32 @@ card_db = Enum.reduce(card_db_nested, %{}, fn {card_id, card}, acc ->
       Map.put(sides_acc, side_key, side_with_pack)
     end)
 
-    # Remove sides and merge the A/B data directly into the card
-    # Also add packName and numberInPack fields for the frontend
+    # Keep sides nested, add packName and numberInPack to root for compatibility
     card
-    |> Map.delete("sides")
-    |> Map.merge(sides_with_images)
+    |> Map.put("sides", sides_with_images)
     |> Map.put("packName", Map.get(card, "cardpackname"))
     |> Map.put("numberInPack", Map.get(card, "cardnumber"))
   else
-    # Already in flat structure - add imageUrl, packName, numberInPack if missing
-    card_with_images = Enum.reduce(card, %{}, fn {key, value}, card_acc ->
-      if is_map(value) and key in ["A", "B"] do
-        updated_side = value
+    # Already has A/B at root - wrap them in sides structure
+    side_a = Map.get(card, "A", %{})
+    side_b = Map.get(card, "B", %{})
+
+    sides = %{
+      "A" => side_a
         |> (fn side -> if Map.has_key?(side, "imageUrl"), do: side, else: Map.put(side, "imageUrl", "#{card_id}.jpg") end).()
         |> Map.put("packName", Map.get(card, "cardpackname"))
+        |> Map.put("numberInPack", Map.get(card, "cardnumber")),
+      "B" => side_b
+        # Don't add imageUrl to side B - it should use card backs
+        |> Map.put("packName", Map.get(card, "cardpackname"))
         |> Map.put("numberInPack", Map.get(card, "cardnumber"))
-        Map.put(card_acc, key, updated_side)
-      else
-        Map.put(card_acc, key, value)
-      end
-    end)
+    }
 
-    # Add packName and numberInPack fields
-    card_with_images
+    # Remove A and B from root, add sides
+    card
+    |> Map.delete("A")
+    |> Map.delete("B")
+    |> Map.put("sides", sides)
     |> Map.put("packName", Map.get(card, "cardpackname"))
     |> Map.put("numberInPack", Map.get(card, "cardnumber"))
   end
@@ -82,20 +87,20 @@ sample_id = "18a1afb6-7d29-40bf-8580-7089f2c1eec1"
 if Map.has_key?(card_db, sample_id) do
   sample = card_db[sample_id]
   IO.puts("Sample card has 'sides': #{Map.has_key?(sample, "sides")}")
-  IO.puts("Sample card has 'A': #{Map.has_key?(sample, "A")}")
   IO.puts("Sample card has 'packName': #{Map.has_key?(sample, "packName")}")
   IO.puts("Sample card packName: #{sample["packName"]}")
   IO.puts("Sample card numberInPack: #{sample["numberInPack"]}")
-  if Map.has_key?(sample, "A") do
-    IO.puts("Side A name: #{sample["A"]["name"]}")
-    IO.puts("Side A has imageUrl: #{Map.has_key?(sample["A"], "imageUrl")}")
-    IO.puts("Side A has packName: #{Map.has_key?(sample["A"], "packName")}")
-    if Map.has_key?(sample["A"], "imageUrl") do
-      IO.puts("Side A imageUrl: #{sample["A"]["imageUrl"]}")
+  if Map.has_key?(sample, "sides") do
+    IO.puts("Side A name: #{sample["sides"]["A"]["name"]}")
+    IO.puts("Side A has imageUrl: #{Map.has_key?(sample["sides"]["A"], "imageUrl")}")
+    IO.puts("Side A has packName: #{Map.has_key?(sample["sides"]["A"], "packName")}")
+    if Map.has_key?(sample["sides"]["A"], "imageUrl") do
+      IO.puts("Side A imageUrl: #{sample["sides"]["A"]["imageUrl"]}")
     end
-    if Map.has_key?(sample["A"], "packName") do
-      IO.puts("Side A packName: #{sample["A"]["packName"]}")
+    if Map.has_key?(sample["sides"]["A"], "packName") do
+      IO.puts("Side A packName: #{sample["sides"]["A"]["packName"]}")
     end
+    IO.puts("Side B name: #{sample["sides"]["B"]["name"]}")
   end
 end
 

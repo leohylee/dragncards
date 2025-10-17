@@ -21,20 +21,26 @@ services:
     working_dir: /app
     environment:
       - DB_HOSTNAME=postgres
-  # Frontend disabled - run locally with: npm start
-  # (due to Node.js OpenSSL compatibility issues with webpack)
-  # frontend:
-  #   image: node:20
-  #   depends_on:
-  #     - backend
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/app
-  #   entrypoint: /app/scripts/local-dev.sh
-  #   working_dir: /app
-  #   environment:
-  #     - REACT_APP_BE_HOSTNAME=backend
+  frontend:
+    image: node:20-alpine
+    container_name: dragncards-frontend
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - frontend-node-modules:/app/node_modules
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider
+      - REACT_APP_WS_URL=ws://127.0.0.1:4000/socket
+      - REACT_APP_BE_HOSTNAME=backend
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=3000
+    depends_on:
+      - backend
+    command: sh -c "npm install --legacy-peer-deps && npm start"
+    stdin_open: true
+    tty: true
 #uncomment apache if you're running pure offline mode. Other steps required
 #   apache:
 #     image: httpd:latest
@@ -45,4 +51,5 @@ services:
 #     - ./images:/usr/local/apache2/htdocs
 volumes:
   pgdata:
+  frontend-node-modules:
 # images:

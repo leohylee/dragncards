@@ -133,8 +133,14 @@ export const getVisibleSide = (card, playerN) => {
   
 export const getVisibleFace = (card, playerN) => {
   const visibleSide = getVisibleSide(card, playerN);
-  if (visibleSide) return card.sides[visibleSide];
-  else return null;
+  if (!visibleSide) return null;
+
+  // Handle both nested (sides.A) and flat (A) structures
+  if (card.sides && typeof card.sides === 'object' && !Array.isArray(card.sides)) {
+    return card.sides[visibleSide];
+  } else {
+    return card[visibleSide];
+  }
 }
   
 export const getVisibleFaceSrc = (visibleFace, user, gameDef) => {
@@ -171,8 +177,12 @@ export const getStackDimensions = (stackId, layout, state) => {
   const numCards = cardIds.length;
   const card0 = state.gameUi.game.cardById[cardIds[0]];
   // Calculate size of stack for proper spacing. Changes base on group type and number of stack in group.
-  const cardWidth = card0?.sides[card0?.currentSide]?.width * cardSize * zoomFactor;
-  const cardHeight = card0?.sides[card0?.currentSide]?.height * cardSize * zoomFactor;
+  // Handle both nested (sides.A) and flat (A) structures
+  const currentFace = (card0?.sides && typeof card0.sides === 'object' && !Array.isArray(card0.sides))
+    ? card0.sides[card0.currentSide]
+    : card0?.[card0?.currentSide];
+  const cardWidth = currentFace?.width * cardSize * zoomFactor;
+  const cardHeight = currentFace?.height * cardSize * zoomFactor;
   const stackHeight = cardHeight;
   const stackWidth = cardWidth + (ATTACHMENT_OFFSET * (numCards - 1) * zoomFactor);
 

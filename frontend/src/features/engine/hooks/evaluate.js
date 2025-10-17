@@ -78,7 +78,12 @@ export const evaluate = (state, card, code) => {
             if (!path || path.length === 0) {
               return null;
             } else if (path[0] === "currentFace") {
-              return obj.sides[obj.currentSide];
+              // Handle both nested (sides.A) and flat (A) structures
+              if (obj.sides && typeof obj.sides === 'object' && !Array.isArray(obj.sides)) {
+                return obj.sides[obj.currentSide];
+              } else {
+                return obj[obj.currentSide];
+              }
             } else if (path[0] === "parentCard") {
               if (!obj.parentCardId) return null;
               return state.gameUi.game.cardById[card.parentCardId];
@@ -124,8 +129,14 @@ export const evaluate = (state, card, code) => {
         return state.playerUi.playerN;
       else if (code === "$ACTIVE_CARD")
         return card;
-      else if (code === "$ACTIVE_FACE")
-        return card.sides[card.currentSide];
+      else if (code === "$ACTIVE_FACE") {
+        // Handle both nested (sides.A) and flat (A) structures
+        if (card.sides && typeof card.sides === 'object' && !Array.isArray(card.sides)) {
+          return card.sides[card.currentSide];
+        } else {
+          return card[card.currentSide];
+        }
+      }
       else if (code === "$ACTIVE_TOKENS")
         return card.tokens;
       else if (isString(code) && code.startsWith("$") && code.includes(".")) {

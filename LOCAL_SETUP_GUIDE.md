@@ -68,30 +68,58 @@ cd /Users/leo/Projects/marvelsdb
 
 ### 3. DragnCards (Game Client)
 
-#### Backend (Docker)
+#### Option 1: Docker (Recommended - All-in-One)
+
+**One-command startup:**
 
 ```bash
 cd /Users/leo/Projects/dragncards
-docker compose up -d
+docker-compose up -d
+```
+
+**Or use the startup script:**
+
+```bash
+/Users/leo/Projects/dragncards/start-dragncards.sh
 ```
 
 This starts:
 - **PostgreSQL** on port 5432
 - **Backend (Phoenix/Elixir)** on port 4000
+- **Frontend (Node.js/React)** on port 3000
 
-#### Frontend (Local Node.js)
+**Access:** http://localhost:3000
 
-The frontend runs outside Docker due to Node.js/webpack OpenSSL compatibility:
+**Note:** First compilation may take 10-30 minutes due to large card database files. Subsequent starts are much faster.
 
+**To view logs:**
+```bash
+docker-compose logs -f frontend  # Frontend logs
+docker-compose logs -f backend   # Backend logs
+```
+
+**To stop:**
+```bash
+cd /Users/leo/Projects/dragncards
+docker-compose down
+```
+
+#### Option 2: Manual Start (Alternative)
+
+If you prefer running frontend locally for faster hot-reload:
+
+**Backend:**
+```bash
+cd /Users/leo/Projects/dragncards
+docker compose up -d backend postgres
+```
+
+**Frontend:**
 ```bash
 cd /Users/leo/Projects/dragncards/frontend
 export NODE_OPTIONS=--openssl-legacy-provider
 npm start
 ```
-
-**Access:** http://localhost:3000
-
-**Note:** First compilation may take 10-30 minutes due to large card database files. Subsequent starts are much faster.
 
 ---
 
