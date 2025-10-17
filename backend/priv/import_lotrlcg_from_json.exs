@@ -1,0 +1,135 @@
+#{:ok, _} = Application.ensure_all_started(:dragncards)
+
+alias DragnCards.{Repo, Plugins, Plugins.Plugin}
+alias DragnCards.Users.User
+alias DragnCardsUtil.{Merger}
+import Ecto.Query
+
+# Get the dev_user
+user = Repo.get_by!(User, alias: "dev_user")
+
+# Set up paths
+plugin_json_path = "/app/priv/dragncards-lotrlcg-plugin/jsons"
+frontend_card_db_path = "/app/priv/cardDb.json"
+
+IO.puts("Loading JSON files from: #{plugin_json_path}")
+filenames = Path.wildcard(Path.join(plugin_json_path, "*.json"))
+IO.puts("Found #{length(filenames)} JSON files")
+
+# Merge all JSON files into game_def
+game_def = Merger.merge_json_files(filenames)
+
+IO.puts("Loading card database from: #{frontend_card_db_path}")
+
+# Load and transform the cardDb.json
+{:ok, card_db_json} = File.read(frontend_card_db_path)
+{:ok, card_db_nested} = Jason.decode(card_db_json)
+
+# Transform from nested structure (sides.A) to flat structure (A)
+card_db = Enum.reduce(card_db_nested, %{}, fn {card_id, card}, acc ->
+  transformed_card = if Map.has_key?(card, "sides") do
+    # Extract sides and merge with other card properties
+    sides = Map.get(card, "sides")
+
+    # Add imageUrl and packName to each side (A and B) using the card's database ID
+    sides_with_images = Enum.reduce(sides, %{}, fn {side_key, side_data}, sides_acc ->
+      # Add imageUrl as cardId.jpg if not already present
+      side_with_image = if Map.has_key?(side_data, "imageUrl") do
+        side_data
+      else
+        Map.put(side_data, "imageUrl", "#{card_id}.jpg")
+      end
+      # Add packName and numberInPack to each side so they're accessible in the spawn modal
+      side_with_pack = side_with_image
+      |> Map.put("packName", Map.get(card, "cardpackname"))
+      |> Map.put("numberInPack", Map.get(card, "cardnumber"))
+
+      Map.put(sides_acc, side_key, side_with_pack)
+    end)
+
+    # Remove sides and merge the A/B data directly into the card
+    # Also add packName and numberInPack fields for the frontend
+    card
+    |> Map.delete("sides")
+    |> Map.merge(sides_with_images)
+    |> Map.put("packName", Map.get(card, "cardpackname"))
+    |> Map.put("numberInPack", Map.get(card, "cardnumber"))
+  else
+    # Already in flat structure - add imageUrl, packName, numberInPack if missing
+    card_with_images = Enum.reduce(card, %{}, fn {key, value}, card_acc ->
+      if is_map(value) and key in ["A", "B"] do
+        updated_side = value
+        |> (fn side -> if Map.has_key?(side, "imageUrl"), do: side, else: Map.put(side, "imageUrl", "#{card_id}.jpg") end).()
+        |> Map.put("packName", Map.get(card, "cardpackname"))
+        |> Map.put("numberInPack", Map.get(card, "cardnumber"))
+        Map.put(card_acc, key, updated_side)
+      else
+        Map.put(card_acc, key, value)
+      end
+    end)
+
+    # Add packName and numberInPack fields
+    card_with_images
+    |> Map.put("packName", Map.get(card, "cardpackname"))
+    |> Map.put("numberInPack", Map.get(card, "cardnumber"))
+  end
+
+  Map.put(acc, card_id, transformed_card)
+end)
+
+IO.puts("Checking sample transformation...")
+sample_id = "18a1afb6-7d29-40bf-8580-7089f2c1eec1"
+if Map.has_key?(card_db, sample_id) do
+  sample = card_db[sample_id]
+  IO.puts("Sample card has 'sides': #{Map.has_key?(sample, "sides")}")
+  IO.puts("Sample card has 'A': #{Map.has_key?(sample, "A")}")
+  IO.puts("Sample card has 'packName': #{Map.has_key?(sample, "packName")}")
+  IO.puts("Sample card packName: #{sample["packName"]}")
+  IO.puts("Sample card numberInPack: #{sample["numberInPack"]}")
+  if Map.has_key?(sample, "A") do
+    IO.puts("Side A name: #{sample["A"]["name"]}")
+    IO.puts("Side A has imageUrl: #{Map.has_key?(sample["A"], "imageUrl")}")
+    IO.puts("Side A has packName: #{Map.has_key?(sample["A"], "packName")}")
+    if Map.has_key?(sample["A"], "imageUrl") do
+      IO.puts("Side A imageUrl: #{sample["A"]["imageUrl"]}")
+    end
+    if Map.has_key?(sample["A"], "packName") do
+      IO.puts("Side A packName: #{sample["A"]["packName"]}")
+    end
+  end
+end
+
+IO.puts("Found #{length(Map.keys(card_db))} cards")
+
+# Update or create the plugin
+existing_plugin = Repo.one(from p in Plugin, where: p.name == "Lord of the Rings LCG")
+
+plugin_params = %{
+  name: "Lord of the Rings LCG",
+  version: existing_plugin.version + 1,  # Increment version to trigger client reload
+  game_def: game_def,
+  card_db: card_db,
+  num_favorites: existing_plugin.num_favorites || 0,
+  public: true,
+  author_id: user.id,
+  repo_url: existing_plugin.repo_url
+}
+
+result = if existing_plugin do
+  IO.puts("Updating existing plugin (ID: #{existing_plugin.id})...")
+  IO.puts("Version: #{existing_plugin.version} -> #{existing_plugin.version + 1}")
+  Plugins.update_plugin(existing_plugin, plugin_params)
+else
+  IO.puts("Creating new plugin...")
+  Plugins.create_plugin(plugin_params)
+end
+
+case result do
+  {:ok, plugin} ->
+    IO.puts("✅ Successfully saved plugin: #{plugin.name} (ID: #{plugin.id})")
+    IO.puts("   Card count: #{length(Map.keys(plugin.card_db))}")
+    IO.puts("   Version: #{plugin.version}")
+  {:error, changeset} ->
+    IO.puts("❌ Failed to save plugin:")
+    IO.inspect(changeset.errors)
+end

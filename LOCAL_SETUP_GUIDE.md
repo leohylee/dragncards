@@ -1,18 +1,74 @@
-# Local Setup Guide for DragnCards + MarvelsDB
+# Local Setup Guide for DragnCards + RingsDB + MarvelsDB
 
-This guide explains how to run DragnCards and MarvelsDB locally for Marvel Champions gameplay.
+This guide explains how to run DragnCards, RingsDB, and MarvelsDB locally for Lord of the Rings LCG and Marvel Champions gameplay.
 
 ## Prerequisites
 
 - Docker Desktop installed and running
 - Node.js 20.x (via nvm)
-- PHP 7.4
 
-## 1. Starting DragnCards
+## Quick Start
 
-### Backend (Docker - Postgres + Elixir/Phoenix)
+### 1. RingsDB (Lord of the Rings LCG)
 
-Start the backend services (PostgreSQL database + Phoenix server) using Docker Compose:
+**One-command startup:**
+
+```bash
+cd /Users/leo/Projects/ringsdb
+docker-compose up -d
+```
+
+**Or use the startup script:**
+
+```bash
+cd /Users/leo/Projects/ringsdb
+./start-ringsdb.sh
+```
+
+**Access:** http://localhost:8001
+
+**What runs:**
+- MySQL 8.0 on port 3308
+- PHP 7.4 + Apache web server on port 8001
+- All 1,486 cards with data
+- 32 cycles, 114+ packs properly organized
+- 1.8 GB of card images (locally stored)
+
+---
+
+### 2. MarvelsDB (Marvel Champions)
+
+**One-command startup:**
+
+```bash
+cd /Users/leo/Projects/marvelsdb
+docker-compose up -d
+```
+
+**Or use the startup script:**
+
+```bash
+cd /Users/leo/Projects/marvelsdb
+./start-marvelsdb.sh
+```
+
+**Access:** http://localhost:8000
+
+**What runs:**
+- MySQL 8.0 on port 3307
+- PHP 7.4 + Apache web server on port 8000
+- Full card database with 3,746+ cards
+- Card images (symlinked from DragnCards)
+
+**Login Credentials:**
+- **Username:** admin
+- **Password:** password123
+
+---
+
+### 3. DragnCards (Game Client)
+
+#### Backend (Docker)
 
 ```bash
 cd /Users/leo/Projects/dragncards
@@ -21,160 +77,228 @@ docker compose up -d
 
 This starts:
 - **PostgreSQL** on port 5432
-- **Backend (Phoenix)** on port 4000
+- **Backend (Phoenix/Elixir)** on port 4000
 
-Wait about 30 seconds for the backend to fully start and run migrations.
+#### Frontend (Local Node.js)
 
-Check logs if needed:
-```bash
-docker compose logs -f backend
-```
-
-### Frontend (Local Node.js)
-
-The frontend runs outside Docker due to Node.js/webpack OpenSSL compatibility issues:
+The frontend runs outside Docker due to Node.js/webpack OpenSSL compatibility:
 
 ```bash
 cd /Users/leo/Projects/dragncards/frontend
-nvm use 20
-NODE_OPTIONS="--openssl-legacy-provider" npm start
+export NODE_OPTIONS=--openssl-legacy-provider
+npm start
 ```
 
-The frontend will be available at `http://localhost:3000`
+**Access:** http://localhost:3000
 
-**Note:** The frontend must use Node 20 with the legacy OpenSSL provider flag due to webpack compatibility.
+**Note:** First compilation may take 10-30 minutes due to large card database files. Subsequent starts are much faster.
 
-## 2. Starting MarvelsDB
+---
 
-### Start MySQL Database
+## Importing Decks
 
-```bash
-cd /Users/leo/Projects/marvelsdb
-docker-compose up -d
-```
+### From RingsDB to DragnCards
 
-This starts MySQL 8.0 on port 3307 with:
-- Database: `marvelsdb`
-- User: `marvelsdb`
-- Password: `marvelsdb`
+1. **Create a deck in RingsDB:**
+   - Go to http://localhost:8001
+   - Build or browse a deck
+   - Copy the deck URL (e.g., `http://localhost:8001/decklist/view/123/deck-name`)
 
-### Start PHP Web Server
+2. **Import in DragnCards:**
+   - Open DragnCards at http://localhost:3000
+   - Create or join a Lord of the Rings LCG game room
+   - Click menu → Import → Load via URL
+   - Paste your localhost RingsDB URL
+   - The deck will be imported (including ALeP cards!)
 
-```bash
-cd /Users/leo/Projects/marvelsdb
-php bin/console server:run 0.0.0.0:8000
-```
-
-MarvelsDB will be available at `http://localhost:8000`
-
-### Login Credentials
-
-- **Username:** admin
-- **Password:** password123
-
-## 3. Importing Decks from MarvelsDB to DragnCards
+### From MarvelsDB to DragnCards
 
 1. **Create a deck in MarvelsDB:**
    - Go to http://localhost:8000
-   - Login with the credentials above
-   - Create a new deck
-   - Publish it as a decklist (description is optional)
-   - Copy the decklist URL (e.g., `http://localhost:8000/decklist/view/1/spider-man-1.0`)
+   - Login with admin credentials
+   - Create and publish a decklist
+   - Copy the decklist URL (e.g., `http://localhost:8000/decklist/view/1/spider-man`)
 
 2. **Import in DragnCards:**
    - Open DragnCards at http://localhost:3000
    - Create or join a Marvel Champions game room
-   - Click the menu → Import → Load via URL
+   - Click menu → Import → Load via URL
    - Paste your localhost MarvelsDB URL
    - The deck will be imported into your play area
 
-## 4. Available Features
+---
 
-### DragnCards
+## Available Features
 
-- **Local card images:** All 3,569 Marvel Champions card images are hosted locally at `/frontend/public/mc-cards/official/`
-- **Pre-built decks:** 457 hero decks, scenarios, modular sets available
-- **Replay download:** Full replay JSON download enabled (Patreon check disabled for local use)
-- **Import support:** Import decks from both marvelcdb.com and localhost:8000
+### RingsDB
+- **Complete card database:** All 1,486 cards including ALeP (fan-made expansions)
+- **32 cycles with proper organization:** Core Set through ALeP - Fell Summer
+- **1.8 GB card images:** All stored locally on your Mac
+- **Character encoding fixed:** Displays É, ó, û correctly
+- **API access:** `http://localhost:8001/api/public/`
 
 ### MarvelsDB
-
-- **Full card database:** 3,746 cards (94.6% have images)
+- **Full card database:** 3,746+ cards (94.6% have images)
 - **Deck builder:** Create and validate Marvel Champions decks
-- **Publishing:** Share decklists (24-hour restriction and description requirement disabled for local development)
-- **API access:** Public API available at `http://localhost:8000/api/public/`
-
-## 5. Stopping Services
+- **Publishing:** Share decklists (restrictions disabled for local development)
+- **API access:** `http://localhost:8000/api/public/`
 
 ### DragnCards
+- **Local card images:**
+  - Marvel Champions: 3,569 images at `/frontend/public/mc-cards/official/`
+  - LOTR LCG: Card images at `/frontend/public/lotrlcg-cards/`
+- **Pre-built decks:** 457 hero decks, scenarios, modular sets
+- **Replay download:** Full replay JSON download (Patreon check disabled locally)
+- **Import support:**
+  - Import from localhost:8001 (RingsDB)
+  - Import from localhost:8000 (MarvelsDB)
+  - Import from marvelcdb.com and ringsdb.com
+- **ALeP card support:** All 255 ALeP cards included in card database
+
+---
+
+## Stopping Services
+
+### RingsDB
 
 ```bash
-# Stop frontend
-# Press Ctrl+C in the npm start terminal
-
-# Stop backend and postgres
-cd /Users/leo/Projects/dragncards
-docker compose down
+cd /Users/leo/Projects/ringsdb
+docker-compose down
 ```
 
 ### MarvelsDB
 
 ```bash
-# Stop PHP server
-# Press Ctrl+C in the PHP server terminal
-
-# Stop MySQL
 cd /Users/leo/Projects/marvelsdb
 docker-compose down
 ```
 
-## 6. Troubleshooting
+### DragnCards
+
+```bash
+# Stop frontend (Press Ctrl+C in the npm start terminal)
+
+# Stop backend
+cd /Users/leo/Projects/dragncards
+docker compose down
+```
+
+---
+
+## Data Persistence
+
+All data persists even when containers are stopped:
+
+### RingsDB
+- **Database:** Docker volume `ringsdb_data`
+- **Card images:** `/Users/leo/Projects/ringsdb/web/bundles/cards/` (1.8 GB)
+- **Database backup:** `/tmp/ringsdb_backup_20251016.sql` (794 KB)
+
+### MarvelsDB
+- **Database:** Docker volume `marvelsdb-data`
+- **Card images:** Symlinked from DragnCards
+
+### DragnCards
+- **Database:** Docker volume `dragncards_postgres`
+- **Card images:** `/Users/leo/Projects/dragncards/frontend/public/`
+
+---
+
+## Troubleshooting
 
 ### DragnCards frontend won't start
 - Make sure you're using Node 20: `nvm use 20`
-- Include the OpenSSL flag: `NODE_OPTIONS="--openssl-legacy-provider" npm start`
+- Include the OpenSSL flag: `export NODE_OPTIONS=--openssl-legacy-provider`
+- First compilation takes 10-30 minutes - be patient
+- Check terminal for any errors
 
-### MarvelsDB images not showing
-- Card images are symlinked from DragnCards at `/Users/leo/Projects/dragncards/frontend/public/mc-cards/official/`
-- Both `.jpg` and `.png` symlinks should exist in `/Users/leo/Projects/marvelsdb/web/bundles/cards/`
+### RingsDB/MarvelsDB not accessible
+- Verify Docker containers are running: `docker ps`
+- Check logs: `docker-compose logs -f web`
+- Make sure ports aren't already in use
 
 ### Deck import fails
-- Ensure both DragnCards frontend and MarvelsDB are running
-- Check that the decklist is published (not just saved as a private deck)
-- Verify the URL format: `http://localhost:8000/decklist/view/[ID]/[name]`
+- Ensure all services are running (backend + frontend + database)
+- Check that the decklist is published (not private)
+- Verify the URL format matches examples above
+- For RingsDB: Enable link sharing in profile settings
 
-### Database connection issues
-- Verify MySQL Docker container is running: `docker ps | grep marvelsdb`
-- Check connection settings in `/Users/leo/Projects/marvelsdb/app/config/parameters.yml`
+### Card images not showing
 
-## 7. Plugin Information
+**RingsDB:**
+- Images at `/Users/leo/Projects/ringsdb/web/bundles/cards/`
+- Should have 6,839 PNG/JPG files (1.8 GB)
+
+**MarvelsDB:**
+- Images symlinked from DragnCards
+- Check symlinks exist in `/Users/leo/Projects/marvelsdb/web/bundles/cards/`
+
+### Database recovery
+
+**RingsDB backup/restore:**
+```bash
+# Backup
+docker exec ringsdb-mysql mysqldump -u ringsdb -pringsdb ringsdb > backup.sql
+
+# Restore
+docker exec -i ringsdb-mysql mysql -u ringsdb -pringsdb ringsdb < backup.sql
+```
+
+**MarvelsDB backup/restore:**
+```bash
+# Backup
+docker exec marvelsdb-mysql mysqldump -u marvelsdb -pmarvelsdb marvelsdb > backup.sql
+
+# Restore
+docker exec -i marvelsdb-mysql mysql -u marvelsdb -pmarvelsdb marvelsdb < backup.sql
+```
+
+---
+
+## Plugin Information
+
+### Lord of the Rings LCG Plugin
+
+- **Location:** `/Users/leo/Projects/dragncards/backend/priv/dragncards-lotrlcg-plugin/`
+- **Card database:** `/frontend/src/features/plugins/lotrlcg/definitions/cardDb.json`
+- **Cards:** 5,286 cards (including 255 ALeP cards)
+- **Images:** `/frontend/public/lotrlcg-cards/`
+- **Import support:** localhost:8001 (RingsDB) and ringsdb.com
 
 ### Marvel Champions Plugin
 
 - **Location:** `/Users/leo/Projects/dragncards/backend/priv/dragncards-mc-plugin/`
 - **Cards:** 3,523 cards with marvelcdbId mappings
-- **Images:** Stored at `/Users/leo/Projects/dragncards/frontend/public/mc-cards/official/`
+- **Images:** `/frontend/public/mc-cards/official/`
 - **Pre-built decks:** 457 decks in `preBuiltDecks.json`
+- **Import support:** localhost:8000 (MarvelsDB) and marvelcdb.com
 
-### Lord of the Rings LCG Plugin
+---
 
-- **Location:** `/Users/leo/Projects/dragncards/backend/priv/dragncards-lotrlcg-plugin/`
-- **Cards:** 4,376 cards
-- **Images:** Stored at `/Users/leo/Projects/dragncards/frontend/public/lotrlcg-cards/`
-
-## 8. Development Notes
+## Development Notes
 
 ### Modified Files for Local Development
 
 **DragnCards:**
-- `frontend/src/features/engine/hooks/useImportViaUrl.js` - Added localhost support for deck imports
+- `frontend/src/features/engine/hooks/useImportViaUrl.js` - Added localhost support for RingsDB and MarvelsDB
 - `frontend/src/features/engine/TopBarMenu.js` - Disabled Patreon check for replay downloads
+- `frontend/src/features/plugins/lotrlcg/definitions/cardDb.json` - Added 255 ALeP cards (5,031 → 5,286 total)
+
+**RingsDB:**
+- `docker-compose.yml` - Full Docker setup with web service
+- `Dockerfile` - PHP 7.3 + Apache configuration
+- `app/config/parameters.yml` - Database connection configured for Docker
+- Database: All 32 cycles and 114+ packs properly organized
+- Database: Character encoding fixed (UTF-8)
 
 **MarvelsDB:**
-- `src/AppBundle/Controller/SocialController.php` - Disabled description requirement and 24-hour publishing restriction
+- `docker-compose.yml` - Full Docker setup with web service
+- `Dockerfile` - PHP 7.4 + Apache configuration
+- `app/config/parameters.yml` - Database connection configured for Docker
+- `src/AppBundle/Controller/SocialController.php` - Disabled restrictions for local development
 - `web/bundles/cards/` - Symlinks to DragnCards images
 
-### Regenerating Card JSON
+### Regenerating Card JSON (MarvelsDB)
 
 If you add new images to MarvelsDB, regenerate the card JSON files:
 
@@ -187,4 +311,15 @@ This updates `/web/cards-player-en.json` and `/web/cards-all-en.json` with image
 
 ---
 
-**Last Updated:** October 14, 2025
+## Summary
+
+| Service | URL | Startup | Status |
+|---------|-----|---------|--------|
+| **RingsDB** | http://localhost:8001 | `docker-compose up -d` | ✅ One-click ready |
+| **MarvelsDB** | http://localhost:8000 | `docker-compose up -d` | ✅ One-click ready |
+| **DragnCards Backend** | http://localhost:4000 | `docker compose up -d` | ✅ One-click ready |
+| **DragnCards Frontend** | http://localhost:3000 | `npm start` (with NODE_OPTIONS) | ⚠️ 10-30 min first compile |
+
+---
+
+**Last Updated:** October 17, 2025
