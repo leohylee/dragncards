@@ -281,35 +281,107 @@ All data persists even when containers are stopped:
 - **LOTR LCG images:** 5,355 files (~1.2 GB)
 - **Marvel Champions images:** 3,569 files
 
-### Database Backup & Restore
+---
+
+## Comprehensive Backup & Recovery System 🛡️
+
+### Quick Backup (All Services)
+
+Create a complete timestamped backup of all three services:
+
+```bash
+cd {projectDir}/dragncards
+./backup-all.sh
+```
+
+**What gets backed up:**
+- ✅ All databases (RingsDB, MarvelsDB, DragnCards)
+- ✅ All card images (9+ GB compressed to ~3-4 GB)
+- ✅ All configuration files (docker-compose, Dockerfiles, parameters)
+- ✅ All plugins and card definitions
+- ✅ Complete restore manifest
+
+**Backup location:** `{projectDir}/backups/backup_YYYYMMDD_HHMMSS/`
+
+**Backup size:** ~4-5 GB (compressed)
+
+### Quick Restore (All Services)
+
+Restore from a complete backup:
+
+```bash
+cd {projectDir}/dragncards
+./restore-all.sh {projectDir}/backups/backup_YYYYMMDD_HHMMSS
+```
+
+**Features:**
+- ⚡ One-command complete restore
+- 🔍 Automatic verification after restore
+- ⚠️ Safety confirmation before overwriting
+- 📊 Progress reporting during restore
+
+**Note:** This will overwrite existing data. You'll be prompted to confirm.
+
+### Individual Database Backup & Restore
 
 **RingsDB:**
 ```bash
-# Backup (already done on 2025-10-17)
-cd {project_dir}/ringsdb
+# Backup
+cd {projectDir}/ringsdb
 docker exec ringsdb-mysql mysqldump -u ringsdb -pringsdb ringsdb > ringsdb_backup.sql
 
 # Restore from backup (restores all cards, packs, scenarios)
-cd {project_dir}/ringsdb
 docker exec -i ringsdb-mysql mysql -u ringsdb -pringsdb ringsdb < ringsdb_backup.sql
 ```
 
 **MarvelsDB:**
 ```bash
-# Backup (already done on 2025-10-17)
-cd {project_dir}/marvelsdb
+# Backup
+cd {projectDir}/marvelsdb
 docker exec marvelsdb-mysql mysqldump -u marvelsdb -pmarvelsdb marvelsdb > marvelsdb_backup.sql
 
 # Restore from backup (restores all cards, packs, sets, users, decks)
-cd {project_dir}/marvelsdb
 docker exec -i marvelsdb-mysql mysql -u marvelsdb -pmarvelsdb marvelsdb < marvelsdb_backup.sql
 ```
 
-**Note:** These backups contain complete database dumps. Restore commands will import:
-- All card data with full details
-- All packs, expansions, and card sets
-- User accounts and published decklists (MarvelsDB only)
-- Database structure, indexes, and relations
+**DragnCards:**
+```bash
+# Backup
+cd {projectDir}/dragncards
+docker exec dragncards-postgres-1 pg_dump -U postgres dragncards_dev > dragncards_dev_backup.sql
+
+# Restore from backup
+docker exec -i dragncards-postgres-1 psql -U postgres dragncards_dev < dragncards_dev_backup.sql
+```
+
+### Recovery from Corruption
+
+If any service becomes corrupted, see **[RECOVERY.md](RECOVERY.md)** for detailed recovery procedures including:
+- 🔧 Partial recovery (databases only, images only, configs only)
+- 🆘 Emergency recovery from scratch
+- ✅ Verification procedures
+- 🐛 Troubleshooting common issues
+
+**Quick recovery examples:**
+
+```bash
+# Recover only RingsDB card images
+tar -xzf /path/to/backup/ringsdb/images/cards.tar.gz -C {projectDir}/ringsdb/web/bundles/
+
+# Recover only DragnCards database
+docker exec -i dragncards-postgres-1 psql -U postgres dragncards_dev < /path/to/backup/dragncards/database/dragncards_dev.sql
+
+# Recover only plugins
+cp -r /path/to/backup/dragncards/plugins/* {projectDir}/dragncards/backend/priv/
+```
+
+### Backup Best Practices
+
+1. **Regular Backups:** Run `backup-all.sh` weekly
+2. **Multiple Locations:** Keep backups in 2-3 different locations (external drives, NAS, etc.)
+3. **Verify Backups:** Test recovery periodically
+4. **Keep Multiple Versions:** Retain last 3-5 backups for rollback
+5. **Offline Storage:** Store backups offline for true offline-proof capability
 
 ---
 

@@ -52,6 +52,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Self-contained** - All plugins, card data, and images bundled locally
 - **Complete offline gameplay** - Works with no internet connection once containers running
 
+#### Comprehensive Backup & Recovery System
+- Created `backup-all.sh` - Automated backup script for all three services
+- Created `restore-all.sh` - One-command restore from backup
+- Created `RECOVERY.md` - Detailed recovery documentation for corrupted data
+- **Timestamped backups** - Each backup stored in `{projectDir}/backups/backup_YYYYMMDD_HHMMSS/`
+- **Compressed archives** - Card images compressed with tar.gz (~4-5 GB total)
+- **Complete manifests** - Each backup includes MANIFEST.txt with contents and verification
+- **Partial recovery** - Can restore individual components (databases, images, configs, plugins)
+- **Verification** - Automatic verification after restore with card counts and service checks
+- **Offline recovery** - All backups self-contained for complete offline restore capability
+
 ### Changed
 
 #### Card Structure Compatibility
