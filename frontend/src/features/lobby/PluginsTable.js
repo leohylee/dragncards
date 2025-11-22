@@ -56,15 +56,16 @@ export const PluginsTable = ({ plugins }) => {
             </div> 
             :
             <table className="w-full">
+              <tbody>
             {plugins?.map((plugin, pluginIndex) => {
               return(
-                <tr className={trClass} onClick={() => history.push("/plugin/"+plugin.id)}>
-                  <div className="relative m-4">
+                <tr key={plugin.id} className={trClass} onClick={() => history.push("/plugin/"+plugin.id)}>
+                  <td className="relative m-4">
                     <div className="text-xl inline">{plugin.name}</div>
-                    {/* <a 
-                      className={"text-white text-lg pl-2"} 
+                    {/* <a
+                      className={"text-white text-lg pl-2"}
                       target="_blank">
-                      <FontAwesomeIcon 
+                      <FontAwesomeIcon
                         className="cursor-pointer"
                         icon={starHoverIndex === pluginIndex ? faStarS : faStarO}
                         onMouseEnter={() => {setStarHoverIndex(pluginIndex)}}
@@ -75,16 +76,17 @@ export const PluginsTable = ({ plugins }) => {
                     <div className="text-xs">{siteL10n("Author:") + " " + plugin.author_alias}</div>
                     <div className="text-xs">{siteL10n("Games in 24hr/30d:") + " " + plugin.count_24hr + "/" + plugin.count_30d}</div>
                     {/* <div className="text-xs">{siteL10n("Games in Progress:") + " " + (roomsByPlugin[plugin.id] || 0)}</div> */}
-                  </div>
-                  <div className="absolute right-0 flex items-center p-4">
+                  </td>
+                  <td className="absolute right-0 flex items-center p-4">
                     <a className="text-white" target="_blank" onClick={() => {}}>
                       <FontAwesomeIcon size="2x" icon={faChevronRight}/>
                     </a>
-                  </div>
+                  </td>
 
                 </tr>
               )
             })}
+              </tbody>
             </table>
           }
           <div>

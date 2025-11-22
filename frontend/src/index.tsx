@@ -8,6 +8,21 @@ import "./index.css";
 //import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 
+// Suppress known warning from mui-datatables 3.x with React 16
+// This warning comes from the library's internal implementation and doesn't affect functionality
+const originalError = console.error;
+console.error = (...args) => {
+  const message = args[0];
+  if (
+    typeof message === 'string' &&
+    (message.includes('React does not recognize the `isEmpty` prop') ||
+     message.includes('isEmpty'))
+  ) {
+    return;
+  }
+  originalError.call(console, ...args);
+};
+
 // From https://redux-toolkit.js.org/tutorials/advanced-tutorial
 const render = () => {
   const App = require("./app/App").default;
