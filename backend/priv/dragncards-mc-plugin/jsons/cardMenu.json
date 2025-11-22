@@ -1,1 +1,14 @@
-{"cardMenu":{"moveToGroupIds":["sharedEncounterDeck","sharedEncounterDiscard","sharedVictoryDisplay","sharedOutOfPlay"],"options":[{"label":"id:exhaustReady","actionList":"toggleExhaust"},{"label":"id:discard","actionList":["DISCARD_CARD","$ACTIVE_CARD_ID"]}]}}
+{
+  "cardMenu": {
+    "moveToGroupIds": [
+      "sharedEncounterDeck",
+      "sharedEncounterDiscard",
+      "sharedVictoryDisplay",
+      "sharedOutOfPlay"
+    ],
+    "options": [
+      {"label": "id:exhaustReady", "actionList": "toggleExhaust"},
+      {"label": "id:discard", "actionList": ["DISCARD_CARD", "$ACTIVE_CARD_ID"]}
+    ]
+  }
+}

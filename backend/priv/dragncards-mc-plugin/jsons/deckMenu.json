@@ -1,1 +1,1721 @@
-{"deckMenu":{"subMenus":[{"label":"Modular Sets","subMenus":[{"label":"Kree Fanatic","deckLists":[{"label":"Kree Fanatic","deckListId":"Kree Fanatic (Modular)"}]},{"label":"Core Set","deckLists":[{"label":"Bomb Scare","deckListId":"Bomb Scare (Modular)"},{"label":"Masters of Evil","deckListId":"Masters of Evil (Modular)"},{"label":"Under Attack","deckListId":"Under Attack (Modular)"},{"label":"Legions of Hydra","deckListId":"Legions of Hydra (Modular)"},{"label":"The Doomsday Chair","deckListId":"The Doomsday Chair (Modular)"},{"label":"Standard","deckListId":"Standard (Modular)"},{"label":"Expert","deckListId":"Expert (Modular)"}]},{"label":"The Green Goblin","deckLists":[{"label":"Goblin Gimmicks","deckListId":"Goblin Gimmicks (Modular)"},{"label":"A Mess of Things","deckListId":"A Mess of Things (Modular)"},{"label":"Power Drain","deckListId":"Power Drain (Modular)"},{"label":"Running Interference","deckListId":"Running Interference (Modular)"}]},{"label":"The Rise of Red Skull","deckLists":[{"label":"Experimental Weapons","deckListId":"Experimental Weapons (Modular)"},{"label":"Hydra Assault","deckListId":"Hydra Assault (Modular)"},{"label":"Weapon Master","deckListId":"Weapon Master (Modular)"},{"label":"Hydra Patrol","deckListId":"Hydra Patrol (Modular)"}]},{"label":"The Once and Future Kang","deckLists":[{"label":"Temporal","deckListId":"Temporal (Modular)"},{"label":"Anachronauts","deckListId":"Anachronauts (Modular)"},{"label":"Master of Time","deckListId":"Master of Time (Modular)"}]},{"label":"Galaxy's Most Wanted","deckLists":[{"label":"Band of Badoon","deckListId":"Band of Badoon (Modular)"},{"label":"Galactic Artifacts","deckListId":"Galactic Artifacts (Modular)"},{"label":"Kree Militants","deckListId":"Kree Militants (Modular)"},{"label":"Menagerie Medley","deckListId":"Menagerie Medley (Modular)"},{"label":"Space Pirates","deckListId":"Space Pirates (Modular)"},{"label":"Ship Command","deckListId":"Ship Command (Modular)"},{"label":"Power Stone","deckListId":"Power Stone (Modular)"},{"label":"Badoon Headhunter","deckListId":"Badoon Headhunter (Modular)"}]},{"label":"The Mad Titan's Shadow","deckLists":[{"label":"Black Order","deckListId":"Black Order (Modular)"},{"label":"Armies of Titan","deckListId":"Armies of Titan (Modular)"},{"label":"Children of Thanos","deckListId":"Children of Thanos (Modular)"},{"label":"Infinity Gauntlet","deckListId":"Infinity Gauntlet (Modular)"},{"label":"Legions of Hel","deckListId":"Legions of Hel (Modular)"},{"label":"Frost Giants","deckListId":"Frost Giants (Modular)"},{"label":"Enchantress","deckListId":"Enchantress (Modular)"}]},{"label":"The Hood","deckLists":[{"label":"Beasty Boys","deckListId":"Beasty Boys (Modular)"},{"label":"Brothers Grimm","deckListId":"Brothers Grimm (Modular)"},{"label":"Crossfire's Crew","deckListId":"Crossfire's Crew (Modular)"},{"label":"Expert II","deckListId":"Expert II (Modular)"},{"label":"Mister Hyde","deckListId":"Mister Hyde (Modular)"},{"label":"Ransacked Armory","deckListId":"Ransacked Armory (Modular)"},{"label":"Sinister Syndicate","deckListId":"Sinister Syndicate (Modular)"},{"label":"Standard II","deckListId":"Standard II (Modular)"},{"label":"State of Emergency","deckListId":"State of Emergency (Modular)"},{"label":"Streets of Mayhem","deckListId":"Streets of Mayhem (Modular)"},{"label":"Wrecking Crew","deckListId":"Wrecking Crew (Modular)"}]},{"label":"Sinister Motives","deckLists":[{"label":"City in Chaos","deckListId":"City in Chaos (Modular)"},{"label":"Down to Earth","deckListId":"Down to Earth (Modular)"},{"label":"Goblin Gear","deckListId":"Goblin Gear (Modular)"},{"label":"Guerrilla Tactics","deckListId":"Guerrilla Tactics (Modular)"},{"label":"Osborn Tech","deckListId":"Osborn Tech (Modular)"},{"label":"Personal Nightmare","deckListId":"Personal Nightmare (Modular)"},{"label":"Sinister Assault","deckListId":"Sinister Assault (Modular)"},{"label":"Symbiotic Strength","deckListId":"Symbiotic Strength (Modular)"},{"label":"Whispers of Paranoia","deckListId":"Whispers of Paranoia (Modular)"}]},{"label":"Nova","deckLists":[{"label":"Armadillo","deckListId":"Armadillo (Modular)"}]},{"label":"Ironheart","deckLists":[{"label":"Zzzax","deckListId":"Zzzax (Modular)"}]},{"label":"Spider-Ham","deckLists":[{"label":"The Inheritors","deckListId":"The Inheritors (Modular)"}]},{"label":"SP\/\/dr","deckLists":[{"label":"Iron Spider's Sinister Six","deckListId":"Iron Spider's Sinister Six (Modular)"}]},{"label":"Mutant Genesis","deckLists":[{"label":"Brotherhood","deckListId":"Brotherhood (Modular)"},{"label":"Mystique","deckListId":"Mystique (Modular)"},{"label":"Zero Tolerance","deckListId":"Zero Tolerance (Modular)"},{"label":"Sentinels","deckListId":"Sentinels (Modular)"},{"label":"Acolytes","deckListId":"Acolytes (Modular)"},{"label":"Future Past","deckListId":"Future Past (Modular)"}]},{"label":"Wolverine","deckLists":[{"label":"Deathstrike","deckListId":"Deathstrike (Modular)"}]},{"label":"Storm","deckLists":[{"label":"Shadow King","deckListId":"Shadow King (Modular)"}]},{"label":"Gambit","deckLists":[{"label":"Exodus","deckListId":"Exodus (Modular)"}]},{"label":"Rogue","deckLists":[{"label":"Reavers","deckListId":"Reavers (Modular)"}]},{"label":"MojoMania","deckLists":[{"label":"Crime","deckListId":"Crime (Modular)"},{"label":"Fantasy","deckListId":"Fantasy (Modular)"},{"label":"Horror","deckListId":"Horror (Modular)"},{"label":"Sci-Fi","deckListId":"Sci-Fi (Modular)"},{"label":"Sitcom","deckListId":"Sitcom (Modular)"},{"label":"Western","deckListId":"Western (Modular)"}]},{"label":"NeXt Evolution","deckLists":[{"label":"Military Grade","deckListId":"Military Grade (Modular)"},{"label":"Mutant Slayers","deckListId":"Mutant Slayers (Modular)"},{"label":"Nasty Boys","deckListId":"Nasty Boys (Modular)"},{"label":"Hope Summers","deckListId":"Hope Summers (Modular)"},{"label":"Black Tom Cassidy","deckListId":"Black Tom Cassidy (Modular)"},{"label":"Flight","deckListId":"Flight (Modular)"},{"label":"Super Strength","deckListId":"Super Strength (Modular)"},{"label":"Telepathy","deckListId":"Telepathy (Modular)"},{"label":"Extreme Measures","deckListId":"Extreme Measures (Modular)"},{"label":"Mutant Insurrection","deckListId":"Mutant Insurrection (Modular)"}]},{"label":"Deadpool","deckLists":[{"label":"Dreadpool","deckListId":"Dreadpool (Modular)"}]},{"label":"Age of Apocalypse","deckLists":[{"label":"Infinites","deckListId":"Infinites (Modular)"},{"label":"Dystopian Nightmare","deckListId":"Dystopian Nightmare (Modular)"},{"label":"Standard III","deckListId":"Standard III (Modular)"},{"label":"Hounds","deckListId":"Hounds (Modular)"},{"label":"Dark Riders","deckListId":"Dark Riders (Modular)"},{"label":"Savage Land","deckListId":"Savage Land (Modular)"},{"label":"Genosha","deckListId":"Genosha (Modular)"},{"label":"Blue Moon","deckListId":"Blue Moon (Modular)"},{"label":"Celestial Tech","deckListId":"Celestial Tech (Modular)"},{"label":"Clan Akkaba","deckListId":"Clan Akkaba (Modular)"},{"label":"Prelates","deckListId":"Prelates (Modular)"}]},{"label":"Iceman","deckLists":[{"label":"Sauron","deckListId":"Sauron (Modular)"}]},{"label":"Jubilee","deckLists":[{"label":"Arcade","deckListId":"Arcade (Modular)"}]},{"label":"Nightcrawler","deckLists":[{"label":"Crazy Gang","deckListId":"Crazy Gang (Modular)"}]},{"label":"Magneto","deckLists":[{"label":"Hellfire","deckListId":"Hellfire (Modular)"}]},{"label":"Agents of S.H.I.E.L.D.","deckLists":[{"label":"A.I.M. Abduction","deckListId":"A.I.M. Abduction (Modular)"},{"label":"A.I.M. Science","deckListId":"A.I.M. Science (Modular)"},{"label":"Batroc's Brigade","deckListId":"Batroc's Brigade (Modular)"},{"label":"Scientist Supreme","deckListId":"Scientist Supreme (Modular)"},{"label":"Gravitational Pull","deckListId":"Gravitational Pull (Modular)"},{"label":"Hard Sound","deckListId":"Hard Sound (Modular)"},{"label":"Pale Little Spider","deckListId":"Pale Little Spider (Modular)"},{"label":"Power of the Atom","deckListId":"Power of the Atom (Modular)"},{"label":"Supersonic","deckListId":"Supersonic (Modular)"},{"label":"The Leaper","deckListId":"The Leaper (Modular)"},{"label":"S.H.I.E.L.D.","deckListId":"S.H.I.E.L.D. (Modular)"},{"label":"S.H.I.E.L.D. Executive Board","deckListId":"S.H.I.E.L.D. Executive Board (Modular)"},{"label":"Executive Board Evidence","deckListId":"Executive Board Evidence (Modular)"}]},{"label":"Black Panther","deckLists":[{"label":"Extreme Risk","deckListId":"Extreme Risk (Modular)"}]},{"label":"Silk","deckLists":[{"label":"Growing Strong","deckListId":"Growing Strong (Modular)"}]},{"label":"Falcon","deckLists":[{"label":"Techno","deckListId":"Techno (Modular)"}]},{"label":"Winter Soldier","deckLists":[{"label":"Whiteout","deckListId":"Whiteout (Modular)"}]},{"label":"Trickster Takeover","deckLists":[{"label":"Trickster Magic","deckListId":"Trickster Magic (Modular)"}]}]},{"label":"Scenarios","subMenus":[{"label":"Core Set","deckLists":[{"label":"Rhino","deckListId":"Rhino (Scenario)"},{"label":"Klaw","deckListId":"Klaw (Scenario)"},{"label":"Ultron","deckListId":"Ultron (Scenario)"}]},{"label":"The Green Goblin","deckLists":[{"label":"Risky Business","deckListId":"Risky Business (Scenario)"},{"label":"Mutagen Formula","deckListId":"Mutagen Formula (Scenario)"}]},{"label":"The Rise of Red Skull","deckLists":[{"label":"Crossbones","deckListId":"Crossbones (Scenario)"},{"label":"Absorbing Man","deckListId":"Absorbing Man (Scenario)"},{"label":"Taskmaster","deckListId":"Taskmaster (Scenario)"},{"label":"Zola","deckListId":"Zola (Scenario)"},{"label":"Red Skull","deckListId":"Red Skull (Scenario)"}]},{"label":"The Wrecking Crew","deckLists":[{"label":"Wrecking Crew","deckListId":"Wrecking Crew (Scenario)"},{"label":"Wrecker","deckListId":"Wrecker (Scenario)"},{"label":"Thunderball","deckListId":"Thunderball (Scenario)"},{"label":"Piledriver","deckListId":"Piledriver (Scenario)"},{"label":"Bulldozer","deckListId":"Bulldozer (Scenario)"}]},{"label":"The Once and Future Kang","deckLists":[{"label":"Kang","deckListId":"Kang (Scenario)"},{"label":"Expert Kang","deckListId":"Expert Kang (Scenario)"}]},{"label":"Galaxy's Most Wanted","deckLists":[{"label":"Brotherhood of Badoon","deckListId":"Brotherhood of Badoon (Scenario)"},{"label":"Infiltrate the Museum","deckListId":"Infiltrate the Museum (Scenario)"},{"label":"Escape the Museum","deckListId":"Escape the Museum (Scenario)"},{"label":"Nebula","deckListId":"Nebula (Scenario)"},{"label":"Ronan the Accuser","deckListId":"Ronan the Accuser (Scenario)"}]},{"label":"The Mad Titan's Shadow","deckLists":[{"label":"Ebony Maw","deckListId":"Ebony Maw (Scenario)"},{"label":"Tower Defense","deckListId":"Tower Defense (Scenario)"},{"label":"Thanos","deckListId":"Thanos (Scenario)"},{"label":"Hela","deckListId":"Hela (Scenario)"},{"label":"Loki","deckListId":"Loki (Scenario)"}]},{"label":"The Hood","deckLists":[{"label":"The Hood","deckListId":"The Hood (Scenario)"}]},{"label":"Sinister Motives","deckLists":[{"label":"Sandman","deckListId":"Sandman (Scenario)"},{"label":"Venom","deckListId":"Venom (Scenario)"},{"label":"Mysterio","deckListId":"Mysterio (Scenario)"},{"label":"The Sinister Six","deckListId":"The Sinister Six (Scenario)"},{"label":"Venom Goblin","deckListId":"Venom Goblin (Scenario)"}]},{"label":"Mutant Genesis","deckLists":[{"label":"Sabretooth","deckListId":"Sabretooth (Scenario)"},{"label":"Project Wideawake","deckListId":"Project Wideawake (Scenario)"},{"label":"Master Mold","deckListId":"Master Mold (Scenario)"},{"label":"Mansion Attack","deckListId":"Mansion Attack (Scenario)"},{"label":"Magneto","deckListId":"Magneto (Scenario)"}]},{"label":"MojoMania","deckLists":[{"label":"MaGog","deckListId":"MaGog (Scenario)"},{"label":"Spiral","deckListId":"Spiral (Scenario)"},{"label":"Mojo","deckListId":"Mojo (Scenario)"}]},{"label":"NeXt Evolution","deckLists":[{"label":"Morlock Siege","deckListId":"Morlock Siege (Scenario)"},{"label":"On the Run","deckListId":"On the Run (Scenario)"},{"label":"Juggernaut","deckListId":"Juggernaut (Scenario)"},{"label":"Mister Sinister","deckListId":"Mister Sinister (Scenario)"},{"label":"Stryfe","deckListId":"Stryfe (Scenario)"}]},{"label":"Age of Apocalypse","deckLists":[{"label":"Unus","deckListId":"Unus (Scenario)"},{"label":"Four Horsemen","deckListId":"Four Horsemen (Scenario)"},{"label":"Apocalypse","deckListId":"Apocalypse (Scenario)"},{"label":"Dark Beast","deckListId":"Dark Beast (Scenario)"},{"label":"En Sabah Nur","deckListId":"En Sabah Nur (Scenario)"}]},{"label":"Agents of S.H.I.E.L.D.","deckLists":[{"label":"Black Widow","deckListId":"Black Widow (Scenario)"},{"label":"Batroc","deckListId":"Batroc (Scenario)"},{"label":"M.O.D.O.K.","deckListId":"M.O.D.O.K. (Scenario)"},{"label":"Thunderbolts","deckListId":"Thunderbolts (Scenario)"},{"label":"Baron Zemo","deckListId":"Baron Zemo (Scenario)"}]},{"label":"Trickster Takeover","deckLists":[{"label":"Enchantress","deckListId":"Enchantress (Scenario)"},{"label":"God of Lies","deckListId":"God of Lies (Scenario)"}]}]},{"label":"Campaign","subMenus":[{"label":"The Rise of Red Skull","deckLists":[{"label":"Hydra Campaign","deckListId":"Hydra Campaign (Campaign)"},{"label":"Expert Campaign","deckListId":"Expert Campaign (Campaign)"}]},{"label":"Galaxy's Most Wanted","deckLists":[{"label":"Campaign - The Market","deckListId":"Campaign - The Market (Campaign)"},{"label":"Campaign - Expert Challenge","deckListId":"Campaign - Expert Challenge (Campaign)"},{"label":"Campaign - Standard Challenge","deckListId":"Campaign - Standard Challenge (Campaign)"}]},{"label":"The Mad Titan's Shadow","deckLists":[{"label":"Campaign (The Mad Titan's Shadow)","deckListId":"Campaign (The Mad Titan's Shadow) (Campaign)"}]},{"label":"Sinister Motives","deckLists":[{"label":"Campaign - Bad Publicity","deckListId":"Campaign - Bad Publicity (Campaign)"},{"label":"Campaign - Community Service","deckListId":"Campaign - Community Service (Campaign)"},{"label":"Campaign - Snitches Get Stitches","deckListId":"Campaign - Snitches Get Stitches (Campaign)"},{"label":"Campaign - S.H.I.E.L.D. Tech","deckListId":"Campaign - S.H.I.E.L.D. Tech (Campaign)"}]},{"label":"Mutant Genesis","deckLists":[{"label":"Campaign (Mutant Genesis)","deckListId":"Campaign (Mutant Genesis) (Campaign)"},{"label":"Brawler","deckListId":"Brawler (Campaign)"},{"label":"Commander","deckListId":"Commander (Campaign)"},{"label":"Defender","deckListId":"Defender (Campaign)"},{"label":"Peacekeeper","deckListId":"Peacekeeper (Campaign)"}]},{"label":"MojoMania","deckLists":[{"label":"Longshot","deckListId":"Longshot (Campaign)"}]},{"label":"NeXt Evolution","deckLists":[{"label":"Campaign (NeXt Evolution)","deckListId":"Campaign (NeXt Evolution) (Campaign)"}]},{"label":"Age of Apocalypse","deckLists":[{"label":"Age of Apocalypse","deckListId":"Age of Apocalypse (Campaign)"},{"label":"Mission","deckListId":"Mission (Campaign)"},{"label":"Campaign (Age of Apocalypse)","deckListId":"Campaign (Age of Apocalypse) (Campaign)"},{"label":"Overseer","deckListId":"Overseer (Campaign)"}]}]},{"label":"Nemesis Sets","deckLists":[{"label":"Black Panther Nemesis","deckListId":"Black Panther Nemesis (Nemesis)"},{"label":"She-Hulk Nemesis","deckListId":"She-Hulk Nemesis (Nemesis)"},{"label":"Spider-Man Nemesis","deckListId":"Spider-Man Nemesis (Nemesis)"},{"label":"Iron Man Nemesis","deckListId":"Iron Man Nemesis (Nemesis)"},{"label":"Captain Marvel Nemesis","deckListId":"Captain Marvel Nemesis (Nemesis)"},{"label":"Captain America Nemesis","deckListId":"Captain America Nemesis (Nemesis)"},{"label":"Hawkeye Nemesis","deckListId":"Hawkeye Nemesis (Nemesis)"},{"label":"Spider-Woman Nemesis","deckListId":"Spider-Woman Nemesis (Nemesis)"},{"label":"Ms. Marvel Nemesis","deckListId":"Ms. Marvel Nemesis (Nemesis)"},{"label":"Thor Nemesis","deckListId":"Thor Nemesis (Nemesis)"},{"label":"Black Widow Nemesis","deckListId":"Black Widow Nemesis (Nemesis)"},{"label":"Doctor Strange Nemesis","deckListId":"Doctor Strange Nemesis (Nemesis)"},{"label":"Hulk Nemesis","deckListId":"Hulk Nemesis (Nemesis)"},{"label":"Ant-Man Nemesis","deckListId":"Ant-Man Nemesis (Nemesis)"},{"label":"Wasp Nemesis","deckListId":"Wasp Nemesis (Nemesis)"},{"label":"Quicksilver Nemesis","deckListId":"Quicksilver Nemesis (Nemesis)"},{"label":"Scarlet Witch Nemesis","deckListId":"Scarlet Witch Nemesis (Nemesis)"},{"label":"Groot Nemesis","deckListId":"Groot Nemesis (Nemesis)"},{"label":"Rocket Raccoon Nemesis","deckListId":"Rocket Raccoon Nemesis (Nemesis)"},{"label":"Star-Lord Nemesis","deckListId":"Star-Lord Nemesis (Nemesis)"},{"label":"Gamora Nemesis","deckListId":"Gamora Nemesis (Nemesis)"},{"label":"Drax Nemesis","deckListId":"Drax Nemesis (Nemesis)"},{"label":"Venom Nemesis","deckListId":"Venom Nemesis (Nemesis)"},{"label":"Spectrum Nemesis","deckListId":"Spectrum Nemesis (Nemesis)"},{"label":"Adam Warlock Nemesis","deckListId":"Adam Warlock Nemesis (Nemesis)"},{"label":"Nebula Nemesis","deckListId":"Nebula Nemesis (Nemesis)"},{"label":"War Machine Nemesis","deckListId":"War Machine Nemesis (Nemesis)"},{"label":"Valkyrie Nemesis","deckListId":"Valkyrie Nemesis (Nemesis)"},{"label":"Vision Nemesis","deckListId":"Vision Nemesis (Nemesis)"},{"label":"Ghost-Spider Nemesis","deckListId":"Ghost-Spider Nemesis (Nemesis)"},{"label":"Spider-Man Nemesis (Miles Morales)","deckListId":"Spider-Man Nemesis (Miles Morales) (Nemesis)"},{"label":"Nova Nemesis","deckListId":"Nova Nemesis (Nemesis)"},{"label":"Ironheart Nemesis","deckListId":"Ironheart Nemesis (Nemesis)"},{"label":"Spider-Ham Nemesis","deckListId":"Spider-Ham Nemesis (Nemesis)"},{"label":"SP\/\/dr Nemesis","deckListId":"SP\/\/dr Nemesis (Nemesis)"},{"label":"Colossus Nemesis","deckListId":"Colossus Nemesis (Nemesis)"},{"label":"Shadowcat Nemesis","deckListId":"Shadowcat Nemesis (Nemesis)"},{"label":"Cyclops Nemesis","deckListId":"Cyclops Nemesis (Nemesis)"},{"label":"Phoenix Nemesis","deckListId":"Phoenix Nemesis (Nemesis)"},{"label":"Wolverine Nemesis","deckListId":"Wolverine Nemesis (Nemesis)"},{"label":"Storm Nemesis","deckListId":"Storm Nemesis (Nemesis)"},{"label":"Gambit Nemesis","deckListId":"Gambit Nemesis (Nemesis)"},{"label":"Rogue Nemesis","deckListId":"Rogue Nemesis (Nemesis)"},{"label":"Cable Nemesis","deckListId":"Cable Nemesis (Nemesis)"},{"label":"Domino Nemesis","deckListId":"Domino Nemesis (Nemesis)"},{"label":"Psylocke Nemesis","deckListId":"Psylocke Nemesis (Nemesis)"},{"label":"Angel Nemesis","deckListId":"Angel Nemesis (Nemesis)"},{"label":"X-23 Nemesis","deckListId":"X-23 Nemesis (Nemesis)"},{"label":"Deadpool Nemesis","deckListId":"Deadpool Nemesis (Nemesis)"},{"label":"Bishop Nemesis","deckListId":"Bishop Nemesis (Nemesis)"},{"label":"Magik Nemesis","deckListId":"Magik Nemesis (Nemesis)"},{"label":"Iceman Nemesis","deckListId":"Iceman Nemesis (Nemesis)"},{"label":"Jubilee Nemesis","deckListId":"Jubilee Nemesis (Nemesis)"},{"label":"Nightcrawler Nemesis","deckListId":"Nightcrawler Nemesis (Nemesis)"},{"label":"Magneto Nemesis","deckListId":"Magneto Nemesis (Nemesis)"},{"label":"Maria Hill Nemesis","deckListId":"Maria Hill Nemesis (Nemesis)"},{"label":"Nick Fury Nemesis","deckListId":"Nick Fury Nemesis (Nemesis)"},{"label":"Black Panther (Shuri) Nemesis","deckListId":"Black Panther (Shuri) Nemesis (Nemesis)"},{"label":"Silk Nemesis","deckListId":"Silk Nemesis (Nemesis)"},{"label":"Falcon Nemesis","deckListId":"Falcon Nemesis (Nemesis)"},{"label":"Winter Soldier Nemesis","deckListId":"Winter Soldier Nemesis (Nemesis)"}]},{"label":"Hero Precons","deckLists":[{"label":"Spider-Man","deckListId":"Spider-Man (Hero)"},{"label":"Captain Marvel","deckListId":"Captain Marvel (Hero)"},{"label":"Black Panther","deckListId":"Black Panther (Hero)"},{"label":"She-Hulk","deckListId":"She-Hulk (Hero)"},{"label":"Iron Man","deckListId":"Iron Man (Hero)"},{"label":"Captain America","deckListId":"Captain America (Hero)"},{"label":"Hawkeye","deckListId":"Hawkeye (Hero)"},{"label":"Spider-Woman","deckListId":"Spider-Woman (Hero)"},{"label":"Ms. Marvel","deckListId":"Ms. Marvel (Hero)"},{"label":"Thor","deckListId":"Thor (Hero)"},{"label":"Black Widow","deckListId":"Black Widow (Hero)"},{"label":"Doctor Strange","deckListId":"Doctor Strange (Hero)"},{"label":"Hulk","deckListId":"Hulk (Hero)"},{"label":"Ant-Man","deckListId":"Ant-Man (Hero)"},{"label":"Wasp","deckListId":"Wasp (Hero)"},{"label":"Quicksilver","deckListId":"Quicksilver (Hero)"},{"label":"Scarlet Witch","deckListId":"Scarlet Witch (Hero)"},{"label":"Groot","deckListId":"Groot (Hero)"},{"label":"Rocket Raccoon","deckListId":"Rocket Raccoon (Hero)"},{"label":"Star-Lord","deckListId":"Star-Lord (Hero)"},{"label":"Gamora","deckListId":"Gamora (Hero)"},{"label":"Drax","deckListId":"Drax (Hero)"},{"label":"Venom","deckListId":"Venom (Hero)"},{"label":"Spectrum","deckListId":"Spectrum (Hero)"},{"label":"Adam Warlock","deckListId":"Adam Warlock (Hero)"},{"label":"Nebula","deckListId":"Nebula (Hero)"},{"label":"War Machine","deckListId":"War Machine (Hero)"},{"label":"Valkyrie","deckListId":"Valkyrie (Hero)"},{"label":"Vision","deckListId":"Vision (Hero)"},{"label":"Ghost-Spider","deckListId":"Ghost-Spider (Hero)"},{"label":"Spider-Man (Miles Morales)","deckListId":"Spider-Man (Miles Morales) (Hero)"},{"label":"Nova","deckListId":"Nova (Hero)"},{"label":"Ironheart","deckListId":"Ironheart (Hero)"},{"label":"Spider-Ham","deckListId":"Spider-Ham (Hero)"},{"label":"SP\/\/dr","deckListId":"SP\/\/dr (Hero)"},{"label":"Colossus","deckListId":"Colossus (Hero)"},{"label":"Shadowcat","deckListId":"Shadowcat (Hero)"},{"label":"Cyclops","deckListId":"Cyclops (Hero)"},{"label":"Phoenix","deckListId":"Phoenix (Hero)"},{"label":"Wolverine","deckListId":"Wolverine (Hero)"},{"label":"Storm","deckListId":"Storm (Hero)"},{"label":"Gambit","deckListId":"Gambit (Hero)"},{"label":"Rogue","deckListId":"Rogue (Hero)"},{"label":"Cable","deckListId":"Cable (Hero)"},{"label":"Domino","deckListId":"Domino (Hero)"},{"label":"Psylocke","deckListId":"Psylocke (Hero)"},{"label":"Angel","deckListId":"Angel (Hero)"},{"label":"X-23","deckListId":"X-23 (Hero)"},{"label":"Deadpool","deckListId":"Deadpool (Hero)"},{"label":"Bishop","deckListId":"Bishop (Hero)"},{"label":"Magik","deckListId":"Magik (Hero)"},{"label":"Iceman","deckListId":"Iceman (Hero)"},{"label":"Jubilee","deckListId":"Jubilee (Hero)"},{"label":"Nightcrawler","deckListId":"Nightcrawler (Hero)"},{"label":"Magneto","deckListId":"Magneto (Hero)"},{"label":"Maria Hill","deckListId":"Maria Hill (Hero)"},{"label":"Nick Fury","deckListId":"Nick Fury (Hero)"},{"label":"Black Panther (Shuri)","deckListId":"Black Panther (Shuri) (Hero)"},{"label":"Silk","deckListId":"Silk (Hero)"},{"label":"Falcon","deckListId":"Falcon (Hero)"},{"label":"Winter Soldier","deckListId":"Winter Soldier (Hero)"}]}]}}
+{
+  "deckMenu": {
+    "subMenus": [
+      {
+        "label": "Campaign",
+        "subMenus": [
+          {
+            "label": "The Rise of Red Skull",
+            "deckLists": [
+              {
+                "label": "Hydra Campaign",
+                "deckListId": "Hydra Campaign (Campaign)"
+              },
+              {
+                "label": "Expert Campaign",
+                "deckListId": "Expert Campaign (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "Galaxy's Most Wanted",
+            "deckLists": [
+              {
+                "label": "Campaign - The Market",
+                "deckListId": "Campaign - The Market (Campaign)"
+              },
+              {
+                "label": "Campaign - Expert Challenge",
+                "deckListId": "Campaign - Expert Challenge (Campaign)"
+              },
+              {
+                "label": "Campaign - Standard Challenge",
+                "deckListId": "Campaign - Standard Challenge (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "The Mad Titan's Shadow",
+            "deckLists": [
+              {
+                "label": "Campaign (The Mad Titan's Shadow)",
+                "deckListId": "Campaign (The Mad Titan's Shadow) (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "Sinister Motives",
+            "deckLists": [
+              {
+                "label": "Campaign - Bad Publicity",
+                "deckListId": "Campaign - Bad Publicity (Campaign)"
+              },
+              {
+                "label": "Campaign - Community Service",
+                "deckListId": "Campaign - Community Service (Campaign)"
+              },
+              {
+                "label": "Campaign - Snitches Get Stitches",
+                "deckListId": "Campaign - Snitches Get Stitches (Campaign)"
+              },
+              {
+                "label": "Campaign - S.H.I.E.L.D. Tech",
+                "deckListId": "Campaign - S.H.I.E.L.D. Tech (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "Mutant Genesis",
+            "deckLists": [
+              {
+                "label": "Campaign (Mutant Genesis)",
+                "deckListId": "Campaign (Mutant Genesis) (Campaign)"
+              },
+              {
+                "label": "Brawler",
+                "deckListId": "Brawler (Campaign)"
+              },
+              {
+                "label": "Commander",
+                "deckListId": "Commander (Campaign)"
+              },
+              {
+                "label": "Defender",
+                "deckListId": "Defender (Campaign)"
+              },
+              {
+                "label": "Peacekeeper",
+                "deckListId": "Peacekeeper (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "MojoMania",
+            "deckLists": [
+              {
+                "label": "Longshot",
+                "deckListId": "Longshot (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "NeXt Evolution",
+            "deckLists": [
+              {
+                "label": "Campaign (NeXt Evolution)",
+                "deckListId": "Campaign (NeXt Evolution) (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "Age of Apocalypse",
+            "deckLists": [
+              {
+                "label": "Age of Apocalypse",
+                "deckListId": "Age of Apocalypse (Campaign)"
+              },
+              {
+                "label": "Mission",
+                "deckListId": "Mission (Campaign)"
+              },
+              {
+                "label": "Campaign (Age of Apocalypse)",
+                "deckListId": "Campaign (Age of Apocalypse) (Campaign)"
+              },
+              {
+                "label": "Overseer",
+                "deckListId": "Overseer (Campaign)"
+              }
+            ]
+          },
+          {
+            "label": "Civil War",
+            "deckLists": [
+              {
+                "label": "Registration",
+                "deckListId": "Registration (Campaign)"
+              },
+              {
+                "label": "Iron Man Rewards",
+                "deckListId": "Iron Man Rewards (Campaign)"
+              },
+              {
+                "label": "Captain Marvel Rewards",
+                "deckListId": "Captain Marvel Rewards (Campaign)"
+              },
+              {
+                "label": "Resistance",
+                "deckListId": "Resistance (Campaign)"
+              },
+              {
+                "label": "Captain America Rewards",
+                "deckListId": "Captain America Rewards (Campaign)"
+              },
+              {
+                "label": "Spider-Woman Rewards",
+                "deckListId": "Spider-Woman Rewards (Campaign)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Scenarios",
+        "subMenus": [
+          {
+            "label": "Core Set",
+            "deckLists": [
+              {
+                "label": "Rhino",
+                "deckListId": "Rhino (Scenario)"
+              },
+              {
+                "label": "Klaw",
+                "deckListId": "Klaw (Scenario)"
+              },
+              {
+                "label": "Ultron",
+                "deckListId": "Ultron (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Green Goblin",
+            "deckLists": [
+              {
+                "label": "Risky Business",
+                "deckListId": "Risky Business (Scenario)"
+              },
+              {
+                "label": "Mutagen Formula",
+                "deckListId": "Mutagen Formula (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Rise of Red Skull",
+            "deckLists": [
+              {
+                "label": "Crossbones",
+                "deckListId": "Crossbones (Scenario)"
+              },
+              {
+                "label": "Absorbing Man",
+                "deckListId": "Absorbing Man (Scenario)"
+              },
+              {
+                "label": "Taskmaster",
+                "deckListId": "Taskmaster (Scenario)"
+              },
+              {
+                "label": "Zola",
+                "deckListId": "Zola (Scenario)"
+              },
+              {
+                "label": "Red Skull",
+                "deckListId": "Red Skull (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Wrecking Crew",
+            "deckLists": [
+              {
+                "label": "Wrecking Crew",
+                "deckListId": "Wrecking Crew (Scenario)"
+              },
+              {
+                "label": "Wrecker",
+                "deckListId": "Wrecker (Scenario)"
+              },
+              {
+                "label": "Thunderball",
+                "deckListId": "Thunderball (Scenario)"
+              },
+              {
+                "label": "Piledriver",
+                "deckListId": "Piledriver (Scenario)"
+              },
+              {
+                "label": "Bulldozer",
+                "deckListId": "Bulldozer (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Once and Future Kang",
+            "deckLists": [
+              {
+                "label": "Kang",
+                "deckListId": "Kang (Scenario)"
+              },
+              {
+                "label": "Expert Kang",
+                "deckListId": "Expert Kang (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Galaxy's Most Wanted",
+            "deckLists": [
+              {
+                "label": "Brotherhood of Badoon",
+                "deckListId": "Brotherhood of Badoon (Scenario)"
+              },
+              {
+                "label": "Infiltrate the Museum",
+                "deckListId": "Infiltrate the Museum (Scenario)"
+              },
+              {
+                "label": "Escape the Museum",
+                "deckListId": "Escape the Museum (Scenario)"
+              },
+              {
+                "label": "Nebula",
+                "deckListId": "Nebula (Scenario)"
+              },
+              {
+                "label": "Ronan the Accuser",
+                "deckListId": "Ronan the Accuser (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Mad Titan's Shadow",
+            "deckLists": [
+              {
+                "label": "Ebony Maw",
+                "deckListId": "Ebony Maw (Scenario)"
+              },
+              {
+                "label": "Tower Defense",
+                "deckListId": "Tower Defense (Scenario)"
+              },
+              {
+                "label": "Thanos",
+                "deckListId": "Thanos (Scenario)"
+              },
+              {
+                "label": "Hela",
+                "deckListId": "Hela (Scenario)"
+              },
+              {
+                "label": "Loki",
+                "deckListId": "Loki (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Hood",
+            "deckLists": [
+              {
+                "label": "The Hood",
+                "deckListId": "The Hood (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Sinister Motives",
+            "deckLists": [
+              {
+                "label": "Sandman",
+                "deckListId": "Sandman (Scenario)"
+              },
+              {
+                "label": "Venom",
+                "deckListId": "Venom (Scenario)"
+              },
+              {
+                "label": "Mysterio",
+                "deckListId": "Mysterio (Scenario)"
+              },
+              {
+                "label": "The Sinister Six",
+                "deckListId": "The Sinister Six (Scenario)"
+              },
+              {
+                "label": "Venom Goblin",
+                "deckListId": "Venom Goblin (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Mutant Genesis",
+            "deckLists": [
+              {
+                "label": "Sabretooth",
+                "deckListId": "Sabretooth (Scenario)"
+              },
+              {
+                "label": "Project Wideawake",
+                "deckListId": "Project Wideawake (Scenario)"
+              },
+              {
+                "label": "Master Mold",
+                "deckListId": "Master Mold (Scenario)"
+              },
+              {
+                "label": "Mansion Attack",
+                "deckListId": "Mansion Attack (Scenario)"
+              },
+              {
+                "label": "Magneto",
+                "deckListId": "Magneto (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "MojoMania",
+            "deckLists": [
+              {
+                "label": "MaGog",
+                "deckListId": "MaGog (Scenario)"
+              },
+              {
+                "label": "Spiral",
+                "deckListId": "Spiral (Scenario)"
+              },
+              {
+                "label": "Mojo",
+                "deckListId": "Mojo (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "NeXt Evolution",
+            "deckLists": [
+              {
+                "label": "Morlock Siege",
+                "deckListId": "Morlock Siege (Scenario)"
+              },
+              {
+                "label": "On the Run",
+                "deckListId": "On the Run (Scenario)"
+              },
+              {
+                "label": "Juggernaut",
+                "deckListId": "Juggernaut (Scenario)"
+              },
+              {
+                "label": "Mister Sinister",
+                "deckListId": "Mister Sinister (Scenario)"
+              },
+              {
+                "label": "Stryfe",
+                "deckListId": "Stryfe (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Age of Apocalypse",
+            "deckLists": [
+              {
+                "label": "Unus",
+                "deckListId": "Unus (Scenario)"
+              },
+              {
+                "label": "Four Horsemen",
+                "deckListId": "Four Horsemen (Scenario)"
+              },
+              {
+                "label": "Apocalypse",
+                "deckListId": "Apocalypse (Scenario)"
+              },
+              {
+                "label": "Dark Beast",
+                "deckListId": "Dark Beast (Scenario)"
+              },
+              {
+                "label": "En Sabah Nur",
+                "deckListId": "En Sabah Nur (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Agents of S.H.I.E.L.D.",
+            "deckLists": [
+              {
+                "label": "Black Widow",
+                "deckListId": "Black Widow (Scenario)"
+              },
+              {
+                "label": "Batroc",
+                "deckListId": "Batroc (Scenario)"
+              },
+              {
+                "label": "M.O.D.O.K.",
+                "deckListId": "M.O.D.O.K. (Scenario)"
+              },
+              {
+                "label": "Thunderbolts",
+                "deckListId": "Thunderbolts (Scenario)"
+              },
+              {
+                "label": "Baron Zemo",
+                "deckListId": "Baron Zemo (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Trickster Takeover",
+            "deckLists": [
+              {
+                "label": "Enchantress",
+                "deckListId": "Enchantress (Scenario)"
+              },
+              {
+                "label": "God of Lies",
+                "deckListId": "God of Lies (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Civil War",
+            "deckLists": [
+              {
+                "label": "Iron Man",
+                "deckListId": "Iron Man (Leader)"
+              },
+              {
+                "label": "Captain Marvel",
+                "deckListId": "Captain Marvel (Leader)"
+              },
+              {
+                "label": "Captain America",
+                "deckListId": "Captain America (Leader)"
+              },
+              {
+                "label": "Spider-Woman",
+                "deckListId": "Spider-Woman (Leader)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Modular Sets",
+        "subMenus": [
+          {
+            "label": "Kree Fanatic",
+            "deckLists": [
+              {
+                "label": "Kree Fanatic",
+                "deckListId": "Kree Fanatic (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Core Set",
+            "deckLists": [
+              {
+                "label": "Bomb Scare",
+                "deckListId": "Bomb Scare (Modular)"
+              },
+              {
+                "label": "Masters of Evil",
+                "deckListId": "Masters of Evil (Modular)"
+              },
+              {
+                "label": "Under Attack",
+                "deckListId": "Under Attack (Modular)"
+              },
+              {
+                "label": "Legions of Hydra",
+                "deckListId": "Legions of Hydra (Modular)"
+              },
+              {
+                "label": "The Doomsday Chair",
+                "deckListId": "The Doomsday Chair (Modular)"
+              },
+              {
+                "label": "Standard",
+                "deckListId": "Standard (Modular)"
+              },
+              {
+                "label": "Expert",
+                "deckListId": "Expert (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "The Green Goblin",
+            "deckLists": [
+              {
+                "label": "Goblin Gimmicks",
+                "deckListId": "Goblin Gimmicks (Modular)"
+              },
+              {
+                "label": "A Mess of Things",
+                "deckListId": "A Mess of Things (Modular)"
+              },
+              {
+                "label": "Power Drain",
+                "deckListId": "Power Drain (Modular)"
+              },
+              {
+                "label": "Running Interference",
+                "deckListId": "Running Interference (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "The Rise of Red Skull",
+            "deckLists": [
+              {
+                "label": "Experimental Weapons",
+                "deckListId": "Experimental Weapons (Modular)"
+              },
+              {
+                "label": "Hydra Assault",
+                "deckListId": "Hydra Assault (Modular)"
+              },
+              {
+                "label": "Weapon Master",
+                "deckListId": "Weapon Master (Modular)"
+              },
+              {
+                "label": "Hydra Patrol",
+                "deckListId": "Hydra Patrol (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "The Once and Future Kang",
+            "deckLists": [
+              {
+                "label": "Temporal",
+                "deckListId": "Temporal (Modular)"
+              },
+              {
+                "label": "Anachronauts",
+                "deckListId": "Anachronauts (Modular)"
+              },
+              {
+                "label": "Master of Time",
+                "deckListId": "Master of Time (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Galaxy's Most Wanted",
+            "deckLists": [
+              {
+                "label": "Band of Badoon",
+                "deckListId": "Band of Badoon (Modular)"
+              },
+              {
+                "label": "Galactic Artifacts",
+                "deckListId": "Galactic Artifacts (Modular)"
+              },
+              {
+                "label": "Kree Militants",
+                "deckListId": "Kree Militants (Modular)"
+              },
+              {
+                "label": "Menagerie Medley",
+                "deckListId": "Menagerie Medley (Modular)"
+              },
+              {
+                "label": "Space Pirates",
+                "deckListId": "Space Pirates (Modular)"
+              },
+              {
+                "label": "Ship Command",
+                "deckListId": "Ship Command (Modular)"
+              },
+              {
+                "label": "Power Stone",
+                "deckListId": "Power Stone (Modular)"
+              },
+              {
+                "label": "Badoon Headhunter",
+                "deckListId": "Badoon Headhunter (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "The Mad Titan's Shadow",
+            "deckLists": [
+              {
+                "label": "Black Order",
+                "deckListId": "Black Order (Modular)"
+              },
+              {
+                "label": "Armies of Titan",
+                "deckListId": "Armies of Titan (Modular)"
+              },
+              {
+                "label": "Children of Thanos",
+                "deckListId": "Children of Thanos (Modular)"
+              },
+              {
+                "label": "Infinity Gauntlet",
+                "deckListId": "Infinity Gauntlet (Modular)"
+              },
+              {
+                "label": "Legions of Hel",
+                "deckListId": "Legions of Hel (Modular)"
+              },
+              {
+                "label": "Frost Giants",
+                "deckListId": "Frost Giants (Modular)"
+              },
+              {
+                "label": "Enchantress",
+                "deckListId": "Enchantress (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "The Hood",
+            "deckLists": [
+              {
+                "label": "Beasty Boys",
+                "deckListId": "Beasty Boys (Modular)"
+              },
+              {
+                "label": "Brothers Grimm",
+                "deckListId": "Brothers Grimm (Modular)"
+              },
+              {
+                "label": "Crossfire's Crew",
+                "deckListId": "Crossfire's Crew (Modular)"
+              },
+              {
+                "label": "Expert II",
+                "deckListId": "Expert II (Modular)"
+              },
+              {
+                "label": "Mister Hyde",
+                "deckListId": "Mister Hyde (Modular)"
+              },
+              {
+                "label": "Ransacked Armory",
+                "deckListId": "Ransacked Armory (Modular)"
+              },
+              {
+                "label": "Sinister Syndicate",
+                "deckListId": "Sinister Syndicate (Modular)"
+              },
+              {
+                "label": "Standard II",
+                "deckListId": "Standard II (Modular)"
+              },
+              {
+                "label": "State of Emergency",
+                "deckListId": "State of Emergency (Modular)"
+              },
+              {
+                "label": "Streets of Mayhem",
+                "deckListId": "Streets of Mayhem (Modular)"
+              },
+              {
+                "label": "Wrecking Crew",
+                "deckListId": "Wrecking Crew (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Sinister Motives",
+            "deckLists": [
+              {
+                "label": "City in Chaos",
+                "deckListId": "City in Chaos (Modular)"
+              },
+              {
+                "label": "Down to Earth",
+                "deckListId": "Down to Earth (Modular)"
+              },
+              {
+                "label": "Goblin Gear",
+                "deckListId": "Goblin Gear (Modular)"
+              },
+              {
+                "label": "Guerrilla Tactics",
+                "deckListId": "Guerrilla Tactics (Modular)"
+              },
+              {
+                "label": "Osborn Tech",
+                "deckListId": "Osborn Tech (Modular)"
+              },
+              {
+                "label": "Personal Nightmare",
+                "deckListId": "Personal Nightmare (Modular)"
+              },
+              {
+                "label": "Sinister Assault",
+                "deckListId": "Sinister Assault (Modular)"
+              },
+              {
+                "label": "Symbiotic Strength",
+                "deckListId": "Symbiotic Strength (Modular)"
+              },
+              {
+                "label": "Whispers of Paranoia",
+                "deckListId": "Whispers of Paranoia (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Nova",
+            "deckLists": [
+              {
+                "label": "Armadillo",
+                "deckListId": "Armadillo (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Ironheart",
+            "deckLists": [
+              {
+                "label": "Zzzax",
+                "deckListId": "Zzzax (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Spider-Ham",
+            "deckLists": [
+              {
+                "label": "The Inheritors",
+                "deckListId": "The Inheritors (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "SP//dr",
+            "deckLists": [
+              {
+                "label": "Iron Spider's Sinister Six",
+                "deckListId": "Iron Spider's Sinister Six (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Mutant Genesis",
+            "deckLists": [
+              {
+                "label": "Brotherhood",
+                "deckListId": "Brotherhood (Modular)"
+              },
+              {
+                "label": "Mystique",
+                "deckListId": "Mystique (Modular)"
+              },
+              {
+                "label": "Zero Tolerance",
+                "deckListId": "Zero Tolerance (Modular)"
+              },
+              {
+                "label": "Sentinels",
+                "deckListId": "Sentinels (Modular)"
+              },
+              {
+                "label": "Acolytes",
+                "deckListId": "Acolytes (Modular)"
+              },
+              {
+                "label": "Future Past",
+                "deckListId": "Future Past (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Wolverine",
+            "deckLists": [
+              {
+                "label": "Deathstrike",
+                "deckListId": "Deathstrike (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Storm",
+            "deckLists": [
+              {
+                "label": "Shadow King",
+                "deckListId": "Shadow King (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Gambit",
+            "deckLists": [
+              {
+                "label": "Exodus",
+                "deckListId": "Exodus (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Rogue",
+            "deckLists": [
+              {
+                "label": "Reavers",
+                "deckListId": "Reavers (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "MojoMania",
+            "deckLists": [
+              {
+                "label": "Crime",
+                "deckListId": "Crime (Modular)"
+              },
+              {
+                "label": "Fantasy",
+                "deckListId": "Fantasy (Modular)"
+              },
+              {
+                "label": "Horror",
+                "deckListId": "Horror (Modular)"
+              },
+              {
+                "label": "Sci-Fi",
+                "deckListId": "Sci-Fi (Modular)"
+              },
+              {
+                "label": "Sitcom",
+                "deckListId": "Sitcom (Modular)"
+              },
+              {
+                "label": "Western",
+                "deckListId": "Western (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "NeXt Evolution",
+            "deckLists": [
+              {
+                "label": "Military Grade",
+                "deckListId": "Military Grade (Modular)"
+              },
+              {
+                "label": "Mutant Slayers",
+                "deckListId": "Mutant Slayers (Modular)"
+              },
+              {
+                "label": "Nasty Boys",
+                "deckListId": "Nasty Boys (Modular)"
+              },
+              {
+                "label": "Hope Summers",
+                "deckListId": "Hope Summers (Modular)"
+              },
+              {
+                "label": "Black Tom Cassidy",
+                "deckListId": "Black Tom Cassidy (Modular)"
+              },
+              {
+                "label": "Flight",
+                "deckListId": "Flight (Modular)"
+              },
+              {
+                "label": "Super Strength",
+                "deckListId": "Super Strength (Modular)"
+              },
+              {
+                "label": "Telepathy",
+                "deckListId": "Telepathy (Modular)"
+              },
+              {
+                "label": "Extreme Measures",
+                "deckListId": "Extreme Measures (Modular)"
+              },
+              {
+                "label": "Mutant Insurrection",
+                "deckListId": "Mutant Insurrection (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Deadpool",
+            "deckLists": [
+              {
+                "label": "Dreadpool",
+                "deckListId": "Dreadpool (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Age of Apocalypse",
+            "deckLists": [
+              {
+                "label": "Infinites",
+                "deckListId": "Infinites (Modular)"
+              },
+              {
+                "label": "Dystopian Nightmare",
+                "deckListId": "Dystopian Nightmare (Modular)"
+              },
+              {
+                "label": "Standard III",
+                "deckListId": "Standard III (Modular)"
+              },
+              {
+                "label": "Hounds",
+                "deckListId": "Hounds (Modular)"
+              },
+              {
+                "label": "Dark Riders",
+                "deckListId": "Dark Riders (Modular)"
+              },
+              {
+                "label": "Savage Land",
+                "deckListId": "Savage Land (Modular)"
+              },
+              {
+                "label": "Genosha",
+                "deckListId": "Genosha (Modular)"
+              },
+              {
+                "label": "Blue Moon",
+                "deckListId": "Blue Moon (Modular)"
+              },
+              {
+                "label": "Celestial Tech",
+                "deckListId": "Celestial Tech (Modular)"
+              },
+              {
+                "label": "Clan Akkaba",
+                "deckListId": "Clan Akkaba (Modular)"
+              },
+              {
+                "label": "Prelates",
+                "deckListId": "Prelates (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Iceman",
+            "deckLists": [
+              {
+                "label": "Sauron",
+                "deckListId": "Sauron (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Jubilee",
+            "deckLists": [
+              {
+                "label": "Arcade",
+                "deckListId": "Arcade (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Nightcrawler",
+            "deckLists": [
+              {
+                "label": "Crazy Gang",
+                "deckListId": "Crazy Gang (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Magneto",
+            "deckLists": [
+              {
+                "label": "Hellfire",
+                "deckListId": "Hellfire (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Agents of S.H.I.E.L.D.",
+            "deckLists": [
+              {
+                "label": "A.I.M. Abduction",
+                "deckListId": "A.I.M. Abduction (Modular)"
+              },
+              {
+                "label": "A.I.M. Science",
+                "deckListId": "A.I.M. Science (Modular)"
+              },
+              {
+                "label": "Batroc's Brigade",
+                "deckListId": "Batroc's Brigade (Modular)"
+              },
+              {
+                "label": "Scientist Supreme",
+                "deckListId": "Scientist Supreme (Modular)"
+              },
+              {
+                "label": "Gravitational Pull",
+                "deckListId": "Gravitational Pull (Modular)"
+              },
+              {
+                "label": "Hard Sound",
+                "deckListId": "Hard Sound (Modular)"
+              },
+              {
+                "label": "Pale Little Spider",
+                "deckListId": "Pale Little Spider (Modular)"
+              },
+              {
+                "label": "Power of the Atom",
+                "deckListId": "Power of the Atom (Modular)"
+              },
+              {
+                "label": "Supersonic",
+                "deckListId": "Supersonic (Modular)"
+              },
+              {
+                "label": "The Leaper",
+                "deckListId": "The Leaper (Modular)"
+              },
+              {
+                "label": "S.H.I.E.L.D.",
+                "deckListId": "S.H.I.E.L.D. (Modular)"
+              },
+              {
+                "label": "S.H.I.E.L.D. Executive Board",
+                "deckListId": "S.H.I.E.L.D. Executive Board (Modular)"
+              },
+              {
+                "label": "Executive Board Evidence",
+                "deckListId": "Executive Board Evidence (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Black Panther",
+            "deckLists": [
+              {
+                "label": "Extreme Risk",
+                "deckListId": "Extreme Risk (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Silk",
+            "deckLists": [
+              {
+                "label": "Growing Strong",
+                "deckListId": "Growing Strong (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Falcon",
+            "deckLists": [
+              {
+                "label": "Techno",
+                "deckListId": "Techno (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Winter Soldier",
+            "deckLists": [
+              {
+                "label": "Whiteout",
+                "deckListId": "Whiteout (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Trickster Takeover",
+            "deckLists": [
+              {
+                "label": "Trickster Magic",
+                "deckListId": "Trickster Magic (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Civil War",
+            "deckLists": [
+              {
+                "label": "Mighty Avengers",
+                "deckListId": "Mighty Avengers (Modular)"
+              },
+              {
+                "label": "The Initiative",
+                "deckListId": "The Initiative (Modular)"
+              },
+              {
+                "label": "Maria Hill",
+                "deckListId": "Maria Hill (Modular)"
+              },
+              {
+                "label": "Dangerous Recruits",
+                "deckListId": "Dangerous Recruits (Modular)"
+              },
+              {
+                "label": "Cape-Killer",
+                "deckListId": "Cape-Killer (Modular)"
+              },
+              {
+                "label": "Martial Law",
+                "deckListId": "Martial Law (Modular)"
+              },
+              {
+                "label": "Heroes for Hire",
+                "deckListId": "Heroes for Hire (Modular)"
+              },
+              {
+                "label": "Paladin",
+                "deckListId": "Paladin (Modular)"
+              },
+              {
+                "label": "Standard PVP",
+                "deckListId": "Standard PVP (Modular)"
+              },
+              {
+                "label": "New Avengers",
+                "deckListId": "New Avengers (Modular)"
+              },
+              {
+                "label": "Secret Avengers",
+                "deckListId": "Secret Avengers (Modular)"
+              },
+              {
+                "label": "Namor",
+                "deckListId": "Namor (Modular)"
+              },
+              {
+                "label": "Atlanteans",
+                "deckListId": "Atlanteans (Modular)"
+              },
+              {
+                "label": "Spider-Man",
+                "deckListId": "Spider-Man (Modular)"
+              },
+              {
+                "label": "Defenders",
+                "deckListId": "Defenders (Modular)"
+              },
+              {
+                "label": "Hell's Kitchen",
+                "deckListId": "Hell's Kitchen (Modular)"
+              },
+              {
+                "label": "Cloak & Dagger",
+                "deckListId": "Cloak & Dagger (Modular)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Hero Precons",
+        "deckLists": [
+          {
+            "label": "Spider-Man",
+            "deckListId": "Spider-Man (Hero)"
+          },
+          {
+            "label": "Captain Marvel",
+            "deckListId": "Captain Marvel (Hero)"
+          },
+          {
+            "label": "Black Panther",
+            "deckListId": "Black Panther (Hero)"
+          },
+          {
+            "label": "She-Hulk",
+            "deckListId": "She-Hulk (Hero)"
+          },
+          {
+            "label": "Iron Man",
+            "deckListId": "Iron Man (Hero)"
+          },
+          {
+            "label": "Captain America",
+            "deckListId": "Captain America (Hero)"
+          },
+          {
+            "label": "Hawkeye",
+            "deckListId": "Hawkeye (Hero)"
+          },
+          {
+            "label": "Spider-Woman",
+            "deckListId": "Spider-Woman (Hero)"
+          },
+          {
+            "label": "Ms. Marvel",
+            "deckListId": "Ms. Marvel (Hero)"
+          },
+          {
+            "label": "Thor",
+            "deckListId": "Thor (Hero)"
+          },
+          {
+            "label": "Black Widow",
+            "deckListId": "Black Widow (Hero)"
+          },
+          {
+            "label": "Doctor Strange",
+            "deckListId": "Doctor Strange (Hero)"
+          },
+          {
+            "label": "Hulk",
+            "deckListId": "Hulk (Hero)"
+          },
+          {
+            "label": "Ant-Man",
+            "deckListId": "Ant-Man (Hero)"
+          },
+          {
+            "label": "Wasp",
+            "deckListId": "Wasp (Hero)"
+          },
+          {
+            "label": "Quicksilver",
+            "deckListId": "Quicksilver (Hero)"
+          },
+          {
+            "label": "Scarlet Witch",
+            "deckListId": "Scarlet Witch (Hero)"
+          },
+          {
+            "label": "Groot",
+            "deckListId": "Groot (Hero)"
+          },
+          {
+            "label": "Rocket Raccoon",
+            "deckListId": "Rocket Raccoon (Hero)"
+          },
+          {
+            "label": "Star-Lord",
+            "deckListId": "Star-Lord (Hero)"
+          },
+          {
+            "label": "Gamora",
+            "deckListId": "Gamora (Hero)"
+          },
+          {
+            "label": "Drax",
+            "deckListId": "Drax (Hero)"
+          },
+          {
+            "label": "Venom",
+            "deckListId": "Venom (Hero)"
+          },
+          {
+            "label": "Spectrum",
+            "deckListId": "Spectrum (Hero)"
+          },
+          {
+            "label": "Adam Warlock",
+            "deckListId": "Adam Warlock (Hero)"
+          },
+          {
+            "label": "Nebula",
+            "deckListId": "Nebula (Hero)"
+          },
+          {
+            "label": "War Machine",
+            "deckListId": "War Machine (Hero)"
+          },
+          {
+            "label": "Valkyrie",
+            "deckListId": "Valkyrie (Hero)"
+          },
+          {
+            "label": "Vision",
+            "deckListId": "Vision (Hero)"
+          },
+          {
+            "label": "Ghost-Spider",
+            "deckListId": "Ghost-Spider (Hero)"
+          },
+          {
+            "label": "Spider-Man (Miles Morales)",
+            "deckListId": "Spider-Man (Miles Morales) (Hero)"
+          },
+          {
+            "label": "Nova",
+            "deckListId": "Nova (Hero)"
+          },
+          {
+            "label": "Ironheart",
+            "deckListId": "Ironheart (Hero)"
+          },
+          {
+            "label": "Spider-Ham",
+            "deckListId": "Spider-Ham (Hero)"
+          },
+          {
+            "label": "SP//dr",
+            "deckListId": "SP//dr (Hero)"
+          },
+          {
+            "label": "Colossus",
+            "deckListId": "Colossus (Hero)"
+          },
+          {
+            "label": "Shadowcat",
+            "deckListId": "Shadowcat (Hero)"
+          },
+          {
+            "label": "Cyclops",
+            "deckListId": "Cyclops (Hero)"
+          },
+          {
+            "label": "Phoenix",
+            "deckListId": "Phoenix (Hero)"
+          },
+          {
+            "label": "Wolverine",
+            "deckListId": "Wolverine (Hero)"
+          },
+          {
+            "label": "Storm",
+            "deckListId": "Storm (Hero)"
+          },
+          {
+            "label": "Gambit",
+            "deckListId": "Gambit (Hero)"
+          },
+          {
+            "label": "Rogue",
+            "deckListId": "Rogue (Hero)"
+          },
+          {
+            "label": "Cable",
+            "deckListId": "Cable (Hero)"
+          },
+          {
+            "label": "Domino",
+            "deckListId": "Domino (Hero)"
+          },
+          {
+            "label": "Psylocke",
+            "deckListId": "Psylocke (Hero)"
+          },
+          {
+            "label": "Angel",
+            "deckListId": "Angel (Hero)"
+          },
+          {
+            "label": "X-23",
+            "deckListId": "X-23 (Hero)"
+          },
+          {
+            "label": "Deadpool",
+            "deckListId": "Deadpool (Hero)"
+          },
+          {
+            "label": "Bishop",
+            "deckListId": "Bishop (Hero)"
+          },
+          {
+            "label": "Magik",
+            "deckListId": "Magik (Hero)"
+          },
+          {
+            "label": "Iceman",
+            "deckListId": "Iceman (Hero)"
+          },
+          {
+            "label": "Jubilee",
+            "deckListId": "Jubilee (Hero)"
+          },
+          {
+            "label": "Nightcrawler",
+            "deckListId": "Nightcrawler (Hero)"
+          },
+          {
+            "label": "Magneto",
+            "deckListId": "Magneto (Hero)"
+          },
+          {
+            "label": "Maria Hill",
+            "deckListId": "Maria Hill (Hero)"
+          },
+          {
+            "label": "Nick Fury",
+            "deckListId": "Nick Fury (Hero)"
+          },
+          {
+            "label": "Black Panther (Shuri)",
+            "deckListId": "Black Panther (Shuri) (Hero)"
+          },
+          {
+            "label": "Silk",
+            "deckListId": "Silk (Hero)"
+          },
+          {
+            "label": "Falcon",
+            "deckListId": "Falcon (Hero)"
+          },
+          {
+            "label": "Winter Soldier",
+            "deckListId": "Winter Soldier (Hero)"
+          },
+          {
+            "label": "Tigra",
+            "deckListId": "Tigra (Hero)"
+          },
+          {
+            "label": "Hulkling",
+            "deckListId": "Hulkling (Hero)"
+          }
+        ]
+      },
+      {
+        "label": "Nemesis Sets",
+        "deckLists": [
+          {
+            "label": "Black Panther Nemesis",
+            "deckListId": "Black Panther Nemesis (Nemesis)"
+          },
+          {
+            "label": "She-Hulk Nemesis",
+            "deckListId": "She-Hulk Nemesis (Nemesis)"
+          },
+          {
+            "label": "Spider-Man Nemesis",
+            "deckListId": "Spider-Man Nemesis (Nemesis)"
+          },
+          {
+            "label": "Iron Man Nemesis",
+            "deckListId": "Iron Man Nemesis (Nemesis)"
+          },
+          {
+            "label": "Captain Marvel Nemesis",
+            "deckListId": "Captain Marvel Nemesis (Nemesis)"
+          },
+          {
+            "label": "Captain America Nemesis",
+            "deckListId": "Captain America Nemesis (Nemesis)"
+          },
+          {
+            "label": "Hawkeye Nemesis",
+            "deckListId": "Hawkeye Nemesis (Nemesis)"
+          },
+          {
+            "label": "Spider-Woman Nemesis",
+            "deckListId": "Spider-Woman Nemesis (Nemesis)"
+          },
+          {
+            "label": "Ms. Marvel Nemesis",
+            "deckListId": "Ms. Marvel Nemesis (Nemesis)"
+          },
+          {
+            "label": "Thor Nemesis",
+            "deckListId": "Thor Nemesis (Nemesis)"
+          },
+          {
+            "label": "Black Widow Nemesis",
+            "deckListId": "Black Widow Nemesis (Nemesis)"
+          },
+          {
+            "label": "Doctor Strange Nemesis",
+            "deckListId": "Doctor Strange Nemesis (Nemesis)"
+          },
+          {
+            "label": "Hulk Nemesis",
+            "deckListId": "Hulk Nemesis (Nemesis)"
+          },
+          {
+            "label": "Ant-Man Nemesis",
+            "deckListId": "Ant-Man Nemesis (Nemesis)"
+          },
+          {
+            "label": "Wasp Nemesis",
+            "deckListId": "Wasp Nemesis (Nemesis)"
+          },
+          {
+            "label": "Quicksilver Nemesis",
+            "deckListId": "Quicksilver Nemesis (Nemesis)"
+          },
+          {
+            "label": "Scarlet Witch Nemesis",
+            "deckListId": "Scarlet Witch Nemesis (Nemesis)"
+          },
+          {
+            "label": "Groot Nemesis",
+            "deckListId": "Groot Nemesis (Nemesis)"
+          },
+          {
+            "label": "Rocket Raccoon Nemesis",
+            "deckListId": "Rocket Raccoon Nemesis (Nemesis)"
+          },
+          {
+            "label": "Star-Lord Nemesis",
+            "deckListId": "Star-Lord Nemesis (Nemesis)"
+          },
+          {
+            "label": "Gamora Nemesis",
+            "deckListId": "Gamora Nemesis (Nemesis)"
+          },
+          {
+            "label": "Drax Nemesis",
+            "deckListId": "Drax Nemesis (Nemesis)"
+          },
+          {
+            "label": "Venom Nemesis",
+            "deckListId": "Venom Nemesis (Nemesis)"
+          },
+          {
+            "label": "Spectrum Nemesis",
+            "deckListId": "Spectrum Nemesis (Nemesis)"
+          },
+          {
+            "label": "Adam Warlock Nemesis",
+            "deckListId": "Adam Warlock Nemesis (Nemesis)"
+          },
+          {
+            "label": "Nebula Nemesis",
+            "deckListId": "Nebula Nemesis (Nemesis)"
+          },
+          {
+            "label": "War Machine Nemesis",
+            "deckListId": "War Machine Nemesis (Nemesis)"
+          },
+          {
+            "label": "Valkyrie Nemesis",
+            "deckListId": "Valkyrie Nemesis (Nemesis)"
+          },
+          {
+            "label": "Vision Nemesis",
+            "deckListId": "Vision Nemesis (Nemesis)"
+          },
+          {
+            "label": "Ghost-Spider Nemesis",
+            "deckListId": "Ghost-Spider Nemesis (Nemesis)"
+          },
+          {
+            "label": "Spider-Man Nemesis (Miles Morales)",
+            "deckListId": "Spider-Man Nemesis (Miles Morales) (Nemesis)"
+          },
+          {
+            "label": "Nova Nemesis",
+            "deckListId": "Nova Nemesis (Nemesis)"
+          },
+          {
+            "label": "Ironheart Nemesis",
+            "deckListId": "Ironheart Nemesis (Nemesis)"
+          },
+          {
+            "label": "Spider-Ham Nemesis",
+            "deckListId": "Spider-Ham Nemesis (Nemesis)"
+          },
+          {
+            "label": "SP//dr Nemesis",
+            "deckListId": "SP//dr Nemesis (Nemesis)"
+          },
+          {
+            "label": "Colossus Nemesis",
+            "deckListId": "Colossus Nemesis (Nemesis)"
+          },
+          {
+            "label": "Shadowcat Nemesis",
+            "deckListId": "Shadowcat Nemesis (Nemesis)"
+          },
+          {
+            "label": "Cyclops Nemesis",
+            "deckListId": "Cyclops Nemesis (Nemesis)"
+          },
+          {
+            "label": "Phoenix Nemesis",
+            "deckListId": "Phoenix Nemesis (Nemesis)"
+          },
+          {
+            "label": "Wolverine Nemesis",
+            "deckListId": "Wolverine Nemesis (Nemesis)"
+          },
+          {
+            "label": "Storm Nemesis",
+            "deckListId": "Storm Nemesis (Nemesis)"
+          },
+          {
+            "label": "Gambit Nemesis",
+            "deckListId": "Gambit Nemesis (Nemesis)"
+          },
+          {
+            "label": "Rogue Nemesis",
+            "deckListId": "Rogue Nemesis (Nemesis)"
+          },
+          {
+            "label": "Cable Nemesis",
+            "deckListId": "Cable Nemesis (Nemesis)"
+          },
+          {
+            "label": "Domino Nemesis",
+            "deckListId": "Domino Nemesis (Nemesis)"
+          },
+          {
+            "label": "Psylocke Nemesis",
+            "deckListId": "Psylocke Nemesis (Nemesis)"
+          },
+          {
+            "label": "Angel Nemesis",
+            "deckListId": "Angel Nemesis (Nemesis)"
+          },
+          {
+            "label": "X-23 Nemesis",
+            "deckListId": "X-23 Nemesis (Nemesis)"
+          },
+          {
+            "label": "Deadpool Nemesis",
+            "deckListId": "Deadpool Nemesis (Nemesis)"
+          },
+          {
+            "label": "Bishop Nemesis",
+            "deckListId": "Bishop Nemesis (Nemesis)"
+          },
+          {
+            "label": "Magik Nemesis",
+            "deckListId": "Magik Nemesis (Nemesis)"
+          },
+          {
+            "label": "Iceman Nemesis",
+            "deckListId": "Iceman Nemesis (Nemesis)"
+          },
+          {
+            "label": "Jubilee Nemesis",
+            "deckListId": "Jubilee Nemesis (Nemesis)"
+          },
+          {
+            "label": "Nightcrawler Nemesis",
+            "deckListId": "Nightcrawler Nemesis (Nemesis)"
+          },
+          {
+            "label": "Magneto Nemesis",
+            "deckListId": "Magneto Nemesis (Nemesis)"
+          },
+          {
+            "label": "Maria Hill Nemesis",
+            "deckListId": "Maria Hill Nemesis (Nemesis)"
+          },
+          {
+            "label": "Nick Fury Nemesis",
+            "deckListId": "Nick Fury Nemesis (Nemesis)"
+          },
+          {
+            "label": "Black Panther (Shuri) Nemesis",
+            "deckListId": "Black Panther (Shuri) Nemesis (Nemesis)"
+          },
+          {
+            "label": "Silk Nemesis",
+            "deckListId": "Silk Nemesis (Nemesis)"
+          },
+          {
+            "label": "Falcon Nemesis",
+            "deckListId": "Falcon Nemesis (Nemesis)"
+          },
+          {
+            "label": "Winter Soldier Nemesis",
+            "deckListId": "Winter Soldier Nemesis (Nemesis)"
+          },
+          {
+            "label": "Tigra Nemesis",
+            "deckListId": "Tigra Nemesis (Nemesis)"
+          },
+          {
+            "label": "Hulkling Nemesis",
+            "deckListId": "Hulkling Nemesis (Nemesis)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"playerProperties":{"hitPoints":{"type":"integer","default":0,"min":0,"label":"id:hitPoints"},"handSize":{"type":"integer","default":0,"min":0,"label":"id:handSize"}}}

@@ -40,7 +40,7 @@ existing_plugin = Repo.one(from p in Plugin, where: p.name == "Marvel Champions"
 
 plugin_params = %{
   name: "Marvel Champions",
-  version: 1,
+  version: 2,
   game_def: game_def,
   card_db: card_db,
   num_favorites: 0,

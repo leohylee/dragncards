@@ -1,1 +1,28 @@
-{"topBarCounters":{"shared":[{"label":"id:round","imageUrl":"https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png","gameProperty":"roundNumber"},{"label":"id:villainHitPoints","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/damage.svg","gameProperty":"villainHitPoints"}],"player":[{"label":"id:hitPoints","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/damage.svg","playerProperty":"hitPoints"},{"label":"id:handSize","imageUrl":"https://dragncards-wotr.s3.amazonaws.com/tokens/HandSize.png","playerProperty":"handSize"}]}}
+{
+  "topBarCounters": {
+    "shared": [
+      {
+        "label": "id:round",
+        "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png",
+        "gameProperty": "roundNumber"
+      },
+      {
+        "label": "id:villainHitPoints",
+        "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/damage.svg",
+        "gameProperty": "villainHitPoints"
+      }
+    ],
+    "player": [
+      {
+        "label": "id:hitPoints",
+        "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/damage.svg",
+        "playerProperty": "hitPoints"
+      },
+      {
+        "label": "id:handSize",
+        "imageUrl": "https://dragncards-wotr.s3.amazonaws.com/tokens/HandSize.png",
+        "playerProperty": "handSize"
+      }
+    ]
+  }
+}

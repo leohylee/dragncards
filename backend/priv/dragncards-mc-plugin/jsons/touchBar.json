@@ -1,1 +1,189 @@
-{"touchBar":[[{"id":"zeroTokens","label":"id:zeroTokens","actionType":"card","actionList":"zeroTokens"},{"id":"incrementDamage","label":"","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/damage.svg","actionType":"token","tokenType":"damage"},{"id":"incrementThreat","label":"","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/threat.svg","actionType":"token","tokenType":"threat"},{"id":"incrementGeneric","label":"","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/generic.svg","actionType":"token","tokenType":"generic"},{"id":"incrementAcceleration","label":"","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/acceleration.svg","actionType":"token","tokenType":"acceleration"},{"id":"incrementConfused","label":"","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/confused.svg","actionType":"token","tokenType":"confused"},{"id":"incrementStunned","label":"","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/stunned.svg","actionType":"token","tokenType":"stunned"},{"id":"incrementTough","label":"","imageUrl":"https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/tough.svg","actionType":"token","tokenType":"tough"},{"id":"toggleExhaust","label":"id:exhaustReady","actionType":"card","actionList":"toggleExhaust"},{"id":"flipCard","label":"id:flip","actionType":"card","actionList":"flipCard"},{"id":"setSideA","label":"id:setSideA","actionType":"card","actionList":["SET_SIDE","$ACTIVE_CARD_ID","A","$ALIAS_N"]},{"id":"setSideB","label":"id:setSideB","actionType":"card","actionList":["SET_SIDE","$ACTIVE_CARD_ID","B","$ALIAS_N"]},{"id":"setSideC","label":"id:setSideC","actionType":"card","actionList":["SET_SIDE","$ACTIVE_CARD_ID","C","$ALIAS_N"]},{"id":"shuffleIntoDeck","label":"id:shuffleIntoDeck","actionType":"card","actionList":"shuffleIntoDeck"},{"id":"discard","label":"id:discard","actionType":"card","actionList":["DISCARD_CARD","$ACTIVE_CARD_ID"]}],[{"id":"dealEncounterFacedown","label":"id:dealEncounterFacedownTouch","actionType":"game","actionList":"dealEncounterFacedown"},{"id":"dealSecondFacedown","label":"id:dealSecondFacedownTouch","actionType":"game","actionList":"dealSecondFacedown"},{"id":"dealThirdFacedown","label":"id:dealThirdFacedownTouch","actionType":"game","actionList":"dealThirdFacedown"},{"id":"drawBoost","label":"id:dealBoostCard","actionType":"game","actionList":"drawBoost"},{"id":"drawCard","label":"id:drawCard","actionType":"game","actionList":["DRAW_CARD"]},{"id":"mulliganDrawHand","label":"id:drawHand","actionType":"game","actionList":"mulliganDrawHand"},{"id":"readyAll","label":"id:readyAll","actionType":"game","actionList":["READY_ALL","$PLAYER_N","$ALIAS_N"]},{"id":"discardRandomCard","label":"id:discardRandomButton","actionType":"game","actionList":"discardRandomCard"},{"id":"shadowsOfThePast","label":"id:shadowsOfThePast","actionType":"game","actionList":"shadowsOfThePast"},{"id":"playerEndPhase","label":"id:playerEndPhaseTouch","actionType":"game","actionList":"playerEndPhase"},{"id":"villainEncounterPhase","label":"id:encounterPhase","actionType":"game","actionList":"villainEncounterPhase"},{"id":"villainEndPhase","label":"id:villainEndPhaseTouch","actionType":"game","actionList":"villainEndPhase"},{"id":"undo","label":"Undo","actionType":"engine","actionList":"undo"},{"id":"save","label":"Save","actionType":"engine","actionList":"save"}]]}
+{
+    "touchBar": [
+        [
+            {
+              "id": "zeroTokens",
+              "label": "id:zeroTokens",
+              "actionType": "card",
+              "actionList": "zeroTokens"
+            },
+            {
+              "id": "incrementDamage",
+              "label": "",
+              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/damage.svg",
+              "actionType": "token",
+              "tokenType": "damage"
+            },
+            {
+              "id": "incrementThreat",
+              "label": "",
+              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/threat.svg",
+              "actionType": "token",
+              "tokenType": "threat"
+            },
+            {
+              "id": "incrementGeneric",
+              "label": "",
+              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/generic.svg",
+              "actionType": "token",
+              "tokenType": "generic"
+            },
+            {
+              "id": "incrementAcceleration",
+              "label": "",
+              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/acceleration.svg",
+              "actionType": "token",
+              "tokenType": "acceleration"
+            },
+            {
+              "id": "incrementConfused",
+              "label": "",
+              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/confused.svg",
+              "actionType": "token",
+              "tokenType": "confused"
+            },
+            {
+              "id": "incrementStunned",
+              "label": "",
+              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/stunned.svg",
+              "actionType": "token",
+              "tokenType": "stunned"
+            },
+            {
+              "id": "incrementTough",
+              "label": "",
+              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/tough.svg",
+              "actionType": "token",
+              "tokenType": "tough"
+            },
+            {
+              "id": "toggleExhaust",
+              "label": "id:exhaustReady",
+              "actionType": "card",
+              "actionList": "toggleExhaust"
+            },
+            {
+              "id": "flipCard",
+              "label": "id:flip",
+              "actionType": "card",
+              "actionList": "flipCard"
+            },
+            {
+              "id": "setSideA",
+              "label": "id:setSideA",
+              "actionType": "card",
+              "actionList": ["SET_SIDE", "$ACTIVE_CARD_ID", "A", "$ALIAS_N"]
+            },
+            {
+              "id": "setSideB",
+              "label": "id:setSideB",
+              "actionType": "card",
+              "actionList": ["SET_SIDE", "$ACTIVE_CARD_ID", "B", "$ALIAS_N"]
+            },
+            {
+              "id": "setSideC",
+              "label": "id:setSideC",
+              "actionType": "card",
+              "actionList": ["SET_SIDE", "$ACTIVE_CARD_ID", "C", "$ALIAS_N"]
+            },
+            {
+              "id": "shuffleIntoDeck",
+              "label": "id:shuffleIntoDeck",
+              "actionType": "card",
+              "actionList": "shuffleIntoDeck"
+            },
+            {
+              "id": "discard",
+              "label": "id:discard",
+              "actionType": "card",
+              "actionList": ["DISCARD_CARD", "$ACTIVE_CARD_ID"]
+            }
+        ],
+        [
+            {
+              "id": "dealEncounterFacedown",
+              "label": "id:dealEncounterFacedownTouch",
+              "actionType": "game",
+              "actionList": "dealEncounterFacedown"
+            },
+            {
+              "id": "dealSecondFacedown",
+              "label": "id:dealSecondFacedownTouch",
+              "actionType": "game",
+              "actionList": "dealSecondFacedown"
+            },
+            {
+              "id": "dealThirdFacedown",
+              "label": "id:dealThirdFacedownTouch",
+              "actionType": "game",
+              "actionList": "dealThirdFacedown"
+            },
+            {
+              "id": "drawBoost",
+              "label": "id:dealBoostCard",
+              "actionType": "game",
+              "actionList": "drawBoost"
+            },
+            {
+              "id": "drawCard",
+              "label": "id:drawCard",
+              "actionType": "game",
+              "actionList": ["DRAW_CARD"]
+            },
+            {
+              "id": "mulliganDrawHand",
+              "label": "id:drawHand",
+              "actionType": "game",
+              "actionList": "mulliganDrawHand"
+            },
+            {
+              "id": "readyAll",
+              "label": "id:readyAll",
+              "actionType": "game",
+              "actionList": ["READY_ALL", "$PLAYER_N", "$ALIAS_N"]
+            },
+            {
+              "id": "discardRandomCard",
+              "label": "id:discardRandomButton",
+              "actionType": "game",
+              "actionList": "discardRandomCard"
+            },
+            {
+              "id": "shadowsOfThePast",
+              "label": "id:shadowsOfThePast",
+              "actionType": "game",
+              "actionList": "shadowsOfThePast"
+            },
+            {
+              "id": "playerEndPhase",
+              "label": "id:playerEndPhaseTouch",
+              "actionType": "game",
+              "actionList": "playerEndPhase"
+            },
+            {
+              "id": "villainEncounterPhase",
+              "label": "id:encounterPhase",
+              "actionType": "game",
+              "actionList": "villainEncounterPhase"
+            },
+            {
+              "id": "villainEndPhase",
+              "label": "id:villainEndPhaseTouch",
+              "actionType": "game",
+              "actionList": "villainEndPhase"
+            },
+            {
+              "id": "undo",
+              "label": "Undo",
+              "actionType": "engine",
+              "actionList": "undo"
+            },
+            {
+              "id": "save",
+              "label": "Save",
+              "actionType": "engine",
+              "actionList": "save"
+            }
+        ]
+    ]
+}
