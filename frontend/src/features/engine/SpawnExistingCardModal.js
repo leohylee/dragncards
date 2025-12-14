@@ -40,9 +40,10 @@ export const SpawnExistingCardModal = React.memo(({}) => {
     const handleSpawnClick = (cardId) => {
         const cardDetails = cardDb[cardId];
         if (!cardDetails || !playerN) return;
+        const sideA = cardDetails["sides"]?.["A"] || cardDetails["A"];
         const cardList = [{'databaseId': cardId, 'quantity': 1, 'loadGroupId': loadGroupId}]
         loadList(cardList);
-        doActionList(["LOG", "$ALIAS_N", " spawned "+cardDetails["A"]["name"]+"."])
+        doActionList(["LOG", "$ALIAS_N", " spawned "+sideA?.["name"]+"."])
     }
 
     const handleSpawnTyping = (event) => {
@@ -50,9 +51,9 @@ export const SpawnExistingCardModal = React.memo(({}) => {
         const filteredIDs = [];
         Object.keys(cardDb).map((cardID, index) => {
           const cardRow = cardDb[cardID]
-          const sideA = cardRow["A"]
-          const cardName = sideA["name"];
-          if (cardName.toLowerCase().includes(filteredName.toLowerCase())) filteredIDs.push(cardID);
+          const sideA = cardRow?.["sides"]?.["A"] || cardRow?.["A"]
+          const cardName = sideA?.["name"];
+          if (cardName && cardName.toLowerCase().includes(filteredName.toLowerCase())) filteredIDs.push(cardID);
         })
         setSpawnFilteredIDs(filteredIDs);
     }
@@ -84,7 +85,7 @@ export const SpawnExistingCardModal = React.memo(({}) => {
         <div><span className="text-white">Load group: </span>
           <select className="form-control mb-1" style={{width:"35%"}} id={"loadGroupId"} name={"loadGroupId"} onChange={(event) => handleGroupIdChange(event)}>
             {gameDef?.spawnExistingCardModal?.loadGroupIds?.map((groupId,_groupIndex) => (
-              <option value={groupId}>{gameL10n(gameDef?.groups?.[groupId]?.label)}</option>
+              <option key={groupId} value={groupId}>{gameL10n(gameDef?.groups?.[groupId]?.label)}</option>
             ))}
           </select>
         </div>
@@ -121,12 +122,12 @@ export const SpawnExistingCardModal = React.memo(({}) => {
               </thead>
               {spawnFilteredIDs.map((cardId, rowindex) => {
                 const card = cardDb[cardId];
-                const sideA = cardDb[cardId]["A"];
+                const sideA = cardDb[cardId]["sides"]?.["A"] || cardDb[cardId]["A"];
                 return(
                   <tr key={rowindex} className="bg-gray-600 text-white cursor-pointer hover:bg-gray-500 hover:text-black" onClick={() => handleSpawnClick(cardId)}>
                     {gameDef.spawnExistingCardModal.columnProperties?.map((prop, colindex) => {
                       return(
-                        <td key={colindex} className="p-1 break-words">{sideA[prop]}</td>
+                        <td key={colindex} className="p-1 break-words">{sideA?.[prop]}</td>
                       )
                     })}
                   </tr>
