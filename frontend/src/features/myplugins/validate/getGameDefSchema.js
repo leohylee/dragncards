@@ -48,7 +48,7 @@ const autoRunSchema = {
   "_type_": "object",
   "_strictKeys_": true,
   "status": {
-    "_description_": "The status of the rule. If set to 'always', the rule will automatically run when the condition is met. If set to 'never', the rule will not automatically run. If set to 'propmt', the user will be prompted to run the rule.",
+    "_description_": "The status of the rule. If set to 'always', the rule will automatically run when the condition is met. If set to 'never', the rule will not automatically run. If set to 'prompt', the user will be prompted to run the rule.",
     "_type_": "string",
     "_required_": true,
     "_memberOf_": ["always", "never", "prompt", "promptYN"],
@@ -83,6 +83,7 @@ export const getGameDefSchema = (gameDef) => {
       "playerCountMenu": {
         "_description_": "The player count menu settings",
         "_type_": "array",
+        "_required_": true,
         "_itemSchema_": {
           "_description_": "A player count menu setting",
           "_type_": "object",
@@ -727,10 +728,10 @@ export const getGameDefSchema = (gameDef) => {
           "_strictKeys_": true,
           "args": {
             "_description_": "The arguments of the function. Example: ['$PLAYER_I']",
-            "_type_": "any",
+            "_type_": "array",
             "_itemSchema_": {
               "_description_": "An argument of the function. Example: '$PLAYER_I'",
-              "_type_": "string",
+              "_type_": "any",
             }
           },
           "code": {
@@ -1245,7 +1246,15 @@ export const getGameDefSchema = (gameDef) => {
               "visible": {
                 "_description_": "Whether the button is visible",
                 "_type_": "boolean",
-              }
+              },
+              "style": {
+                "_description_": "The style of the region, in the form of a CSS object. Example: {'background-color': 'red'}",
+                "_type_": "object",
+                "_itemSchema_": {
+                  "_description_": "A CSS style property",
+                  "_type_": "string",
+                }
+              },
             }
           },
           "textBoxes": {
@@ -1287,6 +1296,25 @@ export const getGameDefSchema = (gameDef) => {
             }
 
           }
+        }
+      },
+      "o8dImport": {
+        "_description_": "Settings for importing .o8d files",
+        "_type_": "object",
+        "_strictKeys_": true,
+        "o8dSectionToLoadGroupId": {
+          "_description_": "Mapping of .o8d section names to groupIds to load the cards into",
+          "_type_": "object",
+          "_required_": true,
+          "_itemSchema_": {
+            "_description_": "The groupId to load the cards into",
+            "_type_": "groupId"
+          }
+        },
+        "otherSectionLoadGroupId": {
+          "_description_": "Load group to load a card into if the section is not found in o8dSectionToLoadGroupId",
+          "_required_": true,
+          "_type_": "groupId"
         }
       },
       "phases": {
@@ -1483,13 +1511,38 @@ export const getGameDefSchema = (gameDef) => {
             "_required_": true,
             "_itemSchema_": {
               "_description_": "An argument of the prompt. Example: '$PLAYER_I'",
-              "_type_": "string",
+              "_type_": "any",
             }
           },
           "message": {
             "_description_": "The message to display in the prompt",
             "_type_": "any",
             "_required_": true,
+          },
+          "input": {
+            "_description_": "Details for an optional input box",
+            "_type_": "object",
+            "type": {
+              "_description_": "The type of input to expect from the user. Must be one of: 'text', 'number', 'selectCards'. The code in the prompt options can use the `$PROMPT_INPUT` variable to access the input value, which will be a string, number, or a list of card ids depending on the input type.",
+              "_type_": "string",
+              "_required_": true,
+              "_memberOf_": ["text", "number", "selectCards"],
+            },
+            "autoSubmit": {
+              "_description_": "Whether to automatically submit the prompt when the user secets a certain number of cards. Only applies if input type is `selectCards`.",
+              "_type_": "object",
+              "_required_": false,
+              "numCards": {
+                "_description_": "The number of cards to select before automatically submitting the prompt.",
+                "_type_": "integer",
+                "_required_": true
+              },
+              "code": {
+                "_description_": "The DragnLang code to execute when the user selects the specified number of cards.",
+                "_type_": "code",
+                "_required_": false,
+              }
+            },
           },
           "options": {
             "_description_": "The options to choose from in the prompt",
@@ -1509,11 +1562,12 @@ export const getGameDefSchema = (gameDef) => {
               "code": {
                 "_description_": "The DragnLang code to execute when the option is selected.",
                 "_type_": "code",
+              },
+              "dontShowAgain": {
+                "_description_": "Whether to show the option again in the future",
+                "_type_": "boolean",
               }
             }
-          },
-          "optionsActionList": {
-            "_type_": "actionList",
           }
         }
       },
@@ -1751,7 +1805,7 @@ export const getGameDefSchema = (gameDef) => {
         }
       },
       "imageUrlPrefix": {
-        "_description_": "Object describing the prefix to add to image URLs. The [key] is the language. This can be used to reduce character count in the TSV if many URLs contain a similar prefix. It can be used for localization if your images are hosted in such a way that the the URLs for the same card in different languages have the save suffix but different prefix. Example: {'Default': 'https://hostingsite.com/English/', 'English': 'https://hostingsite.com/English/', 'French': 'https://hostingsite.com/French/'}",
+        "_description_": "Object describing the prefix to add to image URLs. The [key] is the language. This can be used to reduce character count in the TSV if many URLs contain a similar prefix. It can be used for localization if your images are hosted in such a way that the the URLs for the same card in different languages have the same suffix but different prefix. Example: {'Default': 'https://hostingsite.com/English/', 'English': 'https://hostingsite.com/English/', 'French': 'https://hostingsite.com/French/'}",
         "_type_": "object",
         "_itemSchema_": {
           "_description_": "The image URL prefix",

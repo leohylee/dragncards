@@ -48,7 +48,7 @@ defmodule DragnCardsGame.Evaluate.Functions.PROMPT do
     end
     prompt_id = Evaluate.evaluate(game, Enum.at(code, 2), trace ++ ["prompt_id"])
     arg_vals = Enum.slice(code, 3, Enum.count(code))
-    game_def = PluginCache.get_game_def_cached(game["options"]["pluginId"])
+    game_def = PluginCache.get_game_def_cached(game["pluginId"])
 
     orig_prompt = game_def["prompts"][prompt_id] || dragn_prompt(prompt_id)
     if orig_prompt == nil do
@@ -61,11 +61,10 @@ defmodule DragnCardsGame.Evaluate.Functions.PROMPT do
       Map.has_key?(orig_prompt, "options") ->
         orig_prompt["options"]
 
-      Map.has_key?(orig_prompt, "optionsActionList") ->
-        Evaluate.evaluate(game, ["ACTION_LIST", orig_prompt["optionsActionList"]], trace ++ ["optionsActionList"])
-
       true ->
-        raise ArgumentError, message: "Prompt #{prompt_id} must contain an 'options' or 'optionsActionList' key"
+        # Fallback to an empty list of options if none are defined in the prompt
+        # This allows for a simple message prompt without any options
+        []
     end
 
     # Generate the variable definition statements that we to resolve the message and to prepended to the code
@@ -98,6 +97,7 @@ defmodule DragnCardsGame.Evaluate.Functions.PROMPT do
     prompt_uuid = Ecto.UUID.generate
 
     new_prompt = orig_prompt
+    |> Map.put("promptId", prompt_id)
     |> Map.put("uuid", prompt_uuid)
     |> Map.put("message", new_message)
     |> Map.put("timestamp", DateTime.utc_now() |> DateTime.to_unix(:microsecond))
@@ -105,15 +105,10 @@ defmodule DragnCardsGame.Evaluate.Functions.PROMPT do
     game = Enum.reduce(target_player_list, game, fn(target_player_n, acc) ->
       # Prepend the "VAR" statements to each option's code so that when it gets evaluated, it will have the variables defined
       # Append a command to delete the prompt
+      unset_command = ["UNSET", "/playerData/#{target_player_n}/prompts/#{prompt_uuid}"]
       new_options = Enum.reduce(orig_options, [], fn(option, acc) ->
-        unset_command = ["UNSET", "/playerData/#{target_player_n}/prompts/#{prompt_uuid}"]
         new_option = if option["code"] != nil do
-          prompt_code = if is_list(Enum.at(option["code"], 0)) do
-            option["code"]
-          else
-            [option["code"]]
-          end
-          put_in(option, ["code"], [multi_var_command] ++ prompt_code ++ [unset_command])
+          put_in(option, ["code"], [multi_var_command, option["code"], unset_command])
         else
           put_in(option, ["code"], unset_command)
         end
@@ -121,9 +116,23 @@ defmodule DragnCardsGame.Evaluate.Functions.PROMPT do
       end)
       new_prompt = put_in(new_prompt, ["options"], new_options)
 
+      # Update the `autoSubmit` code if it exists in the prompt
+      new_prompt =
+        case get_in(new_prompt, ["input", "autoSubmit", "code"]) do
+          nil -> new_prompt
+          code ->
+            put_in(new_prompt, ["input", "autoSubmit", "code"],
+              [multi_var_command, code, unset_command]
+            )
+        end
+
       # Add the prompt to the player's prompts
-      acc = put_in(acc, ["playerData", target_player_n, "prompts", prompt_uuid], new_prompt)
-      put_in(acc, ["playerData", target_player_n, "mostRecentPromptId"], prompt_uuid)
+      acc = try do
+        put_in(acc, ["playerData", target_player_n, "prompts", prompt_uuid], new_prompt)
+        |> put_in(["playerData", target_player_n, "mostRecentPromptId"], prompt_uuid)
+      rescue
+        _ -> raise "Failed to add prompt #{prompt_id} to player #{target_player_n}. Does player #{target_player_n} exist?"
+      end
     end)
 
     game

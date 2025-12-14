@@ -26,7 +26,6 @@ export const TopBarMenu = React.memo(({}) => {
   const siteL10n = useSiteL10n();
   const gameDef = useGameDefinition();
   const doActionList = useDoActionList();
-  const loadList = useImportLoadList();
   const importViaUrl = useImportViaUrl();
   const importLoadList = useImportLoadList();
   const cardDb = useCardDb();
@@ -38,6 +37,7 @@ export const TopBarMenu = React.memo(({}) => {
   const gameOptions = useSelector(state => state?.gameUi?.game?.options);
   const autoLoadedDecksGame = useSelector(state => state?.gameUi?.game?.autoLoadedDecks);
   const autoLoadedDecksPlayer = useSelector(state => state?.playerUi?.autoLoadedDecks);
+  const pluginId = useSelector(state => state?.gameUi?.game?.pluginId);
   
   const dispatch = useDispatch();
   const inputFileDeck = useRef(null);
@@ -54,14 +54,20 @@ export const TopBarMenu = React.memo(({}) => {
     if (data.action === "clear_table") {
       // Reset game
       var playerUi = getBackEndPlayerUi(store.getState());
-      doActionList(data.actionList);
+      doActionList(data.actionList, `Cleared the table`);
       gameBroadcast("reset_game", {options: {player_ui: playerUi}});
+      
+    } else if (data.action === "reset_and_reload") {
+      // Reload cards
+      var playerUi = getBackEndPlayerUi(store.getState());
+      doActionList(data.actionList, `Cleared the table and reloaded cards`);
+      gameBroadcast("reset_and_reload", {options: {player_ui: playerUi}});
       
     } else if (data.action === "close_room") {
       // Mark status
       var playerUi = getBackEndPlayerUi(store.getState());
       // Save replay
-      doActionList(data.actionList);
+      doActionList(data.actionList, `Closed the room`);
       // Close room
       history.push("/profile");
       //doActionList(["LOG", "$ALIAS_N", " closed the room."]);
@@ -71,40 +77,19 @@ export const TopBarMenu = React.memo(({}) => {
     } else if (data.action === "load_url") {
       importViaUrl();
     } else if (data.action === "unload_my_deck") {
-      const actionList = [
-        ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-          ["COND",
-            ["EQUAL", "$CARD.controller", "$PLAYER_N"],
-            ["DELETE_CARD", "$CARD_ID"]
-          ]
-        ]],
-        ["LOG", "$ALIAS_N", " deleted all their cards."]
-      ]
-      doActionList(actionList);
+      doActionList(["UNLOAD_CARDS", "$PLAYER_N"], `Unloaded all cards for player ${playerN}`);
     } else if (data.action === "unload_shared_cards") {
-      const actionList = [
-        ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-          ["COND",
-            ["OR",
-              ["EQUAL", "$CARD.controller", null],
-              ["NOT_EQUAL", ["SUBSTRING", "$CARD.controller", 0, 6], "player"],
-            ],
-            ["DELETE_CARD", "$CARD_ID"]
-          ]
-        ]],
-        ["LOG", "$ALIAS_N", " deleted all shared cards."]
-      ]
-      doActionList(actionList);
+      doActionList(["UNLOAD_CARDS", "shared"], `Unloaded all shared cards`);
     } else if (data.action === "random_coin") {
       const result = getRandomIntInclusive(0,1);
-      if (result) doActionList(["LOG", "$ALIAS_N", " flipped heads."]);
+      if (result) doActionList(["LOG", "$ALIAS_N", " flipped heads."], `Flipped a coin for player ${playerN}`);
       else doActionList(["LOG", "$ALIAS_N", " flipped tails."]);
     } else if (data.action === "random_number") {
       const max = parseInt(prompt("Random number between 1 and...",randomNumBetween));
       if (max>=1) {
         dispatch(setRandomNumBetween(max))
         const result = getRandomIntInclusive(1,max);
-        doActionList(["LOG", "$ALIAS_N", " chose a random number (1-"+max+"): "+result]);
+        doActionList(["LOG", "$ALIAS_N", " chose a random number (1-"+max+"): "+result], `Chose a random number for player ${playerN}`);
       }
     } else if (data.action === "spawn_existing") {
       dispatch(setShowModal("card"));
@@ -118,6 +103,8 @@ export const TopBarMenu = React.memo(({}) => {
       downloadGameAsJson();
     } else if (data.action === "downloadReplay") {
       downloadReplayAsJson();
+    } else if (data.action === "load_o8d") {
+      loadFileDeck();
     } else if (data.action === "load_game") {
       loadFileGame();
     } else if (data.action === "load_game_def") {
@@ -138,14 +125,14 @@ export const TopBarMenu = React.memo(({}) => {
           ["SET_LAYOUT", playerN, data.value.layoutId]
         ];
       }
-      doActionList(actionList);
+      doActionList(actionList, `Changed layout to ${data.value.layoutId} for player ${data.playerI}`);
     } else if (data.action === "set_num_players") {
       var actionList = [
         ["LOG", "$ALIAS_N", " changed the number of players to "+data.value.numPlayers+"."],
         ["SET", "/numPlayers", data.value.numPlayers],
         ["SET_LAYOUT", "shared", data.value.layoutId]
       ];
-      doActionList(actionList);
+      doActionList(actionList, `${playerN} set number of players to ${data.value.numPlayers}`);
     } 
   }
 
@@ -177,10 +164,25 @@ export const TopBarMenu = React.memo(({}) => {
       }
       if (replayObj) {
         if (replayObj.game && replayObj.deltas) {
+          // Update the saved game to have the current pluginId
+          if (pluginId !== replayObj.game.pluginId) {
+            // Ask the user if they want to proceed
+            const proceed = window.confirm("The uploaded replay uses a different plugin ID than the current room. Loading it may crash your room. Proceed anyway?");
+            if (!proceed) return;
+            replayObj.game.pluginId = pluginId;
+          }
           gameBroadcast("set_replay", {replay: replayObj})
           gameBroadcast("send_alert", {message: `${user.alias} uploaded a replay.`})
         } else if (replayObj.roomSlug) {
-          gameBroadcast("game_action", {action: "set_game", options: {game: replayObj}})
+          const game = replayObj;
+          // Update the saved game to have the current pluginId
+          if (pluginId !== game.pluginId) {
+            // Ask the user if they want to proceed
+            const proceed = window.confirm("The uploaded game uses a different plugin ID than the current room. Loading it may crash your room. Proceed anyway?");
+            if (!proceed) return;
+            game.pluginId = pluginId;
+          }
+          gameBroadcast("game_action", {action: "set_game", options: {game: game, description: "Game loaded from JSON file."}})
           gameBroadcast("send_alert", {message: `${user.alias} uploaded a game.`})
         } else {
           alert("Uploaded JSON file does not look like a valid game or replay.");
@@ -191,15 +193,48 @@ export const TopBarMenu = React.memo(({}) => {
     inputFileGame.current.value = "";
   }
 
-  const uploadCustomCards = async(event) => {
+  const sectionToLoadGroupId = (section) => {
+    const mapping = gameDef.o8dImport.o8dSectionToLoadGroupId;
+    const otherLoadGroupId = gameDef.o8dImport.otherGroupId;
+    if (mapping[section]) return mapping[section];
+    else return otherLoadGroupId;
+  }
+
+  const loadDeckFromXmlText = (xmlText) => {
+
+    if (!gameDef.o8dImport) {
+      alert("This game does not support o8d import.");
+      return
+    }
+
+    var parseString = require('xml2js').parseString;
+    parseString(xmlText, function (err, deckJSON) {
+      if (!deckJSON) return;
+      const sections = deckJSON.deck.section;
+      var loadList = [];
+      sections.forEach(section => {
+        const sectionName = section['$'].name;
+        const cards = section.card;
+        if (!cards) return;
+        cards.forEach(card => {
+          const cardDbId = card['$'].id;
+          const quantity = parseInt(card['$'].qty);
+          loadList.push({'databaseId': cardDbId, 'quantity': quantity, 'loadGroupId': sectionToLoadGroupId(sectionName)})
+        })
+      })
+      importLoadList(loadList);
+    })
+  }
+
+  const loadO8D = async(event) => {
     event.preventDefault();
     const reader = new FileReader();
-    reader.onload = async (event) => {
-      var list = JSON.parse(event.target.result);
-      loadList(list);
+    reader.onload = async (event) => { 
+      const xmlText = (event.target.result)
+      loadDeckFromXmlText(xmlText);
     }
     reader.readAsText(event.target.files[0]);
-    inputFileCustom.current.value = "";
+    inputFileDeck.current.value = "";
   }
 
   const downloadGameAsJson = () => {
@@ -270,7 +305,7 @@ export const TopBarMenu = React.memo(({}) => {
       const domain = externalData.domain;
       const type = externalData.type;
       const id = externalData.id;
-      doActionList(["SET", "/autoLoadedDecks", true])
+      doActionList(["SET", "/autoLoadedDecks", true], "Set autoLoadedDecks to true");
       dispatch(setAutoLoadedDecks(true));
       if (domain === "ringsdbtest") {
         loadRingsDb(importLoadList, doActionList, playerN, "test", type, id);
@@ -294,14 +329,18 @@ export const TopBarMenu = React.memo(({}) => {
             <li key={"load_prebuilt_deck"} onClick={() => handleMenuClick({action:"spawn_deck"})}>{siteL10n("loadPrebuiltDeck")}</li>
             <li key={"load_public_custom_deck"} onClick={() => handleMenuClick({action:"spawn_public_deck"})}>{siteL10n("loadPublicCustomDeck")}</li>
             <li key={"load_url"} onClick={() => handleMenuClick({action:"load_url"})}>{siteL10n("Load via URL")}</li>
+            <li key={"load_o8d"} onClick={() => handleMenuClick({action:"load_o8d"})}>
+              {siteL10n("loadO8D")}
+              <input type='file' id='file' ref={inputFileDeck} style={{display: 'none'}} onChange={loadO8D} accept=".o8d"/>
+            </li>
             <li key={"load_game"} onClick={() => handleMenuClick({action:"load_game"})}>
               {siteL10n("loadGameOrReplayJson")}
               <input type='file' id='file' ref={inputFileGame} style={{display: 'none'}} onChange={uploadGameOrReplayJson} accept=".json"/>
             </li>
-            <li key={"load_custom"} onClick={() => handleMenuClick({action:"load_custom"})}>
+            {/* <li key={"load_custom"} onClick={() => handleMenuClick({action:"load_custom"})}>
               {siteL10n("loadCustomCardsTxt")}
               <input type='file' id='file' ref={inputFileCustom} style={{display: 'none'}} onChange={uploadCustomCards} accept=".txt"/>
-            </li>
+            </li> */}
           </ul>
         </li> 
         {/* <li key={"layout"}>
@@ -371,7 +410,7 @@ export const TopBarMenu = React.memo(({}) => {
           <ul className="third-level-menu">
             {gameDef.pluginMenu?.options?.map((menuFunction, index) => {
               return(
-                <li key={index} onClick={() => doActionList(menuFunction.actionList)}>{gameL10n(menuFunction.label)}</li>
+                <li key={index} onClick={() => doActionList(menuFunction.actionList, `Plugin Options ${menuFunction.label}`)}>{gameL10n(menuFunction.label)}</li>
               )
             })}
           </ul>
@@ -392,6 +431,19 @@ export const TopBarMenu = React.memo(({}) => {
               {gameDef["clearTableOptions"]?.map((option, index) => {
                 return(
                   <li key={index} onClick={() => handleMenuClick({action:"clear_table", actionList: option.actionList})}>{gameL10n(option.label)}</li>
+                )
+              })}
+            </ul>
+          </li> 
+        }     
+        {isHost &&
+          <li key={"reset_and_reload"}>
+            {siteL10n("resetDecks")}
+            <span className="float-right mr-1"><FontAwesomeIcon icon={faChevronRight}/></span>
+            <ul className="third-level-menu">
+              {gameDef["clearTableOptions"]?.map((option, index) => {
+                return(
+                  <li key={index} onClick={() => handleMenuClick({action:"reset_and_reload", actionList: option.actionList})}>{gameL10n(option.label)}</li>
                 )
               })}
             </ul>

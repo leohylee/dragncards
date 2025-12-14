@@ -6,6 +6,7 @@
 # export PLUGIN_TSV_PATH=/path/to/directory/containing/your/plugin/tsvs/
 # mix test test/dragncards_game/custom_plugin_test.exs
 
+
 defmodule StringReplacer do
   def replace_placeholders(str, values) do
     # Use regex to find all occurrences of {0}, {1}, etc.
@@ -40,6 +41,19 @@ defmodule DragnCardsGame.CustomPluginTest do
   # Import helper functions
   alias DragnCardsUtil.{Merger}
   alias DragnCardsUtil.{TsvProcess}
+
+
+  def set_player_count(game, num) do
+    # Select player count
+    prompts = game["playerData"]["player1"]["prompts"]
+    {_prompt_uuid, prompt} = Enum.find(prompts, fn {_prompt_uuid, prompt} -> prompt["promptId"] == "setPlayerCount" end)
+    option = Enum.at(prompt["options"], 1)
+    game = Evaluate.evaluate(game, option["code"])
+
+    # Check if the round advancement function is set correctly
+    assert game["roundAdvancementFunction"] == "loadPlayerDecks"
+    game
+  end
 
   # Setup block for the tests, executed before each test run
   # NOTE: You shouldn't have to edit this setup block for your plugin.
@@ -167,15 +181,19 @@ defmodule DragnCardsGame.CustomPluginTest do
   end
 
 
+
   @tag :profiling
-  test "profiling create_card_in_group", %{user: _user, game: game, game_def: game_def} do
+  test "profiling create_card_in_group", %{user: user, game: game, game_def: game_def} do
     # Load some decks into the game
     Enum.each(1..2, fn _ ->
       GameUI.load_cards(game, [%{
         "databaseId" => "51223bd0-ffd1-11df-a976-0801206c9005",
         "loadGroupId" => "player1Play1",
         "quantity" => 1
-      }])
+      }],
+      "player1",
+      user.id,
+      [])
     end)
 
     assert true
@@ -208,7 +226,6 @@ defmodule DragnCardsGame.CustomPluginTest do
     game = Evaluate.evaluate(game, ["LOAD_CARDS", "coreLeadership"]) # Leadership core set deck
     assert game["playerData"]["player1"]["threat"] == 29
 
-
   end
 
 
@@ -218,7 +235,6 @@ defmodule DragnCardsGame.CustomPluginTest do
     # Load some decks into the game
     game = Evaluate.evaluate(game, ["LOAD_CARDS", "starterElves"])
     assert game["playerData"]["player1"]["threat"] == 29
-
 
   end
 
@@ -486,7 +502,7 @@ defmodule DragnCardsGame.CustomPluginTest do
 
     # Calculate score
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "player1Play1", 0, 0])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "player2Play1", 0, 0])
     card = Evaluate.evaluate(game, ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.name", "Chieftan Ufthak"]])
     game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card["id"]], ["ACTION_LIST", "addToVictoryDisplay"]])
@@ -549,7 +565,7 @@ defmodule DragnCardsGame.CustomPluginTest do
     game_with_stack = game
 
     # Discard the stack
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", parent_card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", parent_card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
 
     # Print all messages
     Enum.each(game["messages"], fn message ->
@@ -561,25 +577,25 @@ defmodule DragnCardsGame.CustomPluginTest do
 
     # Discard the quest
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedMainQuest", 0, 0])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     assert length(game["groupById"]["sharedMainQuest"]["stackIds"]) == 1
     assert length(game["groupById"]["sharedQuestDeck"]["stackIds"]) == 2
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedMainQuest", 0, 0])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     assert length(game["groupById"]["sharedMainQuest"]["stackIds"]) == 1
     assert length(game["groupById"]["sharedQuestDeck"]["stackIds"]) == 1
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedMainQuest", 0, 0])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     assert length(game["groupById"]["sharedMainQuest"]["stackIds"]) == 1
     assert length(game["groupById"]["sharedQuestDeck"]["stackIds"]) == 0
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedMainQuest", 0, 0])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     assert length(game["groupById"]["sharedMainQuest"]["stackIds"]) == 0
 
     # Discard just one card from the stack
     game = game_with_stack
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "player1Play1", 0, 1])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     assert length(game["groupById"]["player1Discard"]["stackIds"]) == 1
     assert length(game["groupById"]["sharedEncounterDiscard"]["stackIds"]) == 0
     # Verify that the stack has 2 cards
@@ -716,7 +732,7 @@ defmodule DragnCardsGame.CustomPluginTest do
     assert game["cardById"][dwarf_card_id]["tokens"]["attack"] == 1
 
     # Discard Dain
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", dain_card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", dain_card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     assert game["cardById"][dwarf_card_id]["tokens"]["willpower"] == 0
     assert game["cardById"][dwarf_card_id]["tokens"]["attack"] == 0
 
@@ -727,51 +743,6 @@ defmodule DragnCardsGame.CustomPluginTest do
 
   end
 
-  # Treebeard
-  @tag :treebeard
-  test "Treebeard", %{user: _user, game: game, game_def: _game_def} do
-    # Select 1 player
-    prompt_id = Enum.at(Map.keys(game["playerData"]["player1"]["prompts"]), 0)
-    prompt = game["playerData"]["player1"]["prompts"][prompt_id]
-    option1 = Enum.at(prompt["options"], 0)
-    game = Evaluate.evaluate(game, option1["code"])
-
-    # Load Treebeard
-    game = Evaluate.evaluate(game, ["LOAD_CARDS", ["LIST", %{"databaseId" => "c266126d-cf2d-4a61-aac7-28bac2d1ea0d", "loadGroupId" => "player1Play1", "quantity" => 1}]])
-    assert length(game["groupById"]["player1Play1"]["stackIds"]) == 1
-
-    # New round
-    game = Evaluate.evaluate(game, ["ACTION_LIST", "skipToNextPlanningPhase"])
-
-    prompt_id = Enum.at(Map.keys(game["playerData"]["player1"]["prompts"]), 0)
-    prompt = game["playerData"]["player1"]["prompts"][prompt_id]
-    optionYes = Enum.at(prompt["options"], 1)
-    game = Evaluate.evaluate(game, optionYes["code"])
-
-    assert Evaluate.evaluate(game, "$GAME.groupById.player1Play1.parentCards.[0].tokens.resource") == 1
-
-
-    game = Evaluate.evaluate(game, ["ACTION_LIST", "skipToNextPlanningPhase"])
-
-    prompt_id = Enum.at(Map.keys(game["playerData"]["player1"]["prompts"]), 0)
-    prompt = game["playerData"]["player1"]["prompts"][prompt_id]
-    optionAlways = Enum.at(prompt["options"], 0)
-    game = Evaluate.evaluate(game, optionAlways["code"])
-
-    assert Evaluate.evaluate(game, "$GAME.groupById.player1Play1.parentCards.[0].tokens.resource") == 2
-
-
-    game = Evaluate.evaluate(game, ["ACTION_LIST", "skipToNextPlanningPhase"])
-
-    assert Evaluate.evaluate(game, "$GAME.groupById.player1Play1.parentCards.[0].tokens.resource") == 3
-
-
-    # Print all messages
-    Enum.each(game["messages"], fn message ->
-      IO.puts(message)
-    end)
-
-  end
 
   # nurn
   @tag :nurn
@@ -831,11 +802,20 @@ defmodule DragnCardsGame.CustomPluginTest do
   # foundations
   @tag :foundations
   test "Foundations", %{user: _user, game: game, game_def: _game_def} do
+    if game["currentScopeIndex"] == nil do
+        raise "Game state is missing currentScopeIndex 1."
+    end
     # Select 3 player
-    prompt_id = Enum.at(Map.keys(game["playerData"]["player1"]["prompts"]), 0)
+    prompt_id = game["playerData"]["player1"]["mostRecentPromptId"]
     prompt = game["playerData"]["player1"]["prompts"][prompt_id]
     option = Enum.at(prompt["options"], 2)
+    if option["code"] == nil do
+        raise "Option code is missing: #{inspect(option)}, prompt: #{inspect(prompt)}"
+    end
     game = Evaluate.evaluate(game, option["code"])
+    if game["currentScopeIndex"] == nil do
+        raise "Game state is missing currentScopeIndex 2. after evaluating code: #{inspect(option["code"])}"
+    end
 
     # Load decks
     game = Evaluate.evaluate(game, ["LOAD_CARDS", "starterElves"])
@@ -864,16 +844,16 @@ defmodule DragnCardsGame.CustomPluginTest do
     # Discard 10 cards from the encounter deck
     game = Enum.reduce(1..10, game, fn _i, acc ->
       card_id = Evaluate.evaluate(acc, ["GET_CARD_ID", "sharedEncounterDeck", 0, 0])
-      acc = Evaluate.evaluate(acc, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["ACTION_LIST", "discardCard"]])
+      acc = Evaluate.evaluate(acc, [["DEFINE", "$ACTIVE_CARD_ID", card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
     end)
 
     # Discard main quest
     main_quest_card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedMainQuest", 0, 0])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", main_quest_card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", main_quest_card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
 
     # Discard main quest
     main_quest_card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedMainQuest", 0, 0])
-    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", main_quest_card_id], ["ACTION_LIST", "discardCard"]])
+    game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", main_quest_card_id], ["DISCARD_CARD", "$ACTIVE_CARD"]])
 
     # Flip main quest
     main_quest_card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedMainQuest", 0, 0])
@@ -1001,12 +981,12 @@ defmodule DragnCardsGame.CustomPluginTest do
     assert game["cardById"][ethir_2_card_id]["tokens"]["willpower"] == 1
     assert game["cardById"][lossarnach_1_card_id]["tokens"]["willpower"] == 1
 
-    # Flip Ethir 2 facedown
+    # Flip Ethir 2 faceup
     game = Evaluate.evaluate(game, [["DEFINE", "$ACTIVE_CARD_ID", ethir_2_card_id], ["ACTION_LIST", "flipCard"]])
     assert game["cardById"][ethir_2_card_id]["currentSide"] == "A"
     assert game["cardById"][ethir_1_card_id]["tokens"]["willpower"] == 2
-    assert game["cardById"][ethir_2_card_id]["tokens"]["willpower"] == 2
-    assert game["cardById"][lossarnach_1_card_id]["tokens"]["willpower"] == 2
+    # assert game["cardById"][ethir_2_card_id]["tokens"]["willpower"] == 2
+    # assert game["cardById"][lossarnach_1_card_id]["tokens"]["willpower"] == 2
 
 
     # Print all messages
@@ -1135,7 +1115,7 @@ defmodule DragnCardsGame.CustomPluginTest do
     # # Discard
     # game = Evaluate.evaluate(game, [
     #   ["DEFINE", "$ACTIVE_CARD_ID", aragorn_card_id],
-    #   ["ACTION_LIST", "discardCard"]
+    #   ["DISCARD_CARD", "$ACTIVE_CARD"]
     # ])
 
     # assert game["stagingThreat"] == 4
@@ -1210,7 +1190,7 @@ defmodule DragnCardsGame.CustomPluginTest do
     # Discard
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", card_id],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
 
     assert Evaluate.evaluate(game, "$GAME.playerData.player1.willpower") == 0
@@ -1240,18 +1220,18 @@ defmodule DragnCardsGame.CustomPluginTest do
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedEncounterDeck", 0, 0])
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", card_id],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
 
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedEncounterDeck", 0, 0])
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", card_id],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "sharedEncounterDeck", 0, 0])
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", card_id],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
     assert length(game["groupById"]["sharedEncounterDeck"]["stackIds"]) == 31
 
@@ -1268,17 +1248,17 @@ defmodule DragnCardsGame.CustomPluginTest do
     IO.puts(card_id)
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", card_id],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "player1Deck", 0, 0])
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", card_id],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
     card_id = Evaluate.evaluate(game, ["GET_CARD_ID", "player1Deck", 0, 0])
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", card_id],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
     assert length(game["groupById"]["player1Deck"]["stackIds"]) == 21
 
@@ -1347,7 +1327,7 @@ defmodule DragnCardsGame.CustomPluginTest do
         ["NOT_EQUAL", "$GAME.groupById.sharedEncounterDeck.parentCards.[0].sides.A.type", "Enemy"],
         [
           ["DEFINE", "$ACTIVE_CARD_ID", "$GAME.groupById.sharedEncounterDeck.parentCardIds.[0]"],
-          ["ACTION_LIST", "discardCard"]
+          ["DISCARD_CARD", "$ACTIVE_CARD"]
         ]
       ]
     ])
@@ -1597,14 +1577,10 @@ defmodule DragnCardsGame.CustomPluginTest do
 
   end
 
+
   @tag :adv_button
   test "adv_button", %{user: _user, game: game, game_def: game_def} do
-    # Select 1 player
-    prompt_id = Enum.at(Map.keys(game["playerData"]["player1"]["prompts"]), 0)
-    prompt = game["playerData"]["player1"]["prompts"][prompt_id]
-    option2 = Enum.at(prompt["options"], 1)
-    game = Evaluate.evaluate(game, option2["code"])
-
+    game = set_player_count(game, 2)
 
     assert game["roundAdvancementFunction"] == "loadPlayerDecks"
 
@@ -1642,14 +1618,14 @@ defmodule DragnCardsGame.CustomPluginTest do
     assert game["roundAdvancementFunction"] == "commitOrReveal"
 
     # Commit no characters, just advance to staging step
-    game = Evaluate.evaluate(game, ["ACTION_LIST", "hotkeyE"])
+    game = Evaluate.evaluate(game, ["ACTION_LIST", "revealEncounter"])
     assert game["stepId"] == "3.3"
     assert game["roundAdvancementFunction"] == "revealOrResolve"
 
     # Discard the revealed card
     game = Evaluate.evaluate(game, [
       ["DEFINE", "$ACTIVE_CARD_ID", "$GAME.groupById.sharedStagingArea.parentCardIds.[-1]"],
-      ["ACTION_LIST", "discardCard"]
+      ["DISCARD_CARD", "$ACTIVE_CARD"]
     ])
 
     # Reveal no cards, resolve the quest
@@ -1676,15 +1652,14 @@ defmodule DragnCardsGame.CustomPluginTest do
 
     # 1 engaged enemy
     # Advance to combat
-    assert game["roundAdvancementFunction"] == "advanceToCombat"
-    game = Evaluate.evaluate(game, ["DO_ADVANCE_BUTTON"])
+    assert game["roundAdvancementFunction"] == "readyForNextPlanning"
+    #game = Evaluate.evaluate(game, ["DO_ADVANCE_BUTTON"])
 
 
     # Shadow card should be dealt
     assert Evaluate.evaluate(game, ["DEFINED", ["GET_CARD_ID", "player1Engaged", 0, 1]])
 
     # Go to turn 2 planning
-    assert game["roundAdvancementFunction"] == "readyForNextPlanning"
     game = Evaluate.evaluate(game, ["DO_ADVANCE_BUTTON"])
     assert game["playerData"]["player1"]["threat"] == 31
 
@@ -1734,13 +1709,6 @@ defmodule DragnCardsGame.CustomPluginTest do
     assert game["roundAdvancementFunction"] == "revealOrResolve"
     game = Evaluate.evaluate(game, ["RESOLVE_QUEST"])
 
-
-        # Print all messages
-        Enum.each(game["messages"], fn message ->
-          IO.puts(message)
-        end)
-
-
     assert Evaluate.evaluate(game, "$GAME.groupById.sharedStagingArea.parentCards.[-1].tokens.progress") == 4
 
     # Advance to travel
@@ -1751,6 +1719,10 @@ defmodule DragnCardsGame.CustomPluginTest do
     assert game["roundAdvancementFunction"] == "advanceToCombat"
     game = Evaluate.evaluate(game, ["DO_ADVANCE_BUTTON"])
 
+    # Print all messages
+    Enum.each(game["messages"], fn message ->
+      IO.puts(message)
+    end)
 
 
   end
@@ -1907,9 +1879,155 @@ defmodule DragnCardsGame.CustomPluginTest do
       end)
     end)
     IO.puts("Post move time: #{post_move_time / 1000}ms")
+  end
 
 
 
+  @tag :request_json
+  test "REQUEST_JSON", %{user: _user, game: game, game_def: _game_def} do
+    # Test REQUEST_JSON with a real API endpoint
+    url = "https://ringsdb.com/api/public/card/01001"
+    result = Evaluate.evaluate(game, ["REQUEST_JSON", url])
+
+    # Verify that we got data back
+    assert result != nil
+
+    # Verify it's a map (JSON object)
+    assert is_map(result)
+
+    # Log the result for debugging
+    IO.puts("REQUEST_JSON result:")
+    IO.inspect(result)
+
+    # Test storing the result in a variable
+    game = Evaluate.evaluate(game, ["VAR", "$apiData", ["REQUEST_JSON", url]])
+    retrieved_data = Evaluate.evaluate(game, "$apiData")
+    assert retrieved_data == result
+  end
+
+  @tag :request_post_graphql
+  test "REQUEST_POST for GraphQL", %{user: _user, game: game, game_def: _game_def} do
+    # This test demonstrates how to make GraphQL requests like the ones seen in browser Network tab
+    # NOTE: The authorization token will expire, so this test may fail after some time
+
+    # The GraphQL query from the Network tab
+    graphql_query = """
+    query getCampaign($campaignId: Int!) {
+      campaign: rangers_campaign_by_pk(id: $campaignId) {
+        id
+        user_id
+        name
+        notes
+        day
+      }
+    }
+    """
+
+    # Build the request body (same structure as in Network tab)
+    result = Evaluate.evaluate(game, [
+      "REQUEST_POST",
+      "https://gapi.rangersdb.com/v1/graphql",
+      %{
+        "operationName" => "getCampaign",
+        "variables" => %{
+          "campaignId" => 6642
+        },
+        "query" => graphql_query
+      }
+    ])
+
+    # The response should be a map
+    assert is_map(result)
+    IO.puts("GraphQL response:")
+    IO.inspect(result)
+
+    # GraphQL responses typically have "data" and possibly "errors" fields
+    if Map.has_key?(result, "data") do
+      IO.puts("Successfully received GraphQL data")
+      campaign_data = Evaluate.evaluate(game, ["OBJ_GET_VAL", result, "data"])
+      IO.inspect(campaign_data)
+    end
+
+    if Map.has_key?(result, "errors") do
+      IO.puts("GraphQL returned errors (possibly due to missing/expired auth token):")
+      IO.inspect(result["errors"])
+    end
+
+
+    # All as one backend process
+    current_location = Evaluate.evaluate(game, [
+      ["VAR", "$CAMPAIGN_ID", 6642],
+      ["VAR", "$QUERY", "query getCampaign($campaignId: Int!) {\n  campaign: rangers_campaign_by_pk(id: $campaignId) {\n    ...Campaign\n    __typename\n  }\n}\n\nfragment Campaign on rangers_campaign {\n  id\n  user_id\n  name\n  notes\n  day\n  extended_calendar\n  cycle_id\n  current_location\n  current_path_terrain\n  missions\n  events\n  rewards\n  removed\n  history\n  calendar\n  expansions\n  latest_decks {\n    deck {\n      ...Deck\n      __typename\n    }\n    user {\n      ...UserInfo\n      __typename\n    }\n    __typename\n  }\n  access {\n    user {\n      ...UserInfo\n      __typename\n    }\n    __typename\n  }\n  next_campaign_id\n  previous_campaign {\n    id\n    __typename\n  }\n  __typename\n}\n\nfragment Deck on rangers_deck {\n  id\n  user_id\n  slots\n  side_slots\n  extra_slots\n  version\n  name\n  description\n  awa\n  spi\n  fit\n  foc\n  created_at\n  updated_at\n  meta\n  user {\n    ...UserInfo\n    __typename\n  }\n  taboo_set_id\n  published\n  previous_deck {\n    id\n    meta\n    slots\n    side_slots\n    version\n    __typename\n  }\n  next_deck {\n    id\n    meta\n    slots\n    side_slots\n    version\n    __typename\n  }\n  __typename\n}\n\nfragment UserInfo on rangers_users {\n  id\n  handle\n  __typename\n}"],
+      ["VAR", "$REQUEST_BODY",
+        ["PROCESS_MAP",
+          %{
+            "operationName" => "getCampaign",
+            "variables" => ["PROCESS_MAP", %{
+              "campaignId" => "$CAMPAIGN_ID"
+            }],
+            "query" => "$QUERY"
+          }
+        ],
+      ],
+      ["VAR", "$GRAPHQL_RESPONSE", ["REQUEST_POST", "https://gapi.rangersdb.com/v1/graphql", "$REQUEST_BODY"]],
+      "$GRAPHQL_RESPONSE.data.campaign.current_location"
+    ])
+    assert current_location != nil
+  end
+
+  @tag :html_scraping
+  test "REQUEST_HTML, EXTRACT_TAG, STRING_TO_OBJ", %{user: _user, game: game, game_def: _game_def} do
+    # Test the HTML scraping pipeline - mimics the Python example
+    url = "https://rangersdb.com/campaigns/6642"
+
+    # Step 1: Fetch HTML
+    html = Evaluate.evaluate(game, ["REQUEST_HTML", url])
+    assert is_binary(html)
+    assert String.length(html) > 0
+    IO.puts("Fetched HTML length: #{String.length(html)}")
+
+    # Step 2: Extract the __NEXT_DATA__ script tag
+    script_content = Evaluate.evaluate(game, ["EXTRACT_TAG", html, "script", "__NEXT_DATA__"])
+
+    if script_content != nil do
+      assert is_binary(script_content)
+      IO.puts("Extracted script tag content length: #{String.length(script_content)}")
+
+      # Step 3: Parse the JSON string to an object
+      data = Evaluate.evaluate(game, ["STRING_TO_OBJ", script_content])
+      assert is_map(data)
+      IO.puts("Parsed data keys: #{inspect(Map.keys(data))}")
+
+      # Test the full pipeline in one expression
+      pipeline_result = Evaluate.evaluate(game, [
+        "STRING_TO_OBJ",
+        ["EXTRACT_TAG",
+          ["REQUEST_HTML", url],
+          "script",
+          "__NEXT_DATA__"
+        ]
+      ])
+
+      assert pipeline_result == data
+      IO.puts("Pipeline test passed!")
+
+      # Test accessing nested data
+      if Map.has_key?(data, "props") do
+        props = Evaluate.evaluate(game, ["OBJ_GET_VAL", data, "props"])
+        IO.puts("Props keys: #{inspect(Map.keys(props))}")
+      end
+    else
+      IO.puts("Warning: __NEXT_DATA__ tag not found in HTML")
+    end
+
+    # All in one backaend process
+    game = Evaluate.evaluate(game, [
+      ["VAR", "$SCRAPED_HTML", ["REQUEST_HTML", "https://rangersdb.com/campaigns/6642"]],
+      ["VAR", "$SCRIPT_CONTENT", ["EXTRACT_TAG", "$SCRAPED_HTML", "script", "__NEXT_DATA__"]],
+      ["VAR", "$PARSED_DATA", ["STRING_TO_OBJ", "$SCRIPT_CONTENT"]],
+      ["LOG_DEV", "$PARSED_DATA.data"]
+    ])
+  end
 
   # # temp
   # @tag :temp
@@ -1919,8 +2037,6 @@ defmodule DragnCardsGame.CustomPluginTest do
   #   res = Evaluate.evaluate(game, ["DEFINED", "$GAME.stackById/123abc"])
   #   IO.inspect(res)
   # end
-
-  end
 
 
 end

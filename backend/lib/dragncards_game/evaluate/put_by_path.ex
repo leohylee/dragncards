@@ -7,6 +7,7 @@ defmodule DragnCardsGame.PutByPath do
   alias DragnCards.{Rooms, Plugins}
 
   def put_by_path(game_old, path, val_new, trace) do
+    # Get current time in ms
     path_minus_key = try do
       Enum.slice(path, 0, Enum.count(path)-1)
     rescue

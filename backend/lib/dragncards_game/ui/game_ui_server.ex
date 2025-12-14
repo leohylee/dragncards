@@ -6,7 +6,7 @@ defmodule DragnCardsGame.GameUIServer do
   @timeout :timer.minutes(60)
 
   require Logger
-  alias DragnCardsGame.{GameUI, GameRegistry, User, PlayerInfo}
+  alias DragnCardsGame.{GameUI, GameRegistry, User, PlayerInfo, Evaluate}
   alias DragnCards.{Rooms.RoomLog, Users}
 
   def is_player(gameui, user_id) do
@@ -71,11 +71,19 @@ defmodule DragnCardsGame.GameUIServer do
   end
 
   @doc """
-  reset_game/2: Process an update to the state.
+  reset_game/2: Reset the game to its initial state.
   """
   @spec reset_game(String.t(), integer) :: GameUI.t()
   def reset_game(game_name, user_id) do
     game_exists?(game_name) && GenServer.call(via_tuple(game_name), {:reset_game, user_id})
+  end
+
+  @doc """
+  reset_and_reload/2: Reload the cards in the game.
+  """
+  @spec reset_and_reload(String.t(), integer) :: GameUI.t()
+  def reset_and_reload(game_name, user_id) do
+    game_exists?(game_name) && GenServer.call(via_tuple(game_name), {:reset_and_reload, user_id})
   end
 
   @doc """
@@ -252,8 +260,36 @@ defmodule DragnCardsGame.GameUIServer do
   end
 
   def handle_call({:reset_game, user_id}, _from, gameui) do
+    options = put_in(gameui["options"], ["replayUuid"], nil)
+    new_gameui = GameUI.new(gameui["roomSlug"], user_id, options)
 
-    GameUI.new(gameui["roomSlug"], user_id, gameui["options"])
+    new_gameui
+    |> save_and_reply()
+
+  end
+
+  def handle_call({:reset_and_reload, user_id}, _from, gameui) do
+    options = put_in(gameui["options"], ["replayUuid"], nil)
+    layout_id = gameui["game"]["layoutId"]
+    load_list_history = gameui["game"]["loadCardsHistory"] || []
+
+    new_gameui = GameUI.new(gameui["roomSlug"], user_id, options)
+    new_game = new_gameui["game"]
+
+    new_game = Evaluate.evaluate(new_game, ["SET_LAYOUT", "shared", layout_id], ["reset_and_reload", "set_layout"])
+
+    # Loop over gameui["game"]["options"]["loadCardsHistory"]
+    new_game=
+      Enum.reduce(load_list_history, new_game, fn (load_list_history_item, acc) ->
+        load_code = load_list_history_item["loadCode"]
+        player_n = load_list_history_item["playerN"]
+        acc = put_in(acc["variables"]["$PLAYER_N"], player_n)
+        Evaluate.evaluate(acc, load_code, ["reset_and_reload", "loadCardsHistory"])
+      end)
+
+    new_gameui = put_in(new_gameui["game"], new_game)
+
+    new_gameui
     |> save_and_reply()
 
   end
@@ -284,6 +320,10 @@ defmodule DragnCardsGame.GameUIServer do
   end
 
   def handle_call({:set_seat, _user_id, player_i, new_user_id}, _from, gameui) do
+    gameui = gameui
+    |> put_in(["game", "messages"], [])
+    |> put_in(["game", "pendingGuiUpdates"], [])
+    |> put_in(["game", "fadeText"], nil)
     try do
       if new_user_id == nil do
         GameUI.get_up(gameui, player_i)
@@ -379,17 +419,14 @@ defmodule DragnCardsGame.GameUIServer do
     @timeout
   end
 
-  def terminate({:shutdown, :timeout}, state) do
-    Logger.info("Terminate (Timeout) running for #{state["roomSlug"]}")
+  def terminate(reason, state) do
+    Logger.info("Terminate #{inspect reason} for #{state["roomSlug"]}")
     :ets.delete(:game_uis, state["roomSlug"])
-    GameRegistry.remove(state["roomSlug"])
-    :ok
-  end
-
-  # Do I need to trap exits here?
-  def terminate(_reason, state) do
-    Logger.info("Terminate (Non Timeout) running for #{state["roomSlug"]}")
-    GameRegistry.remove(state["roomSlug"])
+    try do
+      GameRegistry.remove(state["roomSlug"])
+    rescue
+      e -> Logger.error("Error cleaning up room #{state["roomSlug"]}: #{inspect e}")
+    end
     :ok
   end
 

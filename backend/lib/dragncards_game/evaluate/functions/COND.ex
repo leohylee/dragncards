@@ -82,6 +82,7 @@ defmodule DragnCardsGame.Evaluate.Functions.COND do
     Enum.reduce_while(0..Enum.count(ifthens)-1//2, game, fn(i, _acc) ->
       if_statement = Enum.at(ifthens, i)
       result = Evaluate.evaluate(game, if_statement, trace ++ ["index #{i} (if)"])
+      #IO.puts("COND #{inspect(if_statement)} is #{result}")
       if is_boolean(result) or is_nil(result) or result == 1 or result == 0 do
         if result do
           then_statement = Enum.at(ifthens, i+1)

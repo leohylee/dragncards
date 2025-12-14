@@ -10,7 +10,7 @@ export const useDoActionList = () => {
     const {gameBroadcast, chatBroadcast} = useContext(BroadcastContext);
     //const playerUi = null; //useSelector(state => state?.playerUi)
 
-    return (idOrList) => {
+    return (idOrList, description = null) => {
         // if (store.getState().playerUi.dragging.stackId) {
         //     sendLocalMessage("You must finish dragging before you can perform this action.");
         //     return;
@@ -48,12 +48,25 @@ export const useDoActionList = () => {
             var playerUi = store.getState().playerUi;
             // Drop the droppableRefs from the playerUi object
             playerUi = {...playerUi, droppableRefs: {}}
+            
+            // If playerUi.playerN is null, don't send the action list
+            if (!playerUi.playerN) {
+                sendLocalMessage("You must be logged in and seated at the table to perform this action.");
+                return;
+            }
+
+            // If playerN does not start with "player", something is wrong
+            if (!playerUi.playerN.startsWith("player")) {
+                sendLocalMessage("You must be seated at the table to perform this action.");
+                return;
+            }
 
             gameBroadcast("game_action", {
                 action: "evaluate", 
                 options: {
                     action_list: processedActionList, 
-                    player_ui: playerUi
+                    player_ui: playerUi,
+                    description: description || null
                 }
             })
         }

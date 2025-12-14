@@ -18,7 +18,7 @@ export const TableButton = React.memo(({
       alert(siteL10n("pleaseSit"));
       return;
     }
-    doActionList(tableButton?.actionList);
+    doActionList(tableButton?.actionList, `Table button action ${tableButton.label}`);
   }
   return (
     <div 
@@ -29,6 +29,7 @@ export const TableButton = React.memo(({
         width: convertToPercentage(tableButton.width), 
         height: convertToPercentage(tableButton.height),
         zIndex: Z_INDEX.TableButton,
+        ...tableButton.style
       }}
       onClick={() => handleButtonClick()}>
       {gameL10n(tableButton.label)}

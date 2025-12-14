@@ -13,6 +13,7 @@ import { useCurrentSide } from "./useCurrentSide";
 import useProfile from "../../../hooks/useProfile";
 import { useRefreshPlugin } from "./useRefreshPlugin";
 import { useIsPluginAuthor } from "./isPluginAuthor";
+import { useSetPluginSetting } from "./useSetPluginSetting";
 
 export const dragnHotkeys = [
   {"key": "T", "actionList": "targetCard", "label": "targetCard"},
@@ -106,6 +107,7 @@ export const useDoDragnHotkey = () => {
   const sendLocalMessage = useSendLocalMessage();
   const refreshPlugin = useRefreshPlugin();
   const isPluginAuthor = useIsPluginAuthor
+  const setPluginSetting = useSetPluginSetting();
   const activeCardId = useActiveCardId();
   const currentSide = useCurrentSide(activeCardId);
   const currentFace = useCurrentFace(activeCardId);
@@ -142,16 +144,16 @@ export const useDoDragnHotkey = () => {
       case "loadPrebuilt":
         return dispatch(setShowModal("prebuilt_deck"));
       case "targetCard":
-        return doActionList(dragnActionLists.targetCard());
+        return doActionList(dragnActionLists.targetCard(), `Target card ${currentFace?.name}`);
       case "triggerAutomationAbility":
-        return doActionList(dragnActionLists.triggerAutomationAbility(currentFace?.ability, activeCardId, currentSide));
+        return doActionList(dragnActionLists.triggerAutomationAbility(currentFace?.ability, activeCardId, currentSide), `Trigger ability of ${currentFace?.name}`);
       case "saveGame":
         var playerUi = store.getState().playerUi;
         // Drop the droppableRefs from the playerUi object
         playerUi = {...playerUi, droppableRefs: {}}
         return gameBroadcast("save_replay", {options: {player_ui: playerUi}});
       case "clearTargets":
-        return doActionList(dragnActionLists.clearTargets());
+        return doActionList(dragnActionLists.clearTargets(), "Clear targets and arrows");
       case "peekAtAllFacedownCards":
           const isSpectator = store.getState().gameUi.spectators[user?.id];
           if (!isSpectator) {
@@ -174,11 +176,11 @@ export const useDoDragnHotkey = () => {
       case "redoMany":
         return gameBroadcast("step_through", {options: {size: "round", direction: "redo"}});
       case "prevStep": 
-        return doActionList(["PREV_STEP"]);
+        return doActionList(["PREV_STEP"], "Move to previous game step");
       case "nextStep":
-        return doActionList(["NEXT_STEP"]);
+        return doActionList(["NEXT_STEP"], "Move to next game step");
       case "drawArrow":
-        return doActionList(dragnActionLists.drawArrow());
+        return doActionList(dragnActionLists.drawArrow(), "Start/stop drawing arrow");
       }
   }
 }

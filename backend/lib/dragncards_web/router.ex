@@ -50,6 +50,9 @@ defmodule DragnCardsWeb.Router do
 
     # My plugins
     resources("/myplugins", MyPluginsController)
+    # My plugins
+    resources("/myplugins/plugin_builder", PluginBuilderController)
+    resources("/myplugins/layout_generator", LayoutGeneratorController)
 
     # Custom Content
     get("/my_custom_content/:user_id/:plugin_id", CustomContentController, :get_my_public_and_private_card_dbs)
@@ -60,6 +63,7 @@ defmodule DragnCardsWeb.Router do
     #get("/plugins/info/:plugin_id", PluginsController, :get_plugin_info)
     get("/plugins/visible/:plugin_id/:user_id", PluginsController, :get_visible_plugin)
     get("/plugins/visible/:user_id", PluginsController, :get_visible_plugins)
+    get("/plugins/raw/:plugin_id", PluginsController, :get_plugin_raw)
     get("/plugins/:plugin_id", PluginsController, :get_plugin)
     get("/plugins", PluginsController, :index)
   end

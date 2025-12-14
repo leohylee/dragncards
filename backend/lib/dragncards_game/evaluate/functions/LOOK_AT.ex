@@ -1,5 +1,6 @@
 defmodule DragnCardsGame.Evaluate.Functions.LOOK_AT do
   alias DragnCardsGame.{Evaluate}
+  alias DragnCardsGame.Evaluate.ArgumentSanitizer
   @moduledoc """
   *Arguments*:
   1. `playerI` (string like "player1")
@@ -44,12 +45,20 @@ defmodule DragnCardsGame.Evaluate.Functions.LOOK_AT do
     group_id = Evaluate.evaluate(game, Enum.at(code, 2), trace ++ ["group_id"])
     top_n = Evaluate.evaluate(game, Enum.at(code, 3), trace ++ ["top_n"])
     visibility = Evaluate.evaluate(game, Enum.at(code, 4), trace ++ ["visibility"])
+
+    ArgumentSanitizer.sanitize_args("LOOK_AT", game, [
+      {"playerI", player_i, :player},
+      {"groupId", group_id, :group},
+      {"topN", top_n, :integer},
+      {"visibility", visibility, :boolean}
+    ])
     stack_ids = Evaluate.evaluate(game, "$GAME.groupById.#{group_id}.stackIds", trace ++ ["stack_ids"])
-    top_n = if top_n == -1 do
-      Enum.count(stack_ids)
-    else
-      top_n
-    end
+    top_n =
+      cond do
+        top_n == -1 -> Enum.count(stack_ids)
+        top_n > Enum.count(stack_ids) -> Enum.count(stack_ids)
+        true -> top_n
+      end
     action_list = [
       ["SET", "/playerData/#{player_i}/browseGroup/id", group_id],
       ["SET", "/playerData/#{player_i}/browseGroup/topN", top_n],

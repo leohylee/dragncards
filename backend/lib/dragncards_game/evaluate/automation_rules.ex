@@ -64,6 +64,7 @@ defmodule DragnCardsGame.AutomationRules do
         acc
       else
         this_rule = get_game_rule(rules, rule_id)
+        this_rule = put_in(this_rule, ["category"], "game")
         validate_rule(this_rule, rule_id)
         add_rule_to_game(acc, this_rule, rule_id)
       end
@@ -95,7 +96,7 @@ defmodule DragnCardsGame.AutomationRules do
     end
   end
 
-  def add_liten_to(listeners, listen_to) do
+  def add_listen_to(listeners, listen_to) do
     if listen_to != nil do
       listeners ++ listen_to
     else
@@ -133,14 +134,14 @@ defmodule DragnCardsGame.AutomationRules do
     # rule = Map.put(rule, "then", then)
     case rule_type do
       "entersPlay" ->
-        listen_to = ["/cardById/$THIS_ID/inPlay"] |> add_listen_to_side(rule["side"]) |> add_liten_to(rule["listenTo"])
+        listen_to = ["/cardById/$THIS_ID/inPlay"] |> add_listen_to_side(rule["side"]) |> add_listen_to(rule["listenTo"])
         condition = get_enters_play_condition(rule["side"]) |> add_condition(rule["condition"])
         rule
         |> Map.put("type", "trigger")
         |> Map.put("listenTo", listen_to)
         |> Map.put("condition", condition)
       "whileInPlay" ->
-        listen_to = ["/cardById/$THIS_ID/inPlay"] |> add_listen_to_side(rule["side"]) |> add_liten_to(rule["listenTo"])
+        listen_to = ["/cardById/$THIS_ID/inPlay"] |> add_listen_to_side(rule["side"]) |> add_listen_to(rule["listenTo"])
         condition = get_in_play_condition(rule["side"]) |> add_condition(rule["condition"])
         rule
         |> Map.put("type", "passive")
@@ -178,6 +179,7 @@ defmodule DragnCardsGame.AutomationRules do
     if is_map(card_rules) do
       preprocess_card_automation_rules(card_rules, card["id"])
       |> Enum.reduce(game, fn ({rule_id, rule}, acc) ->
+        rule = put_in(rule, ["category"], "card")
         acc
         |> add_rule_to_game(rule, rule_id)
         |> add_rule_id_to_card(card, rule_id)
@@ -352,7 +354,13 @@ defmodule DragnCardsGame.AutomationRules do
       status == "never" ->
         game
       true ->
-        Evaluate.evaluate(game, rule_code, trace ++ ["run_rule_code"])
+        game = Evaluate.evaluate(game, rule_code, trace ++ ["run_rule_code"])
+        game = if rule["category"] == "card" do
+          unix_ms = DateTime.to_unix(DateTime.utc_now(), :millisecond)
+          put_in(game, ["cardById", rule["this_id"], "triggeredTimestamp"], unix_ms)
+        else
+          game
+        end
       end
   end
 

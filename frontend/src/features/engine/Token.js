@@ -25,6 +25,10 @@ export const Token = React.memo(({
     const gameDef = useGameDefinition();
     const tokenDef = gameDef?.tokens?.[tokenType];
 
+    useEffect(() => {
+        if (tokenValue !== amount) setAmount(tokenValue);
+    }, [tokenValue]);
+
     if (!tokenDef) return;
 
     var label = amount;
@@ -34,10 +38,6 @@ export const Token = React.memo(({
     if (amount === 1 && tokenDef.hideLabel1) {
         label = "";
     }
-
-    useEffect(() => {    
-        if (tokenValue !== amount) setAmount(tokenValue);
-    }, [tokenValue]);
 
     if (tokenValue === null) return null;
 
@@ -62,7 +62,7 @@ export const Token = React.memo(({
                        Math.abs(totalDelta) > 1 ? "s" : "", totalDelta >= 0 ? " to " : " from ", `$GAME.cardById.${cardId}.currentFace.name`, "."],
                 ["SET", `/cardById/${cardId}/tokens/${tokenType}`, newAmount]
             ]
-            doActionList(listOfActions);
+            doActionList(listOfActions, `Used arrow button to change token ${tokenType} on card ${cardId} by ${totalDelta}`);
         }, 500);
     }
     // Prevent doubleclick from interfering with 2 clicks

@@ -28,18 +28,15 @@ export const useImportViaUrl = () => {
 
 const importViaUrlRingsDb = async (importLoadList, doActionList, playerN) => {
   const ringsDbUrl = prompt("Paste full RingsDB URL","");
-  if (!ringsDbUrl) {
-    return; // User cancelled
-  }
-  if (!ringsDbUrl.includes("ringsdb.com") && !ringsDbUrl.includes("localhost")) {
-    alert("Only importing from RingsDB or localhost is supported at this time.");
+  if (!ringsDbUrl.includes("ringsdb.com")) {
+    alert("Only importing from RingsDB is supported at this time.");
     return;
   }
   if (ringsDbUrl.includes("/fellowship/")) {
     alert("Fellowship import not yet supported.");
     return;
   }
-  const ringsDbDomain = ringsDbUrl.includes("localhost") ? ringsDbUrl.split("/")[2] : (ringsDbUrl.includes("test.ringsdb.com") ? "test" : "ringsdb");
+  const ringsDbDomain = ringsDbUrl.includes("test.ringsdb.com") ? "test" : "ringsdb";
   var ringsDbType;
   if (ringsDbUrl.includes("/decklist/")) ringsDbType = "decklist";
   else if (ringsDbUrl.includes("/deck/")) ringsDbType = "deck";
@@ -85,14 +82,11 @@ const importViaUrlArkhamDb = async (importLoadList, doActionList, playerN) => {
 
 const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, cardDb) => {
   const dbUrl = prompt("Paste full MarvelCDB URL","");
-  if (!dbUrl) {
-    return; // User cancelled
-  }
-  if (!dbUrl.includes("marvelcdb.com") && !dbUrl.includes("localhost")) {
-    alert("Only importing from MarvelCDB or localhost is supported at this time.");
+  if (!dbUrl.includes("marvelcdb.com")) {
+    alert("Only importing from MarvelCDB is supported at this time.");
     return;
   }
-  const dbDomain = dbUrl.includes("localhost") ? dbUrl.split("/")[2] : "marvelcdb";
+  const dbDomain = "marvelcdb";
   var dbType;
   if (dbUrl.includes("/decklist/")) dbType = "decklist";
   else if (dbUrl.includes("/deck/")) dbType = "deck";
@@ -130,8 +124,8 @@ const importViaUrlRangersDb = async (importLoadList, doActionList, playerN, card
 
 
 export const loadRingsDb = (importLoadList, doActionList, playerN, ringsDbDomain, ringsDbType, ringsDbId) => {
-  doActionList(["LOG", "$ALIAS_N", " is importing a deck from RingsDB."]);
-  const urlBase = ringsDbDomain.includes("localhost") ? `http://${ringsDbDomain}/api/` : (ringsDbDomain === "test" ? "https://test.ringsdb.com/api/" : "https://www.ringsdb.com/api/")
+  doActionList(["LOG", "$ALIAS_N", " is importing a deck from RingsDB."], `Logging import from RingsDB`);
+  const urlBase = ringsDbDomain === "test" ? "https://test.ringsdb.com/api/" : "https://www.ringsdb.com/api/"
   const url = ringsDbType === "decklist" ? urlBase+"public/decklist/"+ringsDbId+".json" : urlBase+"oauth2/deck/load/"+ringsDbId;
   console.log("Fetching ", url);
   fetch(url)
@@ -155,7 +149,7 @@ export const loadRingsDb = (importLoadList, doActionList, playerN, ringsDbDomain
           } else if (slotJsonData.octgnid) {
             const type = slotJsonData.type_name;
             var loadGroupId = (type === "Hero" || type === "Contract") ? playerN+"Play1" : playerN+"Deck";
-            if (slotJsonData.text.includes("Encounter")) loadGroupId = playerN+"Sideboard";
+            if (slotJsonData.text.includes("Encounter.")) loadGroupId = playerN+"Sideboard";
             console.log("ringsdbimport", slotJsonData.name, slotJsonData)
             loadList.push({'databaseId': slotJsonData.octgnid, 'quantity': quantity, 'loadGroupId': loadGroupId});
           } else {
@@ -201,7 +195,7 @@ export const loadRingsDb = (importLoadList, doActionList, playerN, ringsDbDomain
 
 export const loadArkhamDb = (importLoadList, doActionList, playerN, arkhamDbType, arkhamDbId) => {
   const arkhamBuild = arkhamDbType === "view" || arkhamDbType === "share";
-  doActionList(["LOG", "$ALIAS_N", " is importing a deck from " + (arkhamBuild ? "arkham.build" : "ArkhamDB") + "."]);
+  doActionList(["LOG", "$ALIAS_N", " is importing a deck from " + (arkhamBuild ? "arkham.build" : "ArkhamDB") + "."], `Logging import from ArkhamDB`);
   const urlBase = arkhamBuild ? "https://api.arkham.build/v1/public/share/" : "https://arkhamdb.com/api/public/";
   const url = urlBase + (arkhamBuild ? arkhamDbId : arkhamDbType + "/" + arkhamDbId);
   console.log("Fetching ", url);
@@ -227,11 +221,18 @@ export const loadArkhamDb = (importLoadList, doActionList, playerN, arkhamDbType
 
     if (jsonData?.investigator_code) {
       var ic = jsonData?.investigator_code;
+      var ti = meta?.transform_into;
       var af = meta?.alternate_front;
       var ab = meta?.alternate_back;
+      var til = ti ? ti.length : 0;
       var afl = af ? af.length : 0;
       var abl = ab ? ab.length : 0;
-      if (afl > 0 && abl > 0 && af === ab) {
+      if (til > 0) {
+        if (ti === "11068b") {
+          ti = "11068a";
+        }
+        loadList.push({'databaseId': ti, 'quantity': 1, 'loadGroupId': "playerNInvestigator"});
+      } else if (afl > 0 && abl > 0 && af === ab) {
         loadList.push({'databaseId': af, 'quantity': 1, 'loadGroupId': "playerNInvestigator"});
       } else if (afl > 0 && abl > 0) {
         loadList.push({'databaseId': af + ab, 'quantity': 1, 'loadGroupId': "playerNInvestigator"});
@@ -286,7 +287,7 @@ export const loadArkhamDb = (importLoadList, doActionList, playerN, arkhamDbType
     if(taboo_id) {
       metaActionList.push(["SET", "/playerData/" + playerN + "/arkham/tabooId", taboo_id]);
     }
-    doActionList(metaActionList);
+    doActionList(metaActionList, `ArkhamDB meta action list for ${playerN}`);
     importLoadList(loadList);
   })
   .catch((error) => {
@@ -297,7 +298,7 @@ export const loadArkhamDb = (importLoadList, doActionList, playerN, arkhamDbType
 
 
 export const loadMarvelCdb = (importLoadList, doActionList, playerN, dbDomain, dbType, dbId, cardDb) => {
-  doActionList(["LOG", "$ALIAS_N", " is importing a deck from MarvelCDB."]);
+  doActionList(["LOG", "$ALIAS_N", " is importing a deck from MarvelCDB."], `Logging import from MarvelCDB`);
 
   // Generate a mapping from marcelcdbId to databaseId
   const marvelcdbIdTodatabaseId = {};
@@ -310,21 +311,21 @@ export const loadMarvelCdb = (importLoadList, doActionList, playerN, dbDomain, d
     }
   })
 
-  const urlBase = dbDomain.includes("localhost") ? `http://${dbDomain}/api` : "https://marvelcdb.com/api";
+  const urlBase = "https://marvelcdb.com/api";
   const url = `${urlBase}/public/${dbType}/${dbId}.json`;// dbType === "decklist" ? urlBase+"public/decklist/"+dbId+".json" : urlBase+"oauth2/deck/load/"+dbId;
   
   fetch(url)
   .then(response => response.json())
   .then((jsonData) => {
     console.log("card db import response", jsonData)
-    const itentityCode = jsonData.investigator_code || jsonData.hero_code;
+    const itentityCode = jsonData.hero_code;
     const slots = jsonData.slots;
     var loadList = [];
     if (itentityCode && marvelcdbIdTodatabaseId[itentityCode]) {
       const databaseId = marvelcdbIdTodatabaseId[itentityCode];
       loadList.push({'databaseId': databaseId, 'quantity': 1, 'loadGroupId': playerN+"Play1"});
     } else {
-      alert("Encountered missing or unknown card ID for identity")
+      alert("Encountered missing or unknown card ID q identity")
     }
     var fetches = [];
     Object.keys(slots).forEach((slot, slotIndex) => {
@@ -364,7 +365,7 @@ export const loadMarvelCdb = (importLoadList, doActionList, playerN, dbDomain, d
 
 
 export const loadRangersDb = (importLoadList, doActionList, playerN, dbDomain, dbType, dbId, cardDb) => {
-  doActionList(["LOG", "$ALIAS_N", " is importing a deck from RangersDB."]);
+  doActionList(["LOG", "$ALIAS_N", " is importing a deck from RangersDB."], `Logging import from RangersDB`);
   
   fetch('https://gapi.rangersdb.com/v1/graphql', {
       method: 'POST',
