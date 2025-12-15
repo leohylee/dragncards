@@ -11,9 +11,13 @@ export const useVisibleFaceSrc = (cardId) => {
     const gameDef = useGameDefinition();
     const visibleSide = useVisibleSide(cardId);
     const visibleFace = useVisibleFace(cardId);
-    const databaseId = useSelector(state => state?.gameUi?.game?.cardById?.[cardId]?.databaseId);
+    const card = useSelector(state => state?.gameUi?.game?.cardById?.[cardId]);
+    const databaseId = card?.databaseId;
 
-    if (!visibleFace) return null;
+    if (!visibleFace) {
+        console.error("🔴 CARDBACK BUG: useVisibleFaceSrc - visibleFace is null/undefined for card", cardId, "Card:", card, "visibleSide:", visibleSide);
+        return null;
+    }
 
     const altArt = user?.plugin_settings?.[plugin?.id]?.altArt?.[databaseId]?.[visibleSide];
     const altBack = user?.plugin_settings?.[plugin?.id]?.altArt?.[visibleFace.name];
@@ -26,7 +30,11 @@ export const useVisibleFaceSrc = (cardId) => {
 
     if (!srcBase) {
         // No url, so must be a card back
-        return {src: gameDef?.cardBacks?.[visibleFace.name]?.imageUrl, default: null }
+        const cardBackUrl = gameDef?.cardBacks?.[visibleFace.name]?.imageUrl;
+        if (visibleFace.name === "player" || visibleFace.name === "encounter") {
+            console.log("🟡 CARDBACK: Looking up '" + visibleFace.name + "' cardBack, found URL:", cardBackUrl);
+        }
+        return {src: cardBackUrl, default: null }
     } else {
         // Card has a url. Let's see if it's a full url or just a suffix
         if (srcBase.startsWith('http')) {
