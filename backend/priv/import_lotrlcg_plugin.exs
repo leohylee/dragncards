@@ -64,7 +64,7 @@ existing_plugin = Repo.one(from p in Plugin, where: p.name == "Lord of the Rings
 
 plugin_params = %{
   name: "Lord of the Rings LCG",
-  version: 3,
+  version: 4,
   game_def: game_def,
   card_db: card_db,
   num_favorites: 0,
