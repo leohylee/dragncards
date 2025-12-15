@@ -11,6 +11,47 @@ import { useDoActionList } from "./hooks/useDoActionList";
 import { useImportLoadList } from "./hooks/useImportLoadList";
 import { Z_INDEX } from "./functions/common";
 
+// Helper function to transform cardDb structure from {sides: {A: {...}}} to {A: {...}}
+const transformCardDb = (rawCardDb) => {
+  const transformed = {};
+  for (const [cardId, card] of Object.entries(rawCardDb)) {
+    if (card.sides) {
+      transformed[cardId] = card.sides;
+    } else {
+      transformed[cardId] = card;
+    }
+  }
+  return transformed;
+};
+
+// Import local cardDb for fallback (for development)
+let LocalCardDb = {};
+let cardDbLoadPromise = null;
+
+// Load cardDb lazily from public folder
+const loadCardDb = async () => {
+  if (cardDbLoadPromise) return cardDbLoadPromise;
+
+  cardDbLoadPromise = (async () => {
+    try {
+      const response = await fetch(process.env.PUBLIC_URL + "/cardDb.json");
+      if (!response.ok) {
+        throw new Error(`Failed to load cardDb: ${response.status}`);
+      }
+      const rawCardDb = await response.json();
+
+      // Transform the card data structure from {sides: {A: {...}}} to {A: {...}}
+      LocalCardDb = transformCardDb(rawCardDb);
+      return LocalCardDb;
+    } catch (e) {
+      console.warn("Failed to load local cardDb:", e);
+      return {};
+    }
+  })();
+
+  return cardDbLoadPromise;
+};
+
 const RESULTS_LIMIT = 150;
 
 export const SpawnExistingCardModal = React.memo(({}) => {
@@ -22,13 +63,57 @@ export const SpawnExistingCardModal = React.memo(({}) => {
     const plugin = usePlugin();
     const gameDef = useGameDefinition();
     const loadList = useImportLoadList();
-    console.log("pluginspawn", plugin)
-    const cardDb = plugin?.card_db || {};
     const doActionList = useDoActionList();
+
+    const [spawnFilteredIDs, setSpawnFilteredIDs] = useState([]);
+    const [cardDb, setCardDb] = useState({});
     const [loadGroupId, setLoadGroupId] = useState(gameDef?.spawnExistingCardModal?.loadGroupIds[0])
 
-    const [spawnFilteredIDs, setSpawnFilteredIDs] = useState(Object.keys(cardDb));
-    if (Object.keys(cardDb).length === 0) return;
+    // Load local cardDb on component mount if plugin.card_db is not available
+    useEffect(() => {
+      if (plugin?.card_db && Object.keys(plugin.card_db).length > 0) {
+        // Transform plugin.card_db to the expected format
+        const transformedCardDb = transformCardDb(plugin.card_db);
+        setCardDb(transformedCardDb);
+        setSpawnFilteredIDs(Object.keys(transformedCardDb));
+      } else {
+        // Fallback to loading local cardDb from public folder
+        loadCardDb().then((loadedCardDb) => {
+          setCardDb(loadedCardDb);
+          setSpawnFilteredIDs(Object.keys(loadedCardDb));
+        });
+      }
+    }, [plugin]);
+
+    // Don't render the table while loading cardDb
+    if (Object.keys(cardDb).length === 0) {
+      return (
+        <ReactModal
+          closeTimeoutMS={200}
+          isOpen={true}
+          onRequestClose={() => {
+            dispatch(setShowModal(null));
+            dispatch(setTyping(false));
+          }}
+          contentLabel="Spawn a card"
+          overlayClassName="fixed inset-0 bg-black-50"
+          className="insert-auto overflow-auto p-5 bg-gray-700 border mx-auto my-12 rounded-lg outline-none max-h-3/4"
+          style={{
+            overlay: {
+              zIndex: Z_INDEX.Modal
+            },
+            content: {
+              width: "40vw",
+              maxWidth: "62vw",
+              minWidth: "43vw",
+              maxHeight: "85dvh",
+              overflowY: "scroll",
+            }
+          }}>
+          <h1 className="mb-2 text-white">Loading cards...</h1>
+        </ReactModal>
+      );
+    }
 
     const numCols = gameDef.spawnExistingCardModal?.columnProperties?.length || 2;
     const vwPerCol = 8;
@@ -48,11 +133,14 @@ export const SpawnExistingCardModal = React.memo(({}) => {
     const handleSpawnTyping = (event) => {
         const filteredName = event.target.value;
         const filteredIDs = [];
-        Object.keys(cardDb).map((cardID, index) => {
+        Object.keys(cardDb).forEach((cardID) => {
           const cardRow = cardDb[cardID]
           const sideA = cardRow["A"]
+          if (!sideA || !sideA["name"]) return;
           const cardName = sideA["name"];
-          if (cardName.toLowerCase().includes(filteredName.toLowerCase())) filteredIDs.push(cardID);
+          if (cardName.toLowerCase().includes(filteredName.toLowerCase())) {
+            filteredIDs.push(cardID);
+          }
         })
         setSpawnFilteredIDs(filteredIDs);
     }
@@ -84,7 +172,7 @@ export const SpawnExistingCardModal = React.memo(({}) => {
         <div><span className="text-white">Load group: </span>
           <select className="form-control mb-1" style={{width:"35%"}} id={"loadGroupId"} name={"loadGroupId"} onChange={(event) => handleGroupIdChange(event)}>
             {gameDef?.spawnExistingCardModal?.loadGroupIds?.map((groupId,_groupIndex) => (
-              <option value={groupId}>{gameL10n(gameDef?.groups?.[groupId]?.label)}</option>
+              <option key={groupId} value={groupId}>{gameL10n(gameDef?.groups?.[groupId]?.label)}</option>
             ))}
           </select>
         </div>
@@ -121,7 +209,8 @@ export const SpawnExistingCardModal = React.memo(({}) => {
               </thead>
               {spawnFilteredIDs.map((cardId, rowindex) => {
                 const card = cardDb[cardId];
-                const sideA = cardDb[cardId]["A"];
+                const sideA = cardDb[cardId]?.["A"];
+                if (!sideA) return null;
                 return(
                   <tr key={rowindex} className="bg-gray-600 text-white cursor-pointer hover:bg-gray-500 hover:text-black" onClick={() => handleSpawnClick(cardId)}>
                     {gameDef.spawnExistingCardModal.columnProperties?.map((prop, colindex) => {
