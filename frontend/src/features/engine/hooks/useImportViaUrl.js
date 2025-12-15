@@ -28,8 +28,8 @@ export const useImportViaUrl = () => {
 
 const importViaUrlRingsDb = async (importLoadList, doActionList, playerN) => {
   const ringsDbUrl = prompt("Paste full RingsDB URL","");
-  if (!ringsDbUrl.includes("ringsdb.com")) {
-    alert("Only importing from RingsDB is supported at this time.");
+  if (!ringsDbUrl.includes("ringsdb.com") && !ringsDbUrl.includes("localhost")) {
+    alert("Only importing from RingsDB or localhost is supported at this time.");
     return;
   }
   if (ringsDbUrl.includes("/fellowship/")) {
@@ -82,8 +82,8 @@ const importViaUrlArkhamDb = async (importLoadList, doActionList, playerN) => {
 
 const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, cardDb) => {
   const dbUrl = prompt("Paste full MarvelCDB URL","");
-  if (!dbUrl.includes("marvelcdb.com")) {
-    alert("Only importing from MarvelCDB is supported at this time.");
+  if (!dbUrl.includes("marvelcdb.com") && !dbUrl.includes("localhost")) {
+    alert("Only importing from MarvelCDB or localhost is supported at this time.");
     return;
   }
   const dbDomain = "marvelcdb";
