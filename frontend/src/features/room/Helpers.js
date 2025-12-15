@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const getCurrentFace = (card) => {
   if (!card?.currentSide) return null;
-  return card.sides[card.currentSide];
+  return card?.sides?.[card.currentSide];
 }
  
 export const playerNToPlayerSpaceN = (playerN) => {
@@ -31,7 +31,7 @@ export const getDisplayName = (card) => {
       const id4digit = id.substr(id.length - 4);
       return printName;//+' ('+id4digit+')'; // Add unique identifier?
   } else { // Side B logic
-      const sideBName = card.sides.B.name;
+      const sideBName = card?.sides?.B?.name;
       if (sideBName === "player") {
           return 'player card';
       } else if (sideBName === "encounter") {
@@ -85,7 +85,7 @@ export const getVisibleSide = (card, playerN) => {
 
 export const getVisibleFace = (card, playerN) => {
   const visibleSide = getVisibleSide(card, playerN);
-  if (visibleSide) return card.sides[visibleSide];
+  if (visibleSide) return card?.sides?.[visibleSide];
   else return null;
 }
 
@@ -100,7 +100,7 @@ export const getVisibleFaceSrc = (card, playerN, user) => {
       default: visibleFace.customImgUrl ? "image not found" : process.env.PUBLIC_URL + '/images/cards/English' + card['cardDbId'] + '.jpg',
     }
   } else { // Side B logic
-    const sideBName = card.sides.B.name;
+    const sideBName = card?.sides?.B?.name;
     if (sideBName === "player") {
       return {
         src: (user?.player_back_url ? user.player_back_url : process.env.PUBLIC_URL + '/images/cardbacks/player.jpg'),
@@ -117,6 +117,18 @@ export const getVisibleFaceSrc = (card, playerN, user) => {
         default: visibleFace.customImgUrl ? "image not found" : process.env.PUBLIC_URL + '/images/cards/English/' + card['cardDbId'] + '.B.jpg',
       }
     } else {
+      // Fallback: sides.B.name is missing. Try to determine cardBack from visibleFace data if available
+      if (visibleFace?.name === "player") {
+        return {
+          src: (user?.player_back_url ? user.player_back_url : process.env.PUBLIC_URL + '/images/cardbacks/player.jpg'),
+          default: process.env.PUBLIC_URL + '/images/cardbacks/player.jpg',
+        }
+      } else if (visibleFace?.name === "encounter") {
+        return {
+          src: (user?.encounter_back_url ? user.encounter_back_url : process.env.PUBLIC_URL + '/images/cardbacks/encounter.jpg'),
+          default: process.env.PUBLIC_URL + '/images/cardbacks/encounter.jpg',
+        }
+      }
       return {src: "image not found", default: "image not found"};
     }
   }
