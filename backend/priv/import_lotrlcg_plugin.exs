@@ -33,14 +33,38 @@ card_db = Enum.reduce(filenames_tsv, %{}, fn(filename, acc) ->
   Merger.deep_merge([acc, temp_db])
 end)
 
-IO.puts("Found #{length(Map.keys(card_db))} cards")
+IO.puts("Found #{length(Map.keys(card_db))} cards from TSV files")
+
+# Load official cards from cardDb.json and merge them
+cardDb_path = "/app/priv/cardDb.json"
+card_db = if File.exists?(cardDb_path) do
+  IO.puts("Loading official cards from: #{cardDb_path}")
+  {:ok, cardDb_content} = File.read(cardDb_path)
+  official_cards = Jason.decode!(cardDb_content)
+
+  # Convert official cards format (which has side data) to match TSV format
+  official_card_db = Map.new(official_cards, fn {card_id, card_data} ->
+    # official cards already have the sides format, so just use them directly
+    {card_id, card_data}
+  end)
+
+  IO.puts("Loaded #{length(Map.keys(official_card_db))} official cards")
+
+  # Merge official cards with ALeP cards (ALeP cards take precedence if there's a conflict)
+  Merger.deep_merge([official_card_db, card_db])
+else
+  IO.puts("⚠️  Official cardDb.json not found at #{cardDb_path}, using only TSV cards")
+  card_db
+end
+
+IO.puts("Total cards in database: #{length(Map.keys(card_db))} (Official + ALeP)")
 
 # Update or create the plugin
 existing_plugin = Repo.one(from p in Plugin, where: p.name == "Lord of the Rings LCG")
 
 plugin_params = %{
   name: "Lord of the Rings LCG",
-  version: 1,
+  version: 2,
   game_def: game_def,
   card_db: card_db,
   num_favorites: 0,
