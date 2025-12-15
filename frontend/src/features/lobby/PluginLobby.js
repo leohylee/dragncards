@@ -95,8 +95,7 @@ export const PluginLobby = () => {
   
   const handleCreateRoomClick = () => {
     if (isLoggedIn) {
-      if (user?.email_confirmed_at) setShowModal("createRoom");
-      else alert("You must confirm your email before you can start a game.")
+      setShowModal("createRoom");
     } else {
       history.push("/login")
     }
