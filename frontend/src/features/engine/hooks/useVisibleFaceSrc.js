@@ -30,21 +30,27 @@ export const useVisibleFaceSrc = (cardId) => {
     if (!srcBase) {
         // No url, so must be a card back
         const cardBackUrl = gameDef?.cardBacks?.[visibleFace.name]?.imageUrl;
-        if (visibleFace.name === "player" || visibleFace.name === "encounter") {
-            console.log("🟡 CARDBACK: visibleFace.name='" + visibleFace.name + "', looking up in gameDef.cardBacks");
-            console.log("   Available cardBacks:", Object.keys(gameDef?.cardBacks || {}));
-            console.log("   Found URL:", cardBackUrl);
-            console.log("   Full cardBack definition:", gameDef?.cardBacks?.[visibleFace.name]);
-        }
-        // Fallback to generic card back images if not found in gameDef
-        if (!cardBackUrl) {
-            if (visibleFace.name === "player") {
-                return {src: process.env.PUBLIC_URL + '/images/cardbacks/player.jpg', default: null};
-            } else if (visibleFace.name === "encounter") {
-                return {src: process.env.PUBLIC_URL + '/images/cardbacks/encounter.jpg', default: null};
+
+        if (cardBackUrl) {
+            // cardBackUrl might be a relative path like 'encounter.jpg' or a full URL
+            if (cardBackUrl.startsWith('http')) {
+                return {src: cardBackUrl, default: null };
+            } else if (cardBackUrl.startsWith('/')) {
+                return {src: process.env.PUBLIC_URL + cardBackUrl, default: null };
+            } else {
+                // Relative path like 'encounter.jpg' - prepend the standard cardbacks path
+                return {src: process.env.PUBLIC_URL + '/images/cardbacks/' + cardBackUrl, default: null };
             }
         }
-        return {src: cardBackUrl, default: null }
+
+        // Fallback to generic card back images if not found in gameDef
+        if (visibleFace.name === "player") {
+            return {src: process.env.PUBLIC_URL + '/images/cardbacks/player.jpg', default: null};
+        } else if (visibleFace.name === "encounter") {
+            return {src: process.env.PUBLIC_URL + '/images/cardbacks/encounter.jpg', default: null};
+        }
+
+        return {src: null, default: null }
     } else {
         // Card has a url. Let's see if it's a full url or just a suffix
         if (srcBase.startsWith('http')) {
