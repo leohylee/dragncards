@@ -239,10 +239,10 @@
           ]
         ]
       ],
-      ["COND", "$LOADED_SCENARIO_DECK",
+      ["COND", ["AND", "$LOADED_SCENARIO_DECK", ["DEFINED", "$SCHEME_CARD"]],
         [
-          ["COND", 
-            ["NOT", ["ALL_PLAYER_DECKS_LOADED"]], 
+          ["COND",
+            ["NOT", ["ALL_PLAYER_DECKS_LOADED"]],
             ["ABORT", "Load all player decks before loading the scenario."]
           ],
           ["FOR_EACH_VAL", "$CARD_ID", "$GAME.groupById.sharedVillain.parentCardIds", [
