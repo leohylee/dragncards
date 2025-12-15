@@ -14,8 +14,7 @@ export const useVisibleFaceSrc = (cardId) => {
     const card = useSelector(state => state?.gameUi?.game?.cardById?.[cardId]);
     const databaseId = card?.databaseId;
 
-    if (!visibleFace) {
-        console.error("🔴 CARDBACK BUG: useVisibleFaceSrc - visibleFace is null/undefined for card", cardId, "Card:", card, "visibleSide:", visibleSide);
+    if (!cardId || !visibleFace) {
         return null;
     }
 
@@ -32,7 +31,18 @@ export const useVisibleFaceSrc = (cardId) => {
         // No url, so must be a card back
         const cardBackUrl = gameDef?.cardBacks?.[visibleFace.name]?.imageUrl;
         if (visibleFace.name === "player" || visibleFace.name === "encounter") {
-            console.log("🟡 CARDBACK: Looking up '" + visibleFace.name + "' cardBack, found URL:", cardBackUrl);
+            console.log("🟡 CARDBACK: visibleFace.name='" + visibleFace.name + "', looking up in gameDef.cardBacks");
+            console.log("   Available cardBacks:", Object.keys(gameDef?.cardBacks || {}));
+            console.log("   Found URL:", cardBackUrl);
+            console.log("   Full cardBack definition:", gameDef?.cardBacks?.[visibleFace.name]);
+        }
+        // Fallback to generic card back images if not found in gameDef
+        if (!cardBackUrl) {
+            if (visibleFace.name === "player") {
+                return {src: process.env.PUBLIC_URL + '/images/cardbacks/player.jpg', default: null};
+            } else if (visibleFace.name === "encounter") {
+                return {src: process.env.PUBLIC_URL + '/images/cardbacks/encounter.jpg', default: null};
+            }
         }
         return {src: cardBackUrl, default: null }
     } else {
