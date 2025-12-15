@@ -134,7 +134,7 @@ export const getVisibleSide = (card, playerN) => {
 export const getVisibleFace = (card, playerN) => {
   const visibleSide = getVisibleSide(card, playerN);
   if (!visibleSide) {
-    console.warn("getVisibleFace: visibleSide is null for card", card?.id);
+    console.error("🔴 CARDBACK DEBUG: visibleSide is null for card", card?.id);
     return null;
   }
 
@@ -142,13 +142,13 @@ export const getVisibleFace = (card, playerN) => {
   if (card.sides && typeof card.sides === 'object' && !Array.isArray(card.sides)) {
     const face = card.sides[visibleSide];
     if (!face && visibleSide === "B") {
-      console.warn("getVisibleFace: card.sides[B] is missing for card", card?.id, "sides:", card.sides);
+      console.error("🔴 CARDBACK DEBUG: card.sides[B] is MISSING for card", card?.id, "\nCard:", card);
     }
     return face;
   } else {
     const face = card[visibleSide];
     if (!face && visibleSide === "B") {
-      console.warn("getVisibleFace: card[B] is missing for card", card?.id, "card keys:", Object.keys(card));
+      console.error("🔴 CARDBACK DEBUG: card[B] is MISSING for card", card?.id, "- Card has these sides:", Object.keys(card).filter(k => ['A','B','C','D','E','F','G','H'].includes(k)));
     }
     return face;
   }
@@ -156,7 +156,7 @@ export const getVisibleFace = (card, playerN) => {
   
 export const getVisibleFaceSrc = (visibleFace, user, gameDef) => {
   if (!visibleFace) {
-    console.warn("getVisibleFaceSrc: visibleFace is null/undefined");
+    console.error("🔴 CARDBACK DEBUG: visibleFace is null/undefined - This is why you see 'null' for card back!");
     return {src: null, default: "image not found"};
   }
   var src = visibleFace.imageUrl;
@@ -164,7 +164,7 @@ export const getVisibleFaceSrc = (visibleFace, user, gameDef) => {
   if (!src || src ==="") {
     src = gameDef?.cardBacks?.[visibleFace.name]?.imageUrl;
     if (visibleFace.name === "player" || visibleFace.name === "encounter") {
-      console.log("getVisibleFaceSrc: Looking up cardBack for", visibleFace.name, "found:", src);
+      console.log("🟡 CARDBACK DEBUG: Looking up cardBack '" + visibleFace.name + "' in gameDef.cardBacks, found:", src);
     }
   }
   // If there's still no src listed, there's a problem with the card or game definition #FIXME: visual idicator of missing image
