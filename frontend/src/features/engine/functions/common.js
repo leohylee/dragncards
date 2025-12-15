@@ -127,34 +127,51 @@ export const getParentCardsInGroup = (game, groupId) => {
 export const getVisibleSide = (card, playerN) => {
   if (!card) return null;
   const currentSide = card.currentSide;
-  if (currentSide === "A" || card.peeking[playerN]) return "A";
+  if (currentSide === "A" || card?.peeking?.[playerN]) return "A";
   else return "B";
 }
   
 export const getVisibleFace = (card, playerN) => {
   const visibleSide = getVisibleSide(card, playerN);
-  if (!visibleSide) return null;
+  if (!visibleSide) {
+    console.warn("getVisibleFace: visibleSide is null for card", card?.id);
+    return null;
+  }
 
   // Handle both nested (sides.A) and flat (A) structures
   if (card.sides && typeof card.sides === 'object' && !Array.isArray(card.sides)) {
-    return card.sides[visibleSide];
+    const face = card.sides[visibleSide];
+    if (!face && visibleSide === "B") {
+      console.warn("getVisibleFace: card.sides[B] is missing for card", card?.id, "sides:", card.sides);
+    }
+    return face;
   } else {
-    return card[visibleSide];
+    const face = card[visibleSide];
+    if (!face && visibleSide === "B") {
+      console.warn("getVisibleFace: card[B] is missing for card", card?.id, "card keys:", Object.keys(card));
+    }
+    return face;
   }
 }
   
 export const getVisibleFaceSrc = (visibleFace, user, gameDef) => {
-  if (!visibleFace) return {src: null, default: "image not found"};
+  if (!visibleFace) {
+    console.warn("getVisibleFaceSrc: visibleFace is null/undefined");
+    return {src: null, default: "image not found"};
+  }
   var src = visibleFace.imageUrl;
   // If there's no src listed, it's probably a card back
-  if (!src || src ==="") {    
+  if (!src || src ==="") {
     src = gameDef?.cardBacks?.[visibleFace.name]?.imageUrl;
+    if (visibleFace.name === "player" || visibleFace.name === "encounter") {
+      console.log("getVisibleFaceSrc: Looking up cardBack for", visibleFace.name, "found:", src);
+    }
   }
   // If there's still no src listed, there's a problem with the card or game definition #FIXME: visual idicator of missing image
   if (!src || src ==="") src = ""
   const language = user?.language || "English";
   const srcLanguage = src.replace('/English/','/'+language+'/');
-  
+
   return {
     src: srcLanguage,
     default: src
