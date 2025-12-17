@@ -85,14 +85,12 @@
                                 ["DELETE_CARD", "$CARD.id"]
                             ]
                         ]],
-                        ["COND",
-                            ["CARD_EXISTS", "Ungoliant's Spawn"],
+                        ["FOR_EACH_VAL", "$CARD", ["FILTER_CARDS", "$C", ["EQUAL", "$C.currentFace.name", "Ungoliant's Spawn"]], [
                             ["MOVE_CARD_BY_NAME", "Ungoliant's Spawn", "sharedOther", -1]
-                        ],
-                        ["COND",
-                            ["CARD_EXISTS", "Chieftan Ufthak"],
+                        ]],
+                        ["FOR_EACH_VAL", "$CARD", ["FILTER_CARDS", "$C", ["EQUAL", "$C.currentFace.name", "Chieftan Ufthak"]], [
                             ["MOVE_CARD_BY_NAME", "Chieftan Ufthak", "sharedSetAside", -1]
-                        ]
+                        ]]
                     ]
                 },
                 {
@@ -184,10 +182,9 @@
                     "label": "The Nazgûl",
                     "code": [
                         ["LOAD_MIRROR_WAVE", "The Nazgûl", "sharedExtra2"],
-                        ["COND",
-                            ["CARD_EXISTS", "The Witch-king"],
+                        ["FOR_EACH_VAL", "$CARD", ["FILTER_CARDS", "$C", ["EQUAL", "$C.currentFace.name", "The Witch-king"]], [
                             ["MOVE_CARD_BY_NAME", "The Witch-king", "sharedSetAside", -1]
-                        ]
+                        ]]
                     ]
                 },
                 {
@@ -209,14 +206,18 @@
                     "label": "Easterling Raiders",
                     "code": [
                         ["LOAD_MIRROR_WAVE", "Easterling Raiders", "sharedExtra2"],
-                        ["MOVE_CARD_BY_NAME", "Warriors of the East", "sharedOther", -1]
+                        ["FOR_EACH_VAL", "$CARD", ["FILTER_CARDS", "$C", ["EQUAL", "$C.currentFace.name", "Warriors of the East"]], [
+                            ["MOVE_CARD_BY_NAME", "Warriors of the East", "sharedOther", -1]
+                        ]]
                     ]
                 },
                 {
                     "label": "Angmar Orcs",
                     "code": [
                         ["LOAD_MIRROR_WAVE", "Angmar Orcs", "sharedExtra2"],
-                        ["MOVE_CARD_BY_NAME", "Orc Ambush", "sharedOther", -1]
+                        ["FOR_EACH_VAL", "$CARD", ["FILTER_CARDS", "$C", ["EQUAL", "$C.currentFace.name", "Orc Ambush"]], [
+                            ["MOVE_CARD_BY_NAME", "Orc Ambush", "sharedOther", -1]
+                        ]]
                     ]
                 },
                 {
