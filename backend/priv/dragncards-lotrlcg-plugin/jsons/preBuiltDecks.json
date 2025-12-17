@@ -1624,8 +1624,6 @@
           "quantity": 1
         },
         {
-          "_name": "Wild Wargs",
-        {
           "_name": "Obsidian Arrows",
           "databaseId": "5eb195bb-390f-48be-97fa-0ec09d6c807b",
           "loadGroupId": "sharedEncounterDeck",
@@ -1775,8 +1773,6 @@
           "quantity": 1
         },
         {
-          "_name": "Wild Wargs",
-        {
           "_name": "Obsidian Arrows",
           "databaseId": "5eb195bb-390f-48be-97fa-0ec09d6c807b",
           "loadGroupId": "sharedEncounterDeck",
@@ -1913,8 +1909,6 @@
           "loadGroupId": "sharedStagingArea",
           "quantity": 1
         },
-        {
-          "_name": "Wild Wargs",
         {
           "_name": "Obsidian Arrows",
           "databaseId": "5eb195bb-390f-48be-97fa-0ec09d6c807b",
@@ -2100,8 +2094,6 @@
           "loadGroupId": "sharedStagingArea",
           "quantity": 1
         },
-        {
-          "_name": "Wild Wargs",
         {
           "_name": "Obsidian Arrows",
           "databaseId": "5eb195bb-390f-48be-97fa-0ec09d6c807b",
