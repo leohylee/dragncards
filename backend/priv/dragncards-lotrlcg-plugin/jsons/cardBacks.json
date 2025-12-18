@@ -1,6 +1,6 @@
 {
     "cardBacks": {
-        "encounter": {"width": 0.72, "height": 1.0, "imageUrl": "encounter.jpg"},
-        "player": {"width": 0.72, "height": 1.0, "imageUrl": "player.jpg"}
+        "encounter": {"width": 0.72, "height": 1.0, "imageUrl": "/lotrlcg-cards/encounter.jpg"},
+        "player": {"width": 0.72, "height": 1.0, "imageUrl": "/lotrlcg-cards/player.jpg"}
     }
 }
