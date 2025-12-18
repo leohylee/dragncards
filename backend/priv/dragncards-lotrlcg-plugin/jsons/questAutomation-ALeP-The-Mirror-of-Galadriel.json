@@ -191,7 +191,9 @@
                     "label": "Cursed Dead",
                     "code": [
                         ["LOAD_MIRROR_WAVE", "Cursed Dead", "sharedExtra2"],
-                        ["MOVE_CARD_BY_NAME", "Seal the Tomb", "sharedOther", -1]
+                        ["FOR_EACH_VAL", "$CARD", ["FILTER_CARDS", "$C", ["EQUAL", "$C.currentFace.name", "Seal the Tomb"]], [
+                            ["MOVE_CARD_BY_NAME", "Seal the Tomb", "sharedOther", -1]
+                        ]]
                     ]
                 },
                 {
