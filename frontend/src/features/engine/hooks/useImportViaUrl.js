@@ -36,7 +36,14 @@ const importViaUrlRingsDb = async (importLoadList, doActionList, playerN) => {
     alert("Fellowship import not yet supported.");
     return;
   }
-  const ringsDbDomain = ringsDbUrl.includes("test.ringsdb.com") ? "test" : "ringsdb";
+  let ringsDbDomain;
+  if (ringsDbUrl.includes("localhost")) {
+    ringsDbDomain = "localhost";
+  } else if (ringsDbUrl.includes("test.ringsdb.com")) {
+    ringsDbDomain = "test";
+  } else {
+    ringsDbDomain = "ringsdb";
+  }
   var ringsDbType;
   if (ringsDbUrl.includes("/decklist/")) ringsDbType = "decklist";
   else if (ringsDbUrl.includes("/deck/")) ringsDbType = "deck";
@@ -125,7 +132,14 @@ const importViaUrlRangersDb = async (importLoadList, doActionList, playerN, card
 
 export const loadRingsDb = (importLoadList, doActionList, playerN, ringsDbDomain, ringsDbType, ringsDbId) => {
   doActionList(["LOG", "$ALIAS_N", " is importing a deck from RingsDB."], `Logging import from RingsDB`);
-  const urlBase = ringsDbDomain === "test" ? "https://test.ringsdb.com/api/" : "https://www.ringsdb.com/api/"
+  let urlBase;
+  if (ringsDbDomain === "localhost") {
+    urlBase = "http://localhost:8001/api/";
+  } else if (ringsDbDomain === "test") {
+    urlBase = "https://test.ringsdb.com/api/";
+  } else {
+    urlBase = "https://www.ringsdb.com/api/";
+  }
   const url = ringsDbType === "decklist" ? urlBase+"public/decklist/"+ringsDbId+".json" : urlBase+"oauth2/deck/load/"+ringsDbId;
   console.log("Fetching ", url);
   fetch(url)
