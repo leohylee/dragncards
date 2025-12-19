@@ -57,10 +57,13 @@
         "GET_STAGING_LOCATIONS": {
           "args": [],
           "code": [
-            ["FILTER_CARDS", "$C", 
+            ["FILTER_CARDS", "$C",
               ["AND",
                 ["EQUAL", "$C.groupId", "sharedStagingArea"],
-                ["EQUAL", "$C.currentFace.type", "Location"]
+                ["OR",
+                  ["EQUAL", "$C.sides.A.type", "Location"],
+                  ["EQUAL", "$C.sides.B.type", "Location"]
+                ]
               ]
             ]
           ]
@@ -93,11 +96,8 @@
         "GET_ACTIVE_LOCATIONS": {
           "args": [],
           "code": [
-            ["FILTER_CARDS", "$C", 
-              ["AND",
-                ["EQUAL", "$C.groupId", "sharedActiveLocation"],
-                ["EQUAL", "$C.currentFace.type", "Location"]
-              ]
+            ["FILTER_CARDS", "$C",
+              ["EQUAL", "$C.groupId", "sharedActiveLocation"]
             ]
           ]
         },
@@ -130,7 +130,7 @@
           "code": [
             ["COND",
               ["IS_ENEMY", "$CARD"],
-              ["ADD", "$CARD.currentFace.engagementCost", "$CARD.tokens.engagementCost"],
+              ["ADD", ["TO_INT", "$CARD.currentFace.engagementcost"], "$CARD.tokens.engagementCost"],
               true,
               0
             ]
@@ -147,7 +147,7 @@
                 ["VAR", "$HIGHEST_THREAT", "$GAME.playerData.{{$PLAYERS_BY_THREAT.[-1]}}.threat"],
                 ["VAR", "$ENEMIES_BY_ENG_COST", ["SORT_OBJ_LIST", "$STAGING_ENEMIES", "$C", ["GET_ENGAGEMENT_COST", "$C"]]],
                 ["VAR", "$LOWEST_ENG_COST", ["GET_ENGAGEMENT_COST", "$ENEMIES_BY_ENG_COST.[0]"]],
-                ["COND", 
+                ["COND",
                   ["LESS_EQUAL", "$LOWEST_ENG_COST", "$HIGHEST_THREAT"],
                   true,
                   ["TRUE"],
@@ -630,9 +630,13 @@
         "GET_QUEST_POINTS": {
           "args": ["$CARD"],
           "code": [
+            ["VAR", "$SIDE_A_QUEST_POINTS", "$CARD.sides.A.questpoints"],
+            ["VAR", "$SIDE_B_QUEST_POINTS", "$CARD.sides.B.questpoints"],
             ["COND",
-              ["OR", ["EQUAL", "$CARD.currentFace.type", "Location"], ["EQUAL", "$CARD.currentFace.type", "Quest"]],
-              ["ADD", "$CARD.currentFace.questPoints", "$CARD.tokens.questPoints"],
+              ["DEFINED", "$SIDE_A_QUEST_POINTS"],
+              ["ADD", ["TO_INT", "$SIDE_A_QUEST_POINTS"], "$CARD.tokens.questPoints"],
+              ["DEFINED", "$SIDE_B_QUEST_POINTS"],
+              ["ADD", ["TO_INT", "$SIDE_B_QUEST_POINTS"], "$CARD.tokens.questPoints"],
               true,
               0
             ]
@@ -663,7 +667,9 @@
               ["EQUAL", "$NUM_ACTIVE_LOCATIONS", 1],
               [
                 ["VAR", "$ACTIVE_LOCATION", "$ACTIVE_LOCATIONS.[0]"],
-                ["VAR", "$REMAINING_LOCATION_PROGRESS", ["SUBTRACT", ["GET_QUEST_POINTS", "$ACTIVE_LOCATION"], "$ACTIVE_LOCATION.tokens.progress"]],
+                ["VAR", "$LOCATION_QUEST_POINTS", ["GET_QUEST_POINTS", "$ACTIVE_LOCATION"]],
+                ["VAR", "$LOCATION_PROGRESS", "$ACTIVE_LOCATION.tokens.progress"],
+                ["VAR", "$REMAINING_LOCATION_PROGRESS", ["SUBTRACT", "$LOCATION_QUEST_POINTS", "$LOCATION_PROGRESS"]],
                 ["COND",
                   ["LESS_THAN", "$REMAINING_LOCATION_PROGRESS", 0],
                   ["UPDATE_VAR", "$REMAINING_LOCATION_PROGRESS", 0]
@@ -719,7 +725,7 @@
           "args": [],
           "code": [
             ["VAR", "$CURRENT_PLAYER", "$GAME.firstPlayer"],
-            ["WHILE", 
+            ["WHILE",
                 ["ENEMIES_IN_STAGING_AREA_FORCED"],
                 [
                     ["VAR", "$ALIAS_I", ["GET_ALIAS", "$CURRENT_PLAYER"]],
@@ -736,7 +742,7 @@
                         ["TRUE"],
                         [
                             ["VAR", "$ENEMIES_BY_ENG_COST", ["SORT_OBJ_LIST", "$CANDIDATES", "$C", ["GET_ENGAGEMENT_COST", "$C"]]],
-                            ["VAR", "$ENEMY_TO_ENGAGE", "$ENEMIES_BY_ENG_COST.[-1]"],
+                            ["VAR", "$ENEMY_TO_ENGAGE", "$ENEMIES_BY_ENG_COST.[0]"],
                             ["LOG", "├── {{$ALIAS_I}} engages {{$ENEMY_TO_ENGAGE.currentFace.name}}."],
                             ["MOVE_STACK", "$ENEMY_TO_ENGAGE.stackId", "{{$CURRENT_PLAYER}}Engaged", -1]
                         ]
