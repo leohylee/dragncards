@@ -11,7 +11,7 @@ services:
       - pgdata:/var/lib/postgresql/data
   backend:
     image: elixir:1.14.4
-    depends_on: 
+    depends_on:
       - postgres
     ports:
       - "4000:4000"
@@ -22,17 +22,25 @@ services:
     environment:
       - DB_HOSTNAME=postgres
   frontend:
-    image: node:20
-    depends_on: 
-      - backend
+    image: node:20-alpine
+    container_name: dragncards-frontend
+    working_dir: /app
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-    entrypoint: /app/scripts/local-dev.sh
-    working_dir: /app
+      - frontend-node-modules:/app/node_modules
     environment:
+      - NODE_OPTIONS=--openssl-legacy-provider
+      - REACT_APP_WS_URL=ws://127.0.0.1:4000/socket
       - REACT_APP_BE_HOSTNAME=backend
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=3000
+    depends_on:
+      - backend
+    command: sh -c "npm install --legacy-peer-deps && npm start"
+    stdin_open: true
+    tty: true
 #uncomment apache if you're running pure offline mode. Other steps required
 #   apache:
 #     image: httpd:latest
@@ -43,4 +51,5 @@ services:
 #     - ./images:/usr/local/apache2/htdocs
 volumes:
   pgdata:
+  frontend-node-modules:
 # images:

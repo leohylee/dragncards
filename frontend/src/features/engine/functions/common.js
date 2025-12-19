@@ -50,6 +50,7 @@ export const keyDiv = (key, extraClasses = "") => {
 }
 
 export const keysDiv = (keysString, extraClasses = "") => {
+  if (!keysString) return null;
   var keys = keysString.split("+");
   if (keysString === "+") keys = ["+"];
   return(
@@ -126,28 +127,51 @@ export const getParentCardsInGroup = (game, groupId) => {
 export const getVisibleSide = (card, playerN) => {
   if (!card) return null;
   const currentSide = card.currentSide;
-  if (currentSide === "A" || card.peeking[playerN]) return "A";
+  if (currentSide === "A" || card?.peeking?.[playerN]) return "A";
   else return "B";
 }
   
 export const getVisibleFace = (card, playerN) => {
   const visibleSide = getVisibleSide(card, playerN);
-  if (visibleSide) return card.sides[visibleSide];
-  else return null;
+  if (!visibleSide) {
+    console.error("🔴 CARDBACK DEBUG: visibleSide is null for card", card?.id);
+    return null;
+  }
+
+  // Handle both nested (sides.A) and flat (A) structures
+  if (card.sides && typeof card.sides === 'object' && !Array.isArray(card.sides)) {
+    const face = card.sides[visibleSide];
+    if (!face && visibleSide === "B") {
+      console.error("🔴 CARDBACK DEBUG: card.sides[B] is MISSING for card", card?.id, "\nCard:", card);
+    }
+    return face;
+  } else {
+    const face = card[visibleSide];
+    if (!face && visibleSide === "B") {
+      console.error("🔴 CARDBACK DEBUG: card[B] is MISSING for card", card?.id, "- Card has these sides:", Object.keys(card).filter(k => ['A','B','C','D','E','F','G','H'].includes(k)));
+    }
+    return face;
+  }
 }
   
 export const getVisibleFaceSrc = (visibleFace, user, gameDef) => {
-  if (!visibleFace) return {src: null, default: "image not found"};
+  if (!visibleFace) {
+    console.error("🔴 CARDBACK DEBUG: visibleFace is null/undefined - This is why you see 'null' for card back!");
+    return {src: null, default: "image not found"};
+  }
   var src = visibleFace.imageUrl;
   // If there's no src listed, it's probably a card back
-  if (!src || src ==="") {    
+  if (!src || src ==="") {
     src = gameDef?.cardBacks?.[visibleFace.name]?.imageUrl;
+    if (visibleFace.name === "player" || visibleFace.name === "encounter") {
+      console.log("🟡 CARDBACK DEBUG: Looking up cardBack '" + visibleFace.name + "' in gameDef.cardBacks, found:", src);
+    }
   }
   // If there's still no src listed, there's a problem with the card or game definition #FIXME: visual idicator of missing image
   if (!src || src ==="") src = ""
   const language = user?.language || "English";
   const srcLanguage = src.replace('/English/','/'+language+'/');
-  
+
   return {
     src: srcLanguage,
     default: src
@@ -170,8 +194,12 @@ export const getStackDimensions = (stackId, layout, state) => {
   const numCards = cardIds.length;
   const card0 = state.gameUi.game.cardById[cardIds[0]];
   // Calculate size of stack for proper spacing. Changes base on group type and number of stack in group.
-  const cardWidth = card0?.sides[card0?.currentSide]?.width * cardSize * zoomFactor;
-  const cardHeight = card0?.sides[card0?.currentSide]?.height * cardSize * zoomFactor;
+  // Handle both nested (sides.A) and flat (A) structures
+  const currentFace = (card0?.sides && typeof card0.sides === 'object' && !Array.isArray(card0.sides))
+    ? card0.sides[card0.currentSide]
+    : card0?.[card0?.currentSide];
+  const cardWidth = currentFace?.width * cardSize * zoomFactor;
+  const cardHeight = currentFace?.height * cardSize * zoomFactor;
   const stackHeight = cardHeight;
   const stackWidth = cardWidth + (ATTACHMENT_OFFSET * (numCards - 1) * zoomFactor);
 

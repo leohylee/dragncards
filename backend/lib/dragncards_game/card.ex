@@ -40,14 +40,23 @@ defmodule DragnCardsGame.Card do
       "triggeredTimestamp" => nil,
     }
     Logger.debug("card_from_card_details 2")
-    # loop over the sides in card_details
-    # and add them to the card
+    # Handle both nested (card_details.sides.A) and flat (card_details.A) structures
+    card_details_sides = cond do
+      # New structure: sides is nested
+      is_map(card_details["sides"]) and map_size(card_details["sides"]) > 0 ->
+        card_details["sides"]
+      # Old structure: sides are at root level
+      true ->
+        card_details
+    end
+
+    # loop over the sides in card_details and add them to the card
     sides = Enum.reduce(["A", "B", "C", "D", "E", "F", "G", "H"], %{}, fn(side, acc) ->
       Logger.debug("Adding side #{side} to card")
-      case Map.has_key?(card_details, side) do
+      case Map.has_key?(card_details_sides, side) do
         true ->
-          val = card_details[side]
-          put_in(acc[side], CardFace.card_face_from_card_face_details(val, game_def, side))
+          val = card_details_sides[side]
+          put_in(acc[side], CardFace.card_face_from_card_face_details(val, game_def, side, card_db_id))
         false ->
           acc
       end

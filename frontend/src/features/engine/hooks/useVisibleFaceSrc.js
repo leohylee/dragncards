@@ -11,9 +11,12 @@ export const useVisibleFaceSrc = (cardId) => {
     const gameDef = useGameDefinition();
     const visibleSide = useVisibleSide(cardId);
     const visibleFace = useVisibleFace(cardId);
-    const databaseId = useSelector(state => state?.gameUi?.game?.cardById?.[cardId]?.databaseId);
+    const card = useSelector(state => state?.gameUi?.game?.cardById?.[cardId]);
+    const databaseId = card?.databaseId;
 
-    if (!visibleFace) return null;
+    if (!cardId || !visibleFace) {
+        return null;
+    }
 
     const altArt = user?.plugin_settings?.[plugin?.id]?.altArt?.[databaseId]?.[visibleSide];
     const altBack = user?.plugin_settings?.[plugin?.id]?.altArt?.[visibleFace.name];
@@ -26,7 +29,28 @@ export const useVisibleFaceSrc = (cardId) => {
 
     if (!srcBase) {
         // No url, so must be a card back
-        return {src: gameDef?.cardBacks?.[visibleFace.name]?.imageUrl, default: null }
+        const cardBackUrl = gameDef?.cardBacks?.[visibleFace.name]?.imageUrl;
+
+        if (cardBackUrl) {
+            // cardBackUrl might be a relative path like 'encounter.jpg' or a full URL
+            if (cardBackUrl.startsWith('http')) {
+                return {src: cardBackUrl, default: null };
+            } else if (cardBackUrl.startsWith('/')) {
+                return {src: process.env.PUBLIC_URL + cardBackUrl, default: null };
+            } else {
+                // Relative path like 'encounter.jpg' - prepend the standard cardbacks path
+                return {src: process.env.PUBLIC_URL + '/images/cardbacks/' + cardBackUrl, default: null };
+            }
+        }
+
+        // Fallback to generic card back images if not found in gameDef
+        if (visibleFace.name === "player") {
+            return {src: process.env.PUBLIC_URL + '/images/cardbacks/player.jpg', default: null};
+        } else if (visibleFace.name === "encounter") {
+            return {src: process.env.PUBLIC_URL + '/images/cardbacks/encounter.jpg', default: null};
+        }
+
+        return {src: null, default: null }
     } else {
         // Card has a url. Let's see if it's a full url or just a suffix
         if (srcBase.startsWith('http')) {

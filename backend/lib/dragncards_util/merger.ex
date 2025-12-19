@@ -28,6 +28,7 @@ defmodule DragnCardsUtil.Merger do
   defp merge_values(_key, _v1, v2), do: v2
 
   def remove_comments(content) do
-    Regex.replace(~r/(?<!http:|https:)\/\/.*(?=\n|\r)/, content, "")
+    # Match // comments only when not preceded by http:, https:, or SP
+    Regex.replace(~r/(?<!http:|https:|SP)\/\/.*(?=\n|\r)/, content, "")
   end
 end

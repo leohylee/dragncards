@@ -253,12 +253,13 @@ export const TopBarMenu = React.memo(({}) => {
 
   const downloadReplayAsJson = () => {
 
-    if (user.supporter_level < 3) {
-      dispatch(setShowModal("patreon"))
-      dispatch(setDropdownMenu(null));
-      dispatch(setActiveCardId(null));
-      return;
-    }
+    // Patreon check disabled for local development
+    // if (user.supporter_level < 3) {
+    //   dispatch(setShowModal("patreon"))
+    //   dispatch(setDropdownMenu(null));
+    //   dispatch(setActiveCardId(null));
+    //   return;
+    // }
 
     const state = store.getState();
     const exportObj = {

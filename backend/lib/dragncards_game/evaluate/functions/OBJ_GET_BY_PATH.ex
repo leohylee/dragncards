@@ -68,15 +68,27 @@ defmodule DragnCardsGame.Evaluate.Functions.OBJ_GET_BY_PATH do
           else
             acc["currentSide"]
           end
-          sides = if acc["sides"] == nil do
-            raise "Tried to access sides on a non-card object."
-          else
-            acc["sides"]
-          end
-          if sides[current_side] == nil do
-            raise "Tried to access side #{current_side} on an object with sides #{inspect(Map.keys(sides))}."
-          else
-            sides[current_side]
+
+          # Handle both nested (sides.A) and flat (A) structures
+          cond do
+            # New structure: sides is a non-empty map with A and B keys
+            is_map(acc["sides"]) and map_size(acc["sides"]) > 0 and Map.has_key?(acc["sides"], current_side) ->
+              acc["sides"][current_side]
+
+            # Old structure: A and B are at the root level
+            Map.has_key?(acc, current_side) ->
+              acc[current_side]
+
+            # Error case - provide detailed debugging info
+            true ->
+              sides_info = cond do
+                acc["sides"] == nil -> "sides is nil"
+                is_list(acc["sides"]) -> "sides is a list: #{inspect(acc["sides"])}"
+                is_map(acc["sides"]) and map_size(acc["sides"]) == 0 -> "sides is an empty map"
+                is_map(acc["sides"]) -> "sides is a map but missing #{current_side}, has keys: #{inspect(Map.keys(acc["sides"]))}"
+                true -> "sides is: #{inspect(acc["sides"])}"
+              end
+              raise "Cannot access currentFace. currentSide=#{current_side}, #{sides_info}, card keys=#{inspect(Map.keys(acc))}"
           end
         pathi == "stackParentCard" ->
           game["cardById"][acc["stackParentCardId"]]

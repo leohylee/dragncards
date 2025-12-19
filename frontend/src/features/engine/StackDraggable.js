@@ -125,8 +125,12 @@ export const StackDraggable = React.memo(({
     const regionWidthPercent = convertToPercentage(region.width);
     const regionWidthInt = parseInt(regionWidthPercent.substring(0, regionWidthPercent.length - 1))
     const fanSpacingHoriz = (regionWidthInt-cardSize/2)*aspectRatio/numStacksNonZero;
-    const cardWidth = card0?.sides[card0?.currentSide]?.width;
-    const cardHeight = card0?.sides[card0?.currentSide]?.height;
+    // Handle both nested (sides.A) and flat (A) structures
+    const currentFace = (card0?.sides && typeof card0.sides === 'object' && !Array.isArray(card0.sides))
+      ? card0.sides[card0.currentSide]
+      : card0?.[card0?.currentSide];
+    const cardWidth = currentFace?.width;
+    const cardHeight = currentFace?.height;
     const stackHeight = (stackEdges.bottom - stackEdges.top) * zoomFactor;
     const stackTopOffset = stackEdges.top * zoomFactor;
     const stackTop = region.type === "free" ? `calc(${stack.top} + ${stackTopOffset}dvh)` : stack.top;
