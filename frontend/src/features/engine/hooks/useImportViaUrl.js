@@ -108,7 +108,9 @@ const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, card
     return;
   }
   const dbId = splitUrl[typeIndex + 2];
-  return loadMarvelCdb(importLoadList, doActionList, playerN, dbDomain, dbType, dbId, cardDb);
+  // Extract base URL (protocol + domain + port)
+  const urlBase = splitUrl.slice(0, 3).join('/');
+  return loadMarvelCdb(importLoadList, doActionList, playerN, dbDomain, dbType, dbId, cardDb, urlBase);
 }
 
 const importViaUrlRangersDb = async (importLoadList, doActionList, playerN, cardDb) => {
@@ -311,7 +313,7 @@ export const loadArkhamDb = (importLoadList, doActionList, playerN, arkhamDbType
 }
 
 
-export const loadMarvelCdb = (importLoadList, doActionList, playerN, dbDomain, dbType, dbId, cardDb) => {
+export const loadMarvelCdb = (importLoadList, doActionList, playerN, dbDomain, dbType, dbId, cardDb, urlBase) => {
   doActionList(["LOG", "$ALIAS_N", " is importing a deck from MarvelCDB."], `Logging import from MarvelCDB`);
 
   // Generate a mapping from marcelcdbId to databaseId
@@ -325,7 +327,12 @@ export const loadMarvelCdb = (importLoadList, doActionList, playerN, dbDomain, d
     }
   })
 
-  const urlBase = "https://marvelcdb.com/api";
+  // Use provided urlBase or default to marvelcdb.com
+  if (!urlBase) {
+    urlBase = "https://marvelcdb.com/api";
+  } else {
+    urlBase = urlBase + "/api";
+  }
   const url = `${urlBase}/public/${dbType}/${dbId}.json`;// dbType === "decklist" ? urlBase+"public/decklist/"+dbId+".json" : urlBase+"oauth2/deck/load/"+dbId;
   
   fetch(url)
