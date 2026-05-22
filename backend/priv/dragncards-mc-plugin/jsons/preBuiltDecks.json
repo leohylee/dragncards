@@ -1,5 +1,1124 @@
 {
   "preBuiltDecks": {
+    "All Versus All (Modular)": {
+      "label": "All Versus All (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "87ab7f25-9771-5433-8962-f21daaa8d2b1",
+          "_name": "All Versus All"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "696c6926-8008-5680-ac61-9b3a508476b2",
+          "_name": "Hecate"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "c02a955f-43c4-5e3e-b3b8-fd2908f721c4",
+          "_name": "Kyknos"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "ee37617f-b75a-5581-aa96-0c1de931e6af",
+          "_name": "Bewitched Officer"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "bba46df4-f404-56b5-9b46-147cb304705a",
+          "_name": "Roving Mobs"
+        }
+      ]
+    },
+    "She-Hulk (Leader)": {
+      "label": "She-Hulk (Leader)",
+      "cards": [
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "eb479f27-1e2c-5c96-a887-3018d7f3efcd",
+          "_name": "She-Hulk"
+        },
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "134b3506-4106-5367-9353-ea655520cadb",
+          "_name": "She-Hulk"
+        },
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "cc560196-2bdf-5348-959b-2f001a25b229",
+          "_name": "She-Hulk"
+        },
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "19f32c2f-5584-5619-9025-9f2c180783fd",
+          "_name": "She-Hulk"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2,
+          "databaseId": "18560d4f-a19d-5a68-9eb2-82477eb3d057",
+          "_name": "Superhuman Strength"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2,
+          "databaseId": "47fbb745-e7ce-5f37-a65b-e006744a1df9",
+          "_name": "Focused Rage"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2,
+          "databaseId": "61ea18cb-4700-541e-9e88-54e2c6189c83",
+          "_name": "One-Two Punch"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2,
+          "databaseId": "988a49e0-d327-570d-b8d1-647df8c2385b",
+          "_name": "Ground Stomp"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "129fa63f-8f03-5508-985a-5052d6299cc7",
+          "_name": "Gamma Slam"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "435af20f-6196-57e8-ac27-43d3d8ba75ca",
+          "_name": "Legal Practice"
+        }
+      ],
+      "postLoadActionList": [
+        [
+          "SET",
+          "/layoutVariants/largeMainScheme",
+          false
+        ],
+        [
+          "LOAD_LEADER_RECOMMENDS",
+          "She-Hulk"
+        ],
+        [
+          "ACTION_LIST",
+          "loadMode"
+        ],
+        [
+          "LOAD_LEADER_BY_MODE"
+        ]
+      ]
+    },
+    "S.H.I.E.L.D. Ops (Modular)": {
+      "label": "S.H.I.E.L.D. Ops (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2,
+          "databaseId": "b02ac049-a2f7-5c84-9888-78309abf310b",
+          "_name": "S.H.I.E.L.D. Operator"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "7d677e66-74b8-5fd5-9b47-9827c3f4ccc8",
+          "_name": "Strategic Overwatch"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "ddd462b1-fabb-572e-9d01-79c81646367a",
+          "_name": "Rapid Response"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "0b09e0ca-2112-5c2d-ab67-cfd73888d0e3",
+          "_name": "Homeland Security"
+        }
+      ]
+    },
+    "Thunderbolts (Modular)": {
+      "label": "Thunderbolts (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "4b0ab15a-039f-579a-bad3-ea78bf2c6422",
+          "_name": "Atlas"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "ddefe71b-1343-5d19-afc1-35b85a75b348",
+          "_name": "Songbird"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "858e6f29-6c25-53e4-b728-8d973d67707f",
+          "_name": "Penance"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "f40283ab-6970-5625-a543-2bf35b94a8ae",
+          "_name": "Justice Like Lightning"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "0bf17544-7223-5579-9477-9133b68c56cb",
+          "_name": "The Thunderbolts"
+        }
+      ]
+    },
+    "Taskmaster (Modular)": {
+      "label": "Taskmaster (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "644c5be0-10c8-5ccd-9663-e368dee9172a",
+          "_name": "Taskmaster"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "fc682910-09ac-5696-a754-1391273e24b2",
+          "_name": "Taskmaster's Sword"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "8fba59a1-c254-50a2-82b4-0fe4f7a131dc",
+          "_name": "Taskmaster's Shield"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "aa3dca1b-8051-5ead-8863-7afd2f93ee42",
+          "_name": "Mimicked Move"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "6d8bf726-57d9-5060-b352-af336ea9a5b6",
+          "_name": "Taskmaster's Academy"
+        }
+      ]
+    },
+    "Deadly Duo (Modular)": {
+      "label": "Deadly Duo (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "b2ad54a3-689b-52f3-ade7-7e45c95db10f",
+          "_name": "Jester"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "2d833525-1f60-580b-82ca-9decb6e4d639",
+          "_name": "Jack O'Lantern"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "f5a717dd-fa25-511c-9e63-9ee90ca8bd62",
+          "_name": "Mad Jack's Platform"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "d293f531-7c87-5dd4-ac50-af21b60bc25a",
+          "_name": "Jester's Yo-Yo"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "ab6274a3-1200-5bbd-9802-bab59ced36ee",
+          "_name": "Deadly Duo"
+        }
+      ]
+    },
+    "She-Hulk Rewards (Campaign)": {
+      "label": "She-Hulk Rewards (Campaign)",
+      "cards": [
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "a749010a-3d67-5d74-917b-534fd177fd6c",
+          "_name": "You're Out of Order!"
+        },
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "1562ad6e-6c3e-59ce-925f-333fb2be6571",
+          "_name": "She-Hulk Smash"
+        },
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "c2946bad-3064-5d1d-b658-ff065dc58e74",
+          "_name": "Make Me Angry"
+        },
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "8ae1c7f8-15e6-5564-aac4-062c6d117409",
+          "_name": "Legal Counsel"
+        }
+      ]
+    },
+    "Vision (Leader)": {
+      "label": "Vision (Leader)",
+      "cards": [
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "09ee3495-d1ad-5b3e-8c4f-872b42c4037e",
+          "_name": "Vision"
+        },
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "c894118b-2eae-5562-a16a-10a05fa27678",
+          "_name": "Vision"
+        },
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "fdb0f4a1-51d8-5af4-bd7b-59f68440e6b4",
+          "_name": "Vision"
+        },
+        {
+          "loadGroupId": "sharedVillainDeck",
+          "quantity": 1,
+          "databaseId": "eff44211-f503-50c8-9588-08008feb748b",
+          "_name": "Vision"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "d5d8d1bc-72aa-57a9-9369-4aad56b16f9f",
+          "_name": "Dense"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "bf25f30d-4277-5c6a-ad10-86f604000d4d",
+          "_name": "Solar Gem"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "23034610-1092-58fe-b25f-2f5cbd561d87",
+          "_name": "Vision's Cape"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "d7d5a764-3651-5a78-8050-541561f088dc",
+          "_name": "Mass Increase"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "a4522d7f-b762-5a2c-9514-e6178f65cfcb",
+          "_name": "Density Control"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2,
+          "databaseId": "b61510c3-19e6-5637-a08a-3a9814ba269d",
+          "_name": "Solar Beam"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "748a821f-024c-58da-be2b-4e8424168494",
+          "_name": "Superdense Strike"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "f164441f-2719-5482-9fe1-c35461eacb21",
+          "_name": "Phase Disruption"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "2bae6c6e-e5cc-535b-8eaf-c16fd89f8d34",
+          "_name": "Just Passing Through"
+        }
+      ],
+      "postLoadActionList": [
+        [
+          "SET",
+          "/layoutVariants/largeMainScheme",
+          false
+        ],
+        [
+          "LOAD_LEADER_RECOMMENDS",
+          "Vision"
+        ],
+        [
+          "ACTION_LIST",
+          "loadMode"
+        ],
+        [
+          "LOAD_LEADER_BY_MODE"
+        ]
+      ]
+    },
+    "Young Avengers (Modular)": {
+      "label": "Young Avengers (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "d7ad9200-0a5e-5d51-9b2b-4d86e80621aa",
+          "_name": "Patriot"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "bc0f561e-762a-5938-a2c7-b841249b920d",
+          "_name": "Hawkeye"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "b8de23c6-5ad3-5e00-859c-d7fe90a3222b",
+          "_name": "Stature"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "f5a06023-9206-56e7-b1f9-0163e7612555",
+          "_name": "Teenage Superheroes"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "1820b02f-c938-52c0-a917-19318effbf0e",
+          "_name": "Young Avengers"
+        }
+      ]
+    },
+    "Scarlet Twins (Modular)": {
+      "label": "Scarlet Twins (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "54b8aead-b791-5555-a3ab-cd757576816b",
+          "_name": "Speed"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "59efcfde-6156-598b-9392-b6b2bb6a1523",
+          "_name": "Wiccan"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "34480963-5f76-5b2d-a623-a7aaa3b8e9d0",
+          "_name": "Superspeed"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "b883b3f5-bf6d-5e8b-8816-f43382815a0f",
+          "_name": "Spellcasting"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "fabe57e0-be13-5e9d-81ba-a44a2715ab78",
+          "_name": "Superpowered Siblings"
+        }
+      ]
+    },
+    "Moon Knight (Modular)": {
+      "label": "Moon Knight (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "51b4bf54-8ac0-56b6-8d1c-605dd39db897",
+          "_name": "Moon Knight"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2,
+          "databaseId": "4c8ff0f4-fc98-58bd-ad4a-065c62f0ba49",
+          "_name": "Crescent Dart"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "7ce69557-674f-5500-b083-83871646085c",
+          "_name": "Fist of Khonshu"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "747dd060-bd3a-5ccd-9be8-da3aa1ca0238",
+          "_name": "Khonshu's Avatar"
+        }
+      ]
+    },
+    "Royal Guard (Modular)": {
+      "label": "Royal Guard (Modular)",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "be11d8c2-052b-5ed4-b45d-437e61b80aa3",
+          "_name": "Janus"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "0bd7446e-3596-5804-8981-9ae133f1ceaf",
+          "_name": "Amir"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "07ed1049-1a5a-5bba-960b-954a141b417c",
+          "_name": "Atlanteans"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "207a9d1d-1276-59ed-ab9c-13fbdded6447",
+          "_name": "Blood Debt"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "4b16b046-e9f8-5913-8543-efc07976dee8",
+          "_name": "The Royal Guard"
+        }
+      ]
+    },
+    "Vision Rewards (Campaign)": {
+      "label": "Vision Rewards (Campaign)",
+      "cards": [
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "ab877d79-5ada-5443-8357-2803c4dee1e8",
+          "_name": "Calculated Risk"
+        },
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "c1129c42-3873-5b89-b96d-f894769d11b6",
+          "_name": "Synthezoid Strike"
+        },
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "66412e0f-f6dc-5774-9204-ca71955fe575",
+          "_name": "Phased Out"
+        },
+        {
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1,
+          "databaseId": "20c445a6-5e57-50fe-b45e-9b02f79b4de7",
+          "_name": "Android Assistance"
+        }
+      ]
+    },
+    "Labor Deck (Supplementary)": {
+      "cards": [
+        {
+          "_name": "Defeat the Hydra",
+          "databaseId": "daf039f5-f9b5-5c2b-b800-1fb2fdae3372",
+          "loadGroupId": "playerNOutOfPlay",
+          "quantity": 1
+        },
+        {
+          "_name": "Embody Pathos",
+          "databaseId": "f9315484-4e8a-5c6a-8489-68ac17891319",
+          "loadGroupId": "playerNOutOfPlay",
+          "quantity": 1
+        },
+        {
+          "_name": "Protect Humanity",
+          "databaseId": "192d3c9a-61a4-5584-95e9-24cc8e40794e",
+          "loadGroupId": "playerNOutOfPlay",
+          "quantity": 1
+        }
+      ],
+      "label": "Labor Deck (Supplementary)"
+    },
+    "Gift Deck (Supplementary)": {
+      "cards": [
+        {
+          "_name": "Nemean Lion Skin",
+          "databaseId": "45922dd4-dc47-5844-ae74-aae597bde9af",
+          "loadGroupId": "playerNOutOfPlay",
+          "quantity": 1
+        },
+        {
+          "_name": "Shield of Perseus",
+          "databaseId": "b7797850-ffec-5c41-b0be-d221e6fcb17d",
+          "loadGroupId": "playerNOutOfPlay",
+          "quantity": 1
+        },
+        {
+          "_name": "Sword of Peleus",
+          "databaseId": "60c5fb67-6278-5e5f-86b9-25f6b516ba7c",
+          "loadGroupId": "playerNOutOfPlay",
+          "quantity": 1
+        }
+      ],
+      "label": "Gift Deck (Supplementary)"
+    },
+    "Wonder Man (Hero)": {
+      "label": "Wonder Man (Hero)",
+      "cards": [
+        {
+          "loadGroupId": "playerNPlay1",
+          "quantity": 1,
+          "databaseId": "dd72e8ad-816c-5383-ad27-48d92c9ad50e",
+          "_name": "Wonder Man"
+        },
+        {
+          "loadGroupId": "playerNPlay1",
+          "quantity": 1,
+          "databaseId": "41f8677c-c4fb-5a2c-9c84-62d8f88319dc",
+          "_name": "Ionic Physiology"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "ea227b29-da61-5f74-bd83-d5555f060696",
+          "_name": "Active Altruism"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 2,
+          "databaseId": "b4cf5a8d-b6eb-55f9-8eeb-15d89c6d118d",
+          "_name": "Ionic Blast"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "1db7781d-7644-5ed4-a291-8e75ef150007",
+          "_name": "Starstruck"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 2,
+          "databaseId": "2bfe4b8f-cdc5-5318-8ac8-20ec39bcd83d",
+          "_name": "Energy Siphon"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "d0c98507-d54b-5644-87d8-613a0d7ecbf3",
+          "_name": "Wonder Fans"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "32b0dba6-8b6c-5621-b24e-8d06a3a8fd4a",
+          "_name": "Jet Belt"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "8cfa18be-9d4e-5e77-ab38-d34e72366e10",
+          "_name": "Mr. Hollywood"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "02e2d976-c86d-5967-a9c8-824a30016870",
+          "_name": "Signature Sunglasses"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "55f5ee48-3822-5eb9-90e7-61edb9c7152d",
+          "_name": "\"What Are You?\""
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "fd3e1326-68dd-58ac-8193-d739000cab78",
+          "_name": "Firebird"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "f83532e5-bfd3-5741-aeeb-8755cbb32ed7",
+          "_name": "Hawkeye"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "3a3b3d75-cb96-5a62-8ba0-abd8e746f7f1",
+          "_name": "Scarlet Witch"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "16b2ae12-3c99-52d6-91a8-6d497deed692",
+          "_name": "Sentry"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "818f648d-034e-5a35-b5bb-98005e46af17",
+          "_name": "Battlefield Benevolence"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "36606dcb-e520-594d-9882-4a3112de106f",
+          "_name": "Bombs Away"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "ef1409f2-ba04-5e2b-a96e-f14f9d05f91f",
+          "_name": "Everywhere All at Once"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "c63748b5-81c2-524a-93cf-a05d28c94011",
+          "_name": "Stronger Together"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "38936d9c-eefc-538e-a481-33c8a4c603cf",
+          "_name": "Unified Strike"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 3,
+          "databaseId": "d994b834-740b-525d-b971-a11a5672dd82",
+          "_name": "Heroic Conditioning"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "4c657778-cf3a-53e2-aa31-328a7377992c",
+          "_name": "Swordsman"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "c974d5f3-3700-590c-b727-241b13ebefc6",
+          "_name": "Energy"
+        },
+        {
+          "loadGroupId": "playerNDeck",
+          "quantity": 1,
+          "databaseId": "2cf0960c-d8fb-503f-bacc-3ac7592f1b94",
+          "_name": "Jarvis"
+        },
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "31c1e48d-a6a8-52ed-82cc-0c7a2a0defe6",
+          "_name": "Pacifism"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "80f2ddc6-12bf-5e85-83f2-680098a12b6d",
+          "_name": "Grim Reaper"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "2ac2aae4-cb3c-54c9-b702-eb1e8dd3c754",
+          "_name": "Brother vs. Brother"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "4f6b04d9-d783-5c5a-9029-00a1edda4094",
+          "_name": "Scythe Strike"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 2,
+          "databaseId": "e63120bb-a209-518d-8e8d-b64943588a59",
+          "_name": "Death Cannot Die"
+        }
+      ]
+    },
+    "Wonder Man Nemesis (Nemesis)": {
+      "label": "Wonder Man Nemesis (Nemesis)",
+      "cards": [
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "80f2ddc6-12bf-5e85-83f2-680098a12b6d",
+          "_name": "Grim Reaper"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "2ac2aae4-cb3c-54c9-b702-eb1e8dd3c754",
+          "_name": "Brother vs. Brother"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "4f6b04d9-d783-5c5a-9029-00a1edda4094",
+          "_name": "Scythe Strike"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 2,
+          "databaseId": "e63120bb-a209-518d-8e8d-b64943588a59",
+          "_name": "Death Cannot Die"
+        }
+      ]
+    },
+    "Wonder Man (Hero) [marvelcdb bundle]": {
+      "label": "Wonder Man (Hero) [marvelcdb bundle]",
+      "cards": [
+        {
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1,
+          "databaseId": "31c1e48d-a6a8-52ed-82cc-0c7a2a0defe6",
+          "_name": "Pacifism"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "80f2ddc6-12bf-5e85-83f2-680098a12b6d",
+          "_name": "Grim Reaper"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "2ac2aae4-cb3c-54c9-b702-eb1e8dd3c754",
+          "_name": "Brother vs. Brother"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "4f6b04d9-d783-5c5a-9029-00a1edda4094",
+          "_name": "Scythe Strike"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 2,
+          "databaseId": "e63120bb-a209-518d-8e8d-b64943588a59",
+          "_name": "Death Cannot Die"
+        }
+      ]
+    },
+    "Hercules (Hero)": {
+      "cards": [
+        {
+          "_name": "Hercules",
+          "databaseId": "4d81c1f5-fa94-5e37-ab2e-24c4e800f5c3",
+          "loadGroupId": "playerNPlay1",
+          "quantity": 1
+        },
+        {
+          "_name": "Amadeus Cho",
+          "databaseId": "48850536-dc14-51f7-90be-6d5bbc154963",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "The Gift of Battle",
+          "databaseId": "631a2347-33ea-5789-9883-55d8f4707e7a",
+          "loadGroupId": "playerNDeck",
+          "quantity": 3
+        },
+        {
+          "_name": "Son of Zeus",
+          "databaseId": "22308c81-0857-571b-a5e9-3ebde357372e",
+          "loadGroupId": "playerNDeck",
+          "quantity": 2
+        },
+        {
+          "_name": "Wisdom of Athena",
+          "databaseId": "03a22747-b800-5f45-ba9b-843bd817cd57",
+          "loadGroupId": "playerNDeck",
+          "quantity": 2
+        },
+        {
+          "_name": "Olympus",
+          "databaseId": "4bbb269c-2327-5785-b234-9d220bb46401",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Gauntlets of Hercules",
+          "databaseId": "56990192-6fef-5991-831b-b399d7230944",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Golden Mace",
+          "databaseId": "60105f84-d4d9-5702-b9a6-012c5dbc9d42",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Herc's Helm",
+          "databaseId": "134d154d-ccf9-5751-9693-09f28482f3b7",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Lion of Olympus",
+          "databaseId": "837fe23c-1e0f-5549-84ba-bd28df669023",
+          "loadGroupId": "playerNDeck",
+          "quantity": 2
+        },
+        {
+          "_name": "Prince of Power",
+          "databaseId": "ed596512-c7cb-5982-b0b9-11fbff81ddf7",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Deathcry",
+          "databaseId": "b4549c70-98d3-5c81-b451-3ab8190989cd",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Namora",
+          "databaseId": "1cf732ea-6ff3-5a99-88c8-ebe5088827b2",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Thor",
+          "databaseId": "81e5fd24-ddea-5bd6-a128-89c78ed40792",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Teamwork",
+          "databaseId": "9acd1196-72f2-5bd3-896c-83e1f1779ca4",
+          "loadGroupId": "playerNDeck",
+          "quantity": 3
+        },
+        {
+          "_name": "Call for Backup",
+          "databaseId": "d231169e-dfc1-5639-afb7-685d7d278439",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Recruitment Drive",
+          "databaseId": "68f52429-becd-5387-b026-3d21c106c8b6",
+          "loadGroupId": "playerNDeck",
+          "quantity": 3
+        },
+        {
+          "_name": "\"Avenge Me!\"",
+          "databaseId": "893bb179-2382-5389-8ad7-cc6cd0ecd043",
+          "loadGroupId": "playerNDeck",
+          "quantity": 3
+        },
+        {
+          "_name": "Gilgamesh",
+          "databaseId": "b41657d2-7c48-54e7-81e9-29eef555d44b",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Ancient Rivalry",
+          "databaseId": "b02550bb-ced3-5ab3-9b52-964954b6362a",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Limitless Stamina",
+          "databaseId": "c89bcd69-148c-55b4-88b5-2fd8c62f7e7c",
+          "loadGroupId": "playerNDeck",
+          "quantity": 3
+        },
+        {
+          "_name": "Evaluate Threat",
+          "databaseId": "87052f89-8595-572a-b73f-2c3dde531e7f",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Energy",
+          "databaseId": "4f86cddc-2123-5dcb-ada0-545c8cebbef0",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Genius",
+          "databaseId": "50b274ff-7a94-547e-a435-d9c33ccc2536",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Strength",
+          "databaseId": "5d996659-840c-5102-a899-023fb797f45f",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Avengers Compound",
+          "databaseId": "bf424d30-dc13-5838-a404-78fab66c4498",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Helicarrier",
+          "databaseId": "a5132907-f9b6-5b59-bf33-a6f9b02cabd6",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Quincarrier",
+          "databaseId": "487fd9c9-c9f5-57fa-8c8c-131d66347e0c",
+          "loadGroupId": "playerNDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Appeal to Athena",
+          "databaseId": "71128c04-e4de-57e3-a1c8-9a5523985085",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Ares",
+          "databaseId": "0282fc46-d516-5c48-9dce-c1edd406cc76",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "Lernean Hydra",
+          "databaseId": "cea17549-1201-5c19-aff1-a0de7dcc6685",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "Olympic Feud",
+          "databaseId": "61872e5d-d8fd-56ea-a59d-10ac5d89a800",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "Ares's Axe",
+          "databaseId": "718ca0b9-e190-5c99-a459-926b7928d068",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "God of War",
+          "databaseId": "73031396-1de6-551c-889c-772888b2b418",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        }
+      ],
+      "label": "Hercules (Hero)"
+    },
+    "Hercules Nemesis (Nemesis)": {
+      "label": "Hercules Nemesis (Nemesis)",
+      "cards": [
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "0282fc46-d516-5c48-9dce-c1edd406cc76",
+          "_name": "Ares"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "cea17549-1201-5c19-aff1-a0de7dcc6685",
+          "_name": "Lernean Hydra"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "61872e5d-d8fd-56ea-a59d-10ac5d89a800",
+          "_name": "Olympic Feud"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "718ca0b9-e190-5c99-a459-926b7928d068",
+          "_name": "Ares's Axe"
+        },
+        {
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1,
+          "databaseId": "73031396-1de6-551c-889c-772888b2b418",
+          "_name": "God of War"
+        }
+      ]
+    },
+    "Hercules (Hero) [marvelcdb bundle]": {
+      "cards": [
+        {
+          "_name": "Appeal to Athena",
+          "databaseId": "71128c04-e4de-57e3-a1c8-9a5523985085",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Ares",
+          "databaseId": "0282fc46-d516-5c48-9dce-c1edd406cc76",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "Lernean Hydra",
+          "databaseId": "cea17549-1201-5c19-aff1-a0de7dcc6685",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "Olympic Feud",
+          "databaseId": "61872e5d-d8fd-56ea-a59d-10ac5d89a800",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "Ares's Axe",
+          "databaseId": "718ca0b9-e190-5c99-a459-926b7928d068",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        },
+        {
+          "_name": "God of War",
+          "databaseId": "73031396-1de6-551c-889c-772888b2b418",
+          "loadGroupId": "playerNNemesisSet",
+          "quantity": 1
+        }
+      ],
+      "label": "Hercules (Hero) [marvelcdb bundle]"
+    },
     "Kree Fanatic (Modular)": {
       "label": "Kree Fanatic (Modular)",
       "cards": [
@@ -26702,110 +27821,170 @@
       ]
     },
     "Registration (Campaign)": {
-      "label": "Registration (Campaign)",
       "cards": [
         {
+          "_name": "Superhero Registration Act",
+          "databaseId": "ea42de82-a75c-5d63-8a36-a6fbd31bbef7",
           "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "quantity": 1
+        },
+        {
+          "_name": "Superhero Registration Act",
           "databaseId": "827d371e-6ff7-5f65-8313-cc03c2890509",
-          "_name": "Superhero Registration Act"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Superhero Registration Act",
           "databaseId": "ef9dae92-1197-50cd-9b93-8aa91b8d8345",
-          "_name": "Superhero Registration Act"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Superhero Registration Act",
           "databaseId": "3bdc5b1e-ba2c-5da1-abfe-d60a87fb8dcb",
-          "_name": "Superhero Registration Act"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Superhero Registration Act",
           "databaseId": "b4ccb6d6-9309-5065-80de-8f6f08cdd5e8",
-          "_name": "Superhero Registration Act"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Pro-Registration Tactics",
           "databaseId": "c2ed8dd5-20f7-535a-99d6-804e1d2f1ed3",
-          "_name": "Pro-Registration Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Pro-Registration Tactics",
           "databaseId": "0ca879c6-2c71-52a6-9e76-5b7ae2b96bcb",
-          "_name": "Pro-Registration Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Pro-Registration Tactics",
           "databaseId": "8c747127-d2f7-5b90-af20-44b13d3191fe",
-          "_name": "Pro-Registration Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Pro-Registration Tactics",
           "databaseId": "1967229d-4986-59f5-a0a4-f91a0cd31caa",
-          "_name": "Pro-Registration Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Pro-Registration Tactics",
+          "databaseId": "5902b342-e1c6-5a10-80f4-43e2aa08ff42",
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         }
-      ]
+      ],
+      "label": "Registration (Campaign)"
     },
     "Standard PVP (Modular)": {
-      "label": "Standard PVP (Modular)",
       "cards": [
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 1,
+          "_name": "Righteous Cause",
           "databaseId": "67acd57f-5e30-5cd3-8e6e-6da1db4a97ce",
-          "_name": "Righteous Cause"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 1,
+          "_name": "Whatever It Takes",
           "databaseId": "65c6bf17-9d9a-53ad-bd8c-eb75bfae115b",
-          "_name": "Whatever It Takes"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 2,
+          "_name": "Targeted Strike",
           "databaseId": "fd4711fd-1ff8-511c-9268-9a753e64d476",
-          "_name": "Targeted Strike"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2
         },
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 1,
+          "_name": "Choosing Sides",
           "databaseId": "13aeaf97-1a3c-543a-93ba-33eaf915ad77",
-          "_name": "Choosing Sides"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 1,
+          "_name": "Righteous Cause",
           "databaseId": "9a907ca7-f36f-5ad7-9ca3-5404837c461e",
-          "_name": "Righteous Cause"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 1,
+          "_name": "Whatever It Takes",
           "databaseId": "af6185f7-cb18-55e5-862f-26625e5ec5a0",
-          "_name": "Whatever It Takes"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 2,
+          "_name": "Targeted Strike",
           "databaseId": "8ad4259e-dd8c-5f78-bc68-23c7fd91de74",
-          "_name": "Targeted Strike"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2
         },
         {
-          "loadGroupId": "sharedEncounterDeck",
-          "quantity": 1,
+          "_name": "Choosing Sides",
           "databaseId": "c6f39dc7-6520-5449-86e7-08313e6b1623",
-          "_name": "Choosing Sides"
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Righteous Cause",
+          "databaseId": "cbafe8af-d3c4-5ceb-a0f8-c397dd4b13c5",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Whatever It Takes",
+          "databaseId": "79744902-f2f0-5063-815f-16bbcba47fe7",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Targeted Strike",
+          "databaseId": "14f1e433-39a6-5aa5-9c44-a6d13917e0a1",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2
+        },
+        {
+          "_name": "Choosing Sides",
+          "databaseId": "ea5313d1-983f-5bf7-b14d-6bcdc771c9e1",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Righteous Cause",
+          "databaseId": "4877a10e-30af-5241-a08b-6e90729091f2",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Whatever It Takes",
+          "databaseId": "ff823c62-61e9-53f9-aca5-579216cc7f29",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Targeted Strike",
+          "databaseId": "308d89c0-936f-52ce-b281-3bb40f9b54f2",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2
+        },
+        {
+          "_name": "Choosing Sides",
+          "databaseId": "e7782310-5761-5e3a-b983-4040d8bb6167",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
         }
-      ]
+      ],
+      "label": "Standard PVP (Modular)"
     },
     "Iron Man Rewards (Campaign)": {
       "label": "Iron Man Rewards (Campaign)",
@@ -26955,57 +28134,69 @@
       ]
     },
     "Resistance (Campaign)": {
-      "label": "Resistance (Campaign)",
       "cards": [
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Superhero Resistance",
           "databaseId": "0eb21e82-2680-55d2-936e-875b0cb70c9b",
-          "_name": "Superhero Resistance"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Superhero Resistance",
           "databaseId": "4281fedb-8b51-5c44-b630-5a7e1f091f89",
-          "_name": "Superhero Resistance"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Superhero Resistance",
           "databaseId": "b9d31a56-c762-58e4-84d7-b1b09dcc1aef",
-          "_name": "Superhero Resistance"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Superhero Resistance",
           "databaseId": "e07c999b-bd9d-5c92-9104-ea7e4035060a",
-          "_name": "Superhero Resistance"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Resistance Tactics",
           "databaseId": "d7c75585-d1f1-513f-8f9f-968bffa3b1e6",
-          "_name": "Resistance Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Resistance Tactics",
           "databaseId": "b271db3f-3b74-5c55-aba0-2c1a49f00633",
-          "_name": "Resistance Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Resistance Tactics",
           "databaseId": "644fe647-f6b1-53dd-b792-3e28645600f8",
-          "_name": "Resistance Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         },
         {
-          "loadGroupId": "sharedCampaignDeck",
-          "quantity": 1,
+          "_name": "Resistance Tactics",
           "databaseId": "e37f5db3-1cdf-5894-9dd7-c8d050a85520",
-          "_name": "Resistance Tactics"
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Superhero Resistance",
+          "databaseId": "a98846cd-084f-5c5a-a102-02f1a185e0b1",
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Resistance Tactics",
+          "databaseId": "ade96f58-e446-5cf5-88ca-43adbadd3519",
+          "loadGroupId": "sharedCampaignDeck",
+          "quantity": 1
         }
-      ]
+      ],
+      "label": "Resistance (Campaign)"
     },
     "New Avengers (Modular)": {
       "label": "New Avengers (Modular)",
@@ -33148,6 +34339,268 @@
           "_name": "Cloak and Dagger"
         }
       ]
+    },
+    "Vision (Leader) [recommends]": {
+      "cards": [
+        {
+          "_name": "Protect Secret Identities",
+          "databaseId": "a98846cd-084f-5c5a-a102-02f1a185e0b1",
+          "loadGroupId": "sharedMainScheme",
+          "quantity": 1
+        },
+        {
+          "_name": "Expose Overreach",
+          "databaseId": "ade96f58-e446-5cf5-88ca-43adbadd3519",
+          "loadGroupId": "sharedMainSchemeDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Patriot",
+          "databaseId": "d7ad9200-0a5e-5d51-9b2b-4d86e80621aa",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Hawkeye",
+          "databaseId": "bc0f561e-762a-5938-a2c7-b841249b920d",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Stature",
+          "databaseId": "b8de23c6-5ad3-5e00-859c-d7fe90a3222b",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Teenage Superheroes",
+          "databaseId": "f5a06023-9206-56e7-b1f9-0163e7612555",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Young Avengers",
+          "databaseId": "1820b02f-c938-52c0-a917-19318effbf0e",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Speed",
+          "databaseId": "54b8aead-b791-5555-a3ab-cd757576816b",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Wiccan",
+          "databaseId": "59efcfde-6156-598b-9392-b6b2bb6a1523",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Superspeed",
+          "databaseId": "34480963-5f76-5b2d-a623-a7aaa3b8e9d0",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Spellcasting",
+          "databaseId": "b883b3f5-bf6d-5e8b-8816-f43382815a0f",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Superpowered Siblings",
+          "databaseId": "fabe57e0-be13-5e9d-81ba-a44a2715ab78",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Moon Knight",
+          "databaseId": "51b4bf54-8ac0-56b6-8d1c-605dd39db897",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Crescent Dart",
+          "databaseId": "4c8ff0f4-fc98-58bd-ad4a-065c62f0ba49",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2
+        },
+        {
+          "_name": "Fist of Khonshu",
+          "databaseId": "7ce69557-674f-5500-b083-83871646085c",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Khonshu's Avatar",
+          "databaseId": "747dd060-bd3a-5ccd-9be8-da3aa1ca0238",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Janus",
+          "databaseId": "be11d8c2-052b-5ed4-b45d-437e61b80aa3",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Amir",
+          "databaseId": "0bd7446e-3596-5804-8981-9ae133f1ceaf",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Atlanteans",
+          "databaseId": "07ed1049-1a5a-5bba-960b-954a141b417c",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Blood Debt",
+          "databaseId": "207a9d1d-1276-59ed-ab9c-13fbdded6447",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "The Royal Guard",
+          "databaseId": "4b16b046-e9f8-5913-8543-efc07976dee8",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        }
+      ],
+      "label": "Vision (Leader) [recommends]"
+    },
+    "She-Hulk (Leader) [recommends]": {
+      "cards": [
+        {
+          "_name": "Enforce the Law",
+          "databaseId": "ea42de82-a75c-5d63-8a36-a6fbd31bbef7",
+          "loadGroupId": "sharedMainScheme",
+          "quantity": 1
+        },
+        {
+          "_name": "Mighty Avengers",
+          "databaseId": "5902b342-e1c6-5a10-80f4-43e2aa08ff42",
+          "loadGroupId": "sharedMainSchemeDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "S.H.I.E.L.D. Operator",
+          "databaseId": "b02ac049-a2f7-5c84-9888-78309abf310b",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 2
+        },
+        {
+          "_name": "Strategic Overwatch",
+          "databaseId": "7d677e66-74b8-5fd5-9b47-9827c3f4ccc8",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Rapid Response",
+          "databaseId": "ddd462b1-fabb-572e-9d01-79c81646367a",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Homeland Security",
+          "databaseId": "0b09e0ca-2112-5c2d-ab67-cfd73888d0e3",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Atlas",
+          "databaseId": "4b0ab15a-039f-579a-bad3-ea78bf2c6422",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Songbird",
+          "databaseId": "ddefe71b-1343-5d19-afc1-35b85a75b348",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Penance",
+          "databaseId": "858e6f29-6c25-53e4-b728-8d973d67707f",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Justice Like Lightning",
+          "databaseId": "f40283ab-6970-5625-a543-2bf35b94a8ae",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "The Thunderbolts",
+          "databaseId": "0bf17544-7223-5579-9477-9133b68c56cb",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Taskmaster",
+          "databaseId": "644c5be0-10c8-5ccd-9663-e368dee9172a",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Taskmaster's Sword",
+          "databaseId": "fc682910-09ac-5696-a754-1391273e24b2",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Taskmaster's Shield",
+          "databaseId": "8fba59a1-c254-50a2-82b4-0fe4f7a131dc",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Mimicked Move",
+          "databaseId": "aa3dca1b-8051-5ead-8863-7afd2f93ee42",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Taskmaster's Academy",
+          "databaseId": "6d8bf726-57d9-5060-b352-af336ea9a5b6",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Jester",
+          "databaseId": "b2ad54a3-689b-52f3-ade7-7e45c95db10f",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Jack O'Lantern",
+          "databaseId": "2d833525-1f60-580b-82ca-9decb6e4d639",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Mad Jack's Platform",
+          "databaseId": "f5a717dd-fa25-511c-9e63-9ee90ca8bd62",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Jester's Yo-Yo",
+          "databaseId": "d293f531-7c87-5dd4-ac50-af21b60bc25a",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        },
+        {
+          "_name": "Deadly Duo",
+          "databaseId": "ab6274a3-1200-5bbd-9802-bab59ced36ee",
+          "loadGroupId": "sharedEncounterDeck",
+          "quantity": 1
+        }
+      ],
+      "label": "She-Hulk (Leader) [recommends]"
     }
   }
 }

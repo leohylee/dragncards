@@ -4061,3 +4061,171 @@ a6f700a9-deee-59f6-b096-e8bbe3f684d4	56211	56211	Double Agent		Event	Basic	/offi
 e18b65ab-8f5c-5f30-9d4c-be8e2cc779de	56212	56212	Spider-Blast		Event	Basic	/official/56212.jpg	player					Spider-Woman Rewards										false	false	false	
 262ede18-777f-59ae-a15f-5bbbcb75c48c	56213	56213	Hard to Hit		Upgrade	Basic	/official/56213.jpg	player	Skill				Spider-Woman Rewards										false	false	false	
 926de67c-0b7a-5bb1-abdf-9f6a9c2e2334	56214	56214	Secret Contact		Resource	Basic	/official/56214.jpg	player					Spider-Woman Rewards										false	false	false	
+dd72e8ad-816c-5383-ad27-48d92c9ad50e	58001A	58001a	Wonder Man	Simon Williams	Hero	Hero	/official/58001A.jpg	multi_sided	Aerial,Avenger	5	12		Wonder Man										false	false	false	
+dd72e8ad-816c-5383-ad27-48d92c9ad50e	58001B	58001b	Simon Williams	Wonder Man	Alter-Ego	Hero	/official/58001B.jpg	multi_sided	Civilian	6	12		Wonder Man										false	false	false	
+41f8677c-c4fb-5a2c-9c84-62d8f88319dc	58002	58002	Ionic Physiology		Upgrade	Hero	/official/58002.jpg	player	Superpower				Wonder Man										false	true	false	
+ea227b29-da61-5f74-bd83-d5555f060696	58003	58003	Active Altruism		Event	Hero	/official/58003.jpg	player	Thwart				Wonder Man										false	false	false	
+b4cf5a8d-b6eb-55f9-8eeb-15d89c6d118d	58004	58004	Ionic Blast		Event	Hero	/official/58004.jpg	player	Attack,Superpower				Wonder Man										false	false	false	
+1db7781d-7644-5ed4-a291-8e75ef150007	58005	58005	Starstruck		Event	Hero	/official/58005.jpg	player	Attack,Superpower				Wonder Man										false	false	false	
+2bfe4b8f-cdc5-5318-8ac8-20ec39bcd83d	58006	58006	Energy Siphon		Resource	Hero	/official/58006.jpg	player					Wonder Man										false	false	false	
+d0c98507-d54b-5644-87d8-613a0d7ecbf3	58007	58007	Wonder Fans		Support	Hero	/official/58007.jpg	player	Civilian				Wonder Man										false	false	false	
+32b0dba6-8b6c-5621-b24e-8d06a3a8fd4a	58008	58008	Jet Belt		Upgrade	Hero	/official/58008.jpg	player	Item,Tech				Wonder Man										false	false	false	
+8cfa18be-9d4e-5e77-ab38-d34e72366e10	58009	58009	Mr. Hollywood		Upgrade	Hero	/official/58009.jpg	player	Title				Wonder Man										false	false	false	
+02e2d976-c86d-5967-a9c8-824a30016870	58010	58010	Signature Sunglasses		Upgrade	Hero	/official/58010.jpg	player	Item				Wonder Man										false	false	false	
+55f5ee48-3822-5eb9-90e7-61edb9c7152d	58011	58011	"""What Are You?"""		Upgrade	Hero	/official/58011.jpg	player	Superpower				Wonder Man										false	false	false	
+fd3e1326-68dd-58ac-8193-d739000cab78	58012	58012	Firebird	Bonita Juarez	Ally	Justice	/official/58012.jpg	player	Aerial,Avenger		2												false	false	false	
+f83532e5-bfd3-5741-aeeb-8755cbb32ed7	58013	58013	Hawkeye	Clint Barton	Ally	Justice	/official/58013.jpg	player	Avenger,S.H.I.E.L.D.		3												false	false	false	
+3a3b3d75-cb96-5a62-8ba0-abd8e746f7f1	58014	58014	Scarlet Witch	Wanda Maximoff	Ally	Justice	/official/58014.jpg	player	Avenger,Mystic		3												false	false	false	
+16b2ae12-3c99-52d6-91a8-6d497deed692	58015	58015	Sentry	Robert Reynolds	Ally	Justice	/official/58015.jpg	player	Aerial,Avenger		5												false	false	false	
+818f648d-034e-5a35-b5bb-98005e46af17	58016	58016	Battlefield Benevolence		Event	Justice	/official/58016.jpg	player	Tactic														false	false	false	
+36606dcb-e520-594d-9882-4a3112de106f	58017	58017	Bombs Away		Event	Aggression	/official/58017.jpg	player	Aerial,Tactic														false	false	false	
+ef1409f2-ba04-5e2b-a96e-f14f9d05f91f	58018	58018	Everywhere All at Once		Event	Justice	/official/58018.jpg	player	Aerial,Thwart														false	false	false	
+c63748b5-81c2-524a-93cf-a05d28c94011	58019	58019	Stronger Together		Event	Protection	/official/58019.jpg	player															false	false	false	
+38936d9c-eefc-538e-a481-33c8a4c603cf	58020	58020	Unified Strike		Event	Leadership	/official/58020.jpg	player	Tactic														false	false	false	
+d994b834-740b-525d-b971-a11a5672dd82	58021	58021	Heroic Conditioning		Upgrade	Justice	/official/58021.jpg	player	Condition														false	false	false	
+4c657778-cf3a-53e2-aa31-328a7377992c	58022	58022	Swordsman	Jacques Duquesne	Ally	Basic	/official/58022.jpg	player	Avenger		4												false	false	false	
+c974d5f3-3700-590c-b727-241b13ebefc6	58023	58023	Energy		Resource	Basic	/official/01088.jpg	player															false	false	false	
+2cf0960c-d8fb-503f-bacc-3ac7592f1b94	58024	58024	Jarvis		Support	Basic	/official/58024.jpg	player	Avenger,Persona														false	false	false	
+31c1e48d-a6a8-52ed-82cc-0c7a2a0defe6	58025	58025	Pacifism		Obligation	Encounter	/official/58025.jpg	encounter					Wonder Man										false	false	false	
+80f2ddc6-12bf-5e85-83f2-680098a12b6d	58026	58026	Grim Reaper		Minion	Encounter	/official/58026.jpg	encounter	Cyborg		3		Wonder Man Nemesis										false	false	true	
+2ac2aae4-cb3c-54c9-b702-eb1e8dd3c754	58027	58027	Brother vs. Brother		Side Scheme	Encounter	/official/58027.jpg	encounter					Wonder Man Nemesis			2				1			false	false	false	
+4f6b04d9-d783-5c5a-9029-00a1edda4094	58028	58028	Scythe Strike		Treachery	Encounter	/official/58028.jpg	encounter					Wonder Man Nemesis										false	false	false	
+e63120bb-a209-518d-8e8d-b64943588a59	58029	58029	Death Cannot Die		Treachery	Encounter	/official/58029.jpg	encounter					Wonder Man Nemesis										false	false	false	
+10cacf10-7fca-5b12-ad79-1e9dca9d76c5	58030	58030	Caught in the Crossfire		Upgrade	Aggression	/official/58030.jpg	player	Tactic														false	false	false	
+a4c7428b-458a-539e-ac47-2b0da76e0e9d	58031	58031	Cameo		Support	Leadership	/official/58031.jpg	player															false	false	false	
+2b623073-0f58-5c64-aa37-9ada5051b078	58032	58032	Coordinated Effort		Upgrade	Leadership	/official/58032.jpg	player	Tactic														false	false	false	
+e534b873-6fe8-55d0-acf5-e493937de554	58033	58033	Disarming Defense		Event	Protection	/official/58033.jpg	player	Defense														false	false	false	
+a64aaeb6-133c-5f60-9fe0-42c0470b02b2	58034	58034	Avengers Compound		Support	Basic	/official/58034.jpg	player	Avenger,Location														false	false	false	
+4d81c1f5-fa94-5e37-ab2e-24c4e800f5c3	59001A	59001a	Hercules		Hero	Hero	/official/59001A.jpg	multi_sided	Avenger,OIympus	4	14		Hercules										false	false	false	
+4d81c1f5-fa94-5e37-ab2e-24c4e800f5c3	59001B	59001b	Hercules		Alter-Ego	Hero	/official/59001B.jpg	multi_sided	Olympus	6	14		Hercules										false	false	false	
+daf039f5-f9b5-5c2b-b800-1fb2fdae3372	59002	59002	Defeat the Hydra		Attachment	Encounter	/official/59002.jpg	encounter	Labor				Labor Deck										false	false	false	0
+f9315484-4e8a-5c6a-8489-68ac17891319	59003	59003	Embody Pathos		Attachment	Encounter	/official/59003.jpg	encounter	Labor				Labor Deck										false	false	false	0
+192d3c9a-61a4-5584-95e9-24cc8e40794e	59004	59004	Protect Humanity		Obligation	Encounter	/official/59004.jpg	encounter	Labor				Labor Deck										false	false	false	0
+45922dd4-dc47-5844-ae74-aae597bde9af	59005	59005	Nemean Lion Skin		Upgrade	Hero	/official/59005.jpg	player	Artifact,Gift				Gift Deck										false	true	false	
+b7797850-ffec-5c41-b0be-d221e6fcb17d	59006	59006	Shield of Perseus		Upgrade	Hero	/official/59006.jpg	player	Artifact,Gift				Gift Deck										false	true	false	
+60c5fb67-6278-5e5f-86b9-25f6b516ba7c	59007	59007	Sword of Peleus		Upgrade	Hero	/official/59007.jpg	player	Artifact,Gift,Weapon				Gift Deck										false	true	false	
+48850536-dc14-51f7-90be-6d5bbc154963	59008	59008	Amadeus Cho		Ally	Hero	/official/59008.jpg	player	Genius		2		Hercules										false	false	false	
+631a2347-33ea-5789-9883-55d8f4707e7a	59009	59009	The Gift of Battle		Event	Hero	/official/59009.jpg	player	Attack				Hercules										false	false	false	
+22308c81-0857-571b-a5e9-3ebde357372e	59010	59010	Son of Zeus		Event	Hero	/official/59010.jpg	player	Olympus				Hercules										false	false	false	
+03a22747-b800-5f45-ba9b-843bd817cd57	59011	59011	Wisdom of Athena		Event	Hero	/official/59011.jpg	player	Thwart				Hercules										false	false	false	
+4bbb269c-2327-5785-b234-9d220bb46401	59012	59012	Olympus		Support	Hero	/official/59012.jpg	player	Location,Olympus				Hercules										false	false	false	
+56990192-6fef-5991-831b-b399d7230944	59013	59013	Gauntlets of Hercules		Upgrade	Hero	/official/59013.jpg	player	Armor,Olympus				Hercules										false	false	false	
+60105f84-d4d9-5702-b9a6-012c5dbc9d42	59014	59014	Golden Mace		Upgrade	Hero	/official/59014.jpg	player	Olympus,Weapon				Hercules										false	false	false	
+134d154d-ccf9-5751-9693-09f28482f3b7	59015	59015	Herc's Helm		Upgrade	Hero	/official/59015.jpg	player	Armor,Olympus				Hercules										false	false	false	
+837fe23c-1e0f-5549-84ba-bd28df669023	59016	59016	Lion of Olympus		Upgrade	Hero	/official/59016.jpg	player	Olympus				Hercules										false	false	false	
+ed596512-c7cb-5982-b0b9-11fbff81ddf7	59017	59017	Prince of Power		Upgrade	Hero	/official/59017.jpg	player	Olympus,Title				Hercules										false	false	false	
+b4549c70-98d3-5c81-b451-3ab8190989cd	59018	59018	Deathcry	Sharra Neramani	Ally	Leadership	/official/59018.jpg	player	Avenger		4												false	false	false	
+1cf732ea-6ff3-5a99-88c8-ebe5088827b2	59019	59019	Namora	Aquaria Neptunia	Ally	Leadership	/official/59019.jpg	player	Agent of Atlas,Atlantis		4												false	false	false	
+81e5fd24-ddea-5bd6-a128-89c78ed40792	59020	59020	Thor	Odinson	Ally	Leadership	/official/59020.jpg	player	Asgard,Avenger		4												false	false	false	
+9acd1196-72f2-5bd3-896c-83e1f1779ca4	59021	59021	Teamwork		Event	Leadership	/official/06032.jpg	player	Tactic														false	false	false	
+d231169e-dfc1-5639-afb7-685d7d278439	59022	59022	Call for Backup		Player Side Scheme	Leadership	/official/59022.jpg	player								3							false	false	false	0
+68f52429-becd-5387-b026-3d21c106c8b6	59023	59023	Recruitment Drive		Support	Leadership	/official/59023.jpg	player															false	false	false	
+893bb179-2382-5389-8ad7-cc6cd0ecd043	59024	59024	"""Avenge Me!"""		Upgrade	Leadership	/official/59024.jpg	player	Avenger														false	false	false	
+b41657d2-7c48-54e7-81e9-29eef555d44b	59025	59025	Gilgamesh		Ally	Basic	/official/59025.jpg	player	Eternal		6												false	false	false	
+b02550bb-ced3-5ab3-9b52-964954b6362a	59026	59026	Ancient Rivalry		Event	Basic	/official/59026.jpg	player	Asgard,Olympus														false	false	false	
+c89bcd69-148c-55b4-88b5-2fd8c62f7e7c	59027	59027	Limitless Stamina		Event	Basic	/official/31023.jpg	player	Superpower														false	false	false	
+87052f89-8595-572a-b73f-2c3dde531e7f	59028	59028	Evaluate Threat		Player Side Scheme	Basic	/official/59028.jpg	player															false	false	false	0
+4f86cddc-2123-5dcb-ada0-545c8cebbef0	59029	59029	Energy		Resource	Basic	/official/01088.jpg	player															false	false	false	
+50b274ff-7a94-547e-a435-d9c33ccc2536	59030	59030	Genius		Resource	Basic	/official/01089.jpg	player															false	false	false	
+5d996659-840c-5102-a899-023fb797f45f	59031	59031	Strength		Resource	Basic	/official/01090.jpg	player															false	false	false	
+bf424d30-dc13-5838-a404-78fab66c4498	59032	59032	Avengers Compound		Support	Basic	/official/58034.jpg	player	Avenger,Location														false	false	false	
+a5132907-f9b6-5b59-bf33-a6f9b02cabd6	59033	59033	Helicarrier		Support	Basic	/official/01092.jpg	player	Location,S.H.I.E.L.D.														false	false	false	
+487fd9c9-c9f5-57fa-8c8c-131d66347e0c	59034	59034	Quincarrier		Support	Basic	/official/08023.jpg	player	Avenger,Vehicle														false	false	false	
+71128c04-e4de-57e3-a1c8-9a5523985085	59035	59035	Appeal to Athena		Obligation	Encounter	/official/59035.jpg	encounter					Hercules										false	false	false	
+0282fc46-d516-5c48-9dce-c1edd406cc76	59036	59036	Ares		Minion	Encounter	/official/59036.jpg	encounter	Elite,Olympus		5		Hercules Nemesis										false	false	true	
+cea17549-1201-5c19-aff1-a0de7dcc6685	59037	59037	Lernean Hydra		Minion	Encounter	/official/59037.jpg	encounter	Creature,Hydra		6		Hercules Nemesis										false	false	true	
+61872e5d-d8fd-56ea-a59d-10ac5d89a800	59038	59038	Olympic Feud		Side Scheme	Encounter	/official/59038.jpg	encounter					Hercules Nemesis		2							1	false	false	false	
+718ca0b9-e190-5c99-a459-926b7928d068	59039	59039	Ares's Axe		Attachment	Encounter	/official/59039.jpg	encounter	Weapon				Hercules Nemesis										false	false	false	
+73031396-1de6-551c-889c-772888b2b418	59040	59040	God of War		Treachery	Encounter	/official/59040.jpg	encounter					Hercules Nemesis										false	false	false	
+87ab7f25-9771-5433-8962-f21daaa8d2b1	59041	59041	All Versus All		Side Scheme	Encounter	/official/59041.jpg	encounter					All Versus All		2	2						1	false	false	false	
+696c6926-8008-5680-ac61-9b3a508476b2	59042	59042	Hecate		Minion	Encounter	/official/59042.jpg	encounter	Olympus		4		All Versus All										false	false	true	
+c02a955f-43c4-5e3e-b3b8-fd2908f721c4	59043	59043	Kyknos		Minion	Encounter	/official/59043.jpg	encounter	Brute,Olympus		7		All Versus All										true	false	false	0
+ee37617f-b75a-5581-aa96-0c1de931e6af	59044	59044	Bewitched Officer		Minion	Encounter	/official/59044.jpg	encounter	Aerial,Dragon,Enthralled		5		All Versus All										false	false	false	
+bba46df4-f404-56b5-9b46-147cb304705a	59045	59045	Roving Mobs		Side Scheme	Encounter	/official/59045.jpg	encounter					All Versus All		3						1		false	false	false	0
+eb479f27-1e2c-5c96-a887-3018d7f3efcd	57001	57001	She-Hulk		Leader	Encounter	/official/57001.jpg	encounter	Avenger,Gamma			16	She-Hulk	I									false	false	false	
+134b3506-4106-5367-9353-ea655520cadb	57002	57002	She-Hulk		Leader	Encounter	/official/57002.jpg	encounter	Avenger,Gamma			20	She-Hulk	II									false	false	false	
+cc560196-2bdf-5348-959b-2f001a25b229	57003	57003	She-Hulk		Leader	Encounter	/official/57003.jpg	encounter	Avenger,Gamma			20	She-Hulk	III									false	false	false	
+19f32c2f-5584-5619-9025-9f2c180783fd	57004	57004	She-Hulk		Leader	Encounter	/official/57004.jpg	encounter	Avenger,Gamma			24	She-Hulk	IV									false	false	false	
+18560d4f-a19d-5a68-9eb2-82477eb3d057	57007	57007	Superhuman Strength		Attachment	Encounter	/official/57007.jpg	encounter	Superpower				She-Hulk										false	false	false	
+47fbb745-e7ce-5f37-a65b-e006744a1df9	57008	57008	Focused Rage		Attachment	Encounter	/official/57008.jpg	encounter	Superpower				She-Hulk										false	false	false	
+61ea18cb-4700-541e-9e88-54e2c6189c83	57009	57009	One-Two Punch		Treachery	Encounter	/official/57009.jpg	encounter					She-Hulk										false	false	false	
+988a49e0-d327-570d-b8d1-647df8c2385b	57010	57010	Ground Stomp		Treachery	Encounter	/official/57010.jpg	encounter					She-Hulk										false	false	false	
+129fa63f-8f03-5508-985a-5052d6299cc7	57011	57011	Gamma Slam		Treachery	Encounter	/official/57011.jpg	encounter					She-Hulk										false	false	false	
+435af20f-6196-57e8-ac27-43d3d8ba75ca	57012	57012	Legal Practice		Side Scheme	Encounter	/official/57012.jpg	encounter					She-Hulk			3			1				false	false	false	
+b02ac049-a2f7-5c84-9888-78309abf310b	57013	57013	S.H.I.E.L.D. Operator		Minion	Encounter	/official/57013.jpg	encounter	S.H.I.E.L.D.		3		S.H.I.E.L.D. Ops										false	false	true	
+7d677e66-74b8-5fd5-9b47-9827c3f4ccc8	57014	57014	Strategic Overwatch		Treachery	Encounter	/official/57014.jpg	encounter					S.H.I.E.L.D. Ops										false	false	false	
+ddd462b1-fabb-572e-9d01-79c81646367a	57015	57015	Rapid Response		Treachery	Encounter	/official/57015.jpg	encounter					S.H.I.E.L.D. Ops										false	false	false	
+0b09e0ca-2112-5c2d-ab67-cfd73888d0e3	57016	57016	Homeland Security		Side Scheme	Encounter	/official/57016.jpg	encounter					S.H.I.E.L.D. Ops		3	1			1				false	false	false	
+4b0ab15a-039f-579a-bad3-ea78bf2c6422	57017	57017	Atlas		Minion	Encounter	/official/57017.jpg	encounter	Giant,Thunderbolt		4		Thunderbolts										false	false	true	
+ddefe71b-1343-5d19-afc1-35b85a75b348	57018	57018	Songbird		Minion	Encounter	/official/57018.jpg	encounter	Aerial,Thunderbolt		3		Thunderbolts										false	false	true	
+858e6f29-6c25-53e4-b728-8d973d67707f	57019	57019	Penance		Minion	Encounter	/official/57019.jpg	encounter	Thunderbolt		4		Thunderbolts										false	false	false	
+f40283ab-6970-5625-a543-2bf35b94a8ae	57020	57020	Justice Like Lightning		Treachery	Encounter	/official/57020.jpg	encounter					Thunderbolts										false	false	false	
+0bf17544-7223-5579-9477-9133b68c56cb	57021	57021	The Thunderbolts		Side Scheme	Encounter	/official/57021.jpg	encounter					Thunderbolts		3	1						1	false	false	false	
+644c5be0-10c8-5ccd-9663-e368dee9172a	57022	57022	Taskmaster		Minion	Encounter	/official/57022.jpg	encounter	Elite,Thunderbolt		6		Taskmaster										true	false	true	
+fc682910-09ac-5696-a754-1391273e24b2	57023	57023	Taskmaster's Sword		Attachment	Encounter	/official/57023.jpg	encounter	Weapon				Taskmaster										false	false	false	
+8fba59a1-c254-50a2-82b4-0fe4f7a131dc	57024	57024	Taskmaster's Shield		Attachment	Encounter	/official/57024.jpg	encounter	Armor				Taskmaster										false	false	false	
+aa3dca1b-8051-5ead-8863-7afd2f93ee42	57025	57025	Mimicked Move		Treachery	Encounter	/official/57025.jpg	encounter					Taskmaster										false	false	false	
+6d8bf726-57d9-5060-b352-af336ea9a5b6	57026	57026	Taskmaster's Academy		Side Scheme	Encounter	/official/57026.jpg	encounter					Taskmaster		3	1				1			false	false	false	
+b2ad54a3-689b-52f3-ade7-7e45c95db10f	57027	57027	Jester		Minion	Encounter	/official/57027.jpg	encounter	Thunderbolt		3		Deadly Duo										false	false	true	
+2d833525-1f60-580b-82ca-9decb6e4d639	57028	57028	Jack O'Lantern		Minion	Encounter	/official/57028.jpg	encounter	Thunderbolt		3		Deadly Duo										false	false	true	
+f5a717dd-fa25-511c-9e63-9ee90ca8bd62	57029	57029	Mad Jack's Platform		Attachment	Encounter	/official/57029.jpg	encounter	Tech				Deadly Duo										false	false	false	
+d293f531-7c87-5dd4-ac50-af21b60bc25a	57030	57030	Jester's Yo-Yo		Treachery	Encounter	/official/57030.jpg	encounter					Deadly Duo										false	false	false	
+ab6274a3-1200-5bbd-9802-bab59ced36ee	57031	57031	Deadly Duo		Side Scheme	Encounter	/official/57031.jpg	encounter					Deadly Duo		3	1					1		false	false	false	
+a749010a-3d67-5d74-917b-534fd177fd6c	57032	57032	You're Out of Order!		Event	Basic	/official/57032.jpg	player					She-Hulk Rewards										false	false	false	
+1562ad6e-6c3e-59ce-925f-333fb2be6571	57033	57033	She-Hulk Smash		Event	Basic	/official/57033.jpg	player					She-Hulk Rewards										false	false	false	
+c2946bad-3064-5d1d-b658-ff065dc58e74	57034	57034	Make Me Angry		Upgrade	Basic	/official/57034.jpg	player					She-Hulk Rewards										false	false	false	
+8ae1c7f8-15e6-5564-aac4-062c6d117409	57035	57035	Legal Counsel		Resource	Basic	/official/57035.jpg	player					She-Hulk Rewards										false	false	false	
+09ee3495-d1ad-5b3e-8c4f-872b42c4037e	57040	57040	Vision		Leader	Encounter	/official/57040.jpg	encounter	Aerial,Avenger			14	Vision	I									false	false	false	
+c894118b-2eae-5562-a16a-10a05fa27678	57041	57041	Vision		Leader	Encounter	/official/57041.jpg	encounter	Aerial,Avenger			18	Vision	II									false	false	false	
+fdb0f4a1-51d8-5af4-bd7b-59f68440e6b4	57042	57042	Vision		Leader	Encounter	/official/57042.jpg	encounter	Aerial,Avenger			18	Vision	III									false	false	false	
+eff44211-f503-50c8-9588-08008feb748b	57043	57043	Vision		Leader	Encounter	/official/57043.jpg	encounter	Aerial,Avenger			22	Vision	IV									false	false	false	
+d5d8d1bc-72aa-57a9-9369-4aad56b16f9f	57046B	57046b	Intangible		Attachment	Encounter	/official/57046B.jpg	multi_sided	Superpower				Vision										false	true	false	
+bf25f30d-4277-5c6a-ad10-86f604000d4d	57047	57047	Solar Gem		Attachment	Encounter	/official/57047.jpg	encounter	Item				Vision										false	false	false	
+23034610-1092-58fe-b25f-2f5cbd561d87	57048	57048	Vision's Cape		Attachment	Encounter	/official/57048.jpg	encounter	Item				Vision										false	false	false	
+d7d5a764-3651-5a78-8050-541561f088dc	57049	57049	Mass Increase		Attachment	Encounter	/official/57049.jpg	encounter	Superpower				Vision										false	false	false	
+a4522d7f-b762-5a2c-9514-e6178f65cfcb	57050	57050	Density Control		Attachment	Encounter	/official/57050.jpg	encounter	Superpower				Vision										false	false	false	
+b61510c3-19e6-5637-a08a-3a9814ba269d	57051	57051	Solar Beam		Treachery	Encounter	/official/57051.jpg	encounter					Vision										false	false	false	
+748a821f-024c-58da-be2b-4e8424168494	57052	57052	Superdense Strike		Treachery	Encounter	/official/57052.jpg	encounter					Vision										false	false	false	
+f164441f-2719-5482-9fe1-c35461eacb21	57053	57053	Phase Disruption		Treachery	Encounter	/official/57053.jpg	encounter					Vision										false	false	false	
+2bae6c6e-e5cc-535b-8eaf-c16fd89f8d34	57054	57054	Just Passing Through		Side Scheme	Encounter	/official/57054.jpg	encounter					Vision			3						1	false	false	false	
+d7ad9200-0a5e-5d51-9b2b-4d86e80621aa	57055	57055	Patriot		Minion	Encounter	/official/57055.jpg	encounter	Young Avenger		4		Young Avengers										true	false	true	
+bc0f561e-762a-5938-a2c7-b841249b920d	57056	57056	Hawkeye		Minion	Encounter	/official/57056.jpg	encounter	Young Avenger		3		Young Avengers										false	false	true	
+b8de23c6-5ad3-5e00-859c-d7fe90a3222b	57057	57057	Stature		Minion	Encounter	/official/57057.jpg	encounter	Giant,Young Avenger		5		Young Avengers										false	false	false	
+f5a06023-9206-56e7-b1f9-0163e7612555	57058	57058	Teenage Superheroes		Treachery	Encounter	/official/57058.jpg	encounter					Young Avengers										false	false	false	
+1820b02f-c938-52c0-a917-19318effbf0e	57059	57059	Young Avengers		Side Scheme	Encounter	/official/57059.jpg	encounter					Young Avengers		3	1			1				false	false	false	
+54b8aead-b791-5555-a3ab-cd757576816b	57060	57060	Speed		Minion	Encounter	/official/57060.jpg	encounter	Young Avenger		3		Scarlet Twins										false	false	true	
+59efcfde-6156-598b-9392-b6b2bb6a1523	57061	57061	Wiccan		Minion	Encounter	/official/57061.jpg	encounter	Young Avenger		3		Scarlet Twins										false	false	true	
+34480963-5f76-5b2d-a623-a7aaa3b8e9d0	57062	57062	Superspeed		Treachery	Encounter	/official/57062.jpg	encounter					Scarlet Twins										false	false	false	
+b883b3f5-bf6d-5e8b-8816-f43382815a0f	57063	57063	Spellcasting		Obligation	Encounter	/official/57063.jpg	encounter					Scarlet Twins										false	false	false	
+fabe57e0-be13-5e9d-81ba-a44a2715ab78	57064	57064	Superpowered Siblings		Side Scheme	Encounter	/official/57064.jpg	encounter					Scarlet Twins		3	1				1			false	false	false	
+51b4bf54-8ac0-56b6-8d1c-605dd39db897	57065	57065	Moon Knight		Minion	Encounter	/official/57065.jpg	encounter	Defender,Elite		5		Moon Knight										true	false	true	
+4c8ff0f4-fc98-58bd-ad4a-065c62f0ba49	57066	57066	Crescent Dart		Attachment	Encounter	/official/57066.jpg	encounter	Weapon				Moon Knight										false	false	false	
+7ce69557-674f-5500-b083-83871646085c	57067	57067	Fist of Khonshu		Treachery	Encounter	/official/57067.jpg	encounter					Moon Knight										false	false	false	
+747dd060-bd3a-5ccd-9be8-da3aa1ca0238	57068	57068	Khonshu's Avatar		Side Scheme	Encounter	/official/57068.jpg	encounter					Moon Knight		3	1						1	false	false	false	
+be11d8c2-052b-5ed4-b45d-437e61b80aa3	57069	57069	Janus		Minion	Encounter	/official/57069.jpg	encounter	Atlantis		3		Royal Guard										false	false	true	
+0bd7446e-3596-5804-8981-9ae133f1ceaf	57070	57070	Amir		Minion	Encounter	/official/57070.jpg	encounter	Atlantis		3		Royal Guard										false	false	true	
+07ed1049-1a5a-5bba-960b-954a141b417c	57071	57071	Atlanteans		Treachery	Encounter	/official/57071.jpg	encounter					Royal Guard										false	false	false	
+207a9d1d-1276-59ed-ab9c-13fbdded6447	57072	57072	Blood Debt		Obligation	Encounter	/official/57072.jpg	encounter					Royal Guard							1			false	false	false	
+4b16b046-e9f8-5913-8543-efc07976dee8	57073	57073	The Royal Guard		Side Scheme	Encounter	/official/57073.jpg	encounter					Royal Guard		3	1					1		false	false	false	
+ab877d79-5ada-5443-8357-2803c4dee1e8	57074	57074	Calculated Risk		Event	Basic	/official/57074.jpg	player					Vision Rewards										false	false	false	
+c1129c42-3873-5b89-b96d-f894769d11b6	57075	57075	Synthezoid Strike		Event	Basic	/official/57075.jpg	player					Vision Rewards										false	false	false	
+66412e0f-f6dc-5774-9204-ca71955fe575	57076	57076	Phased Out		Event	Basic	/official/57076.jpg	player					Vision Rewards										false	false	false	
+20c445a6-5e57-50fe-b45e-9b02f79b4de7	57077	57077	Android Assistance		Resource	Basic	/official/57077.jpg	player					Vision Rewards										false	false	false	
+ea42de82-a75c-5d63-8a36-a6fbd31bbef7	57005A	57005a	Superhero Registration Act		Main Scheme	Encounter	/official/57005A.jpg	multi_sided					Registration	1A									false	false	false	
+ea42de82-a75c-5d63-8a36-a6fbd31bbef7	57005B	57005b	Enforce the Law		Main Scheme	Encounter	/official/57005B.jpg	multi_sided					Registration	1B	0			1					false	false	false	
+5902b342-e1c6-5a10-80f4-43e2aa08ff42	57006A	57006a	Pro-Registration Tactics		Main Scheme	Encounter	/official/57006A.jpg	multi_sided					Registration	2A									false	false	false	
+5902b342-e1c6-5a10-80f4-43e2aa08ff42	57006B	57006b	Mighty Avengers		Main Scheme	Encounter	/official/57006B.jpg	multi_sided					Registration	2B	0			1					false	false	false	
+cbafe8af-d3c4-5ceb-a0f8-c397dd4b13c5	57036	57036	Righteous Cause		Treachery	Encounter	/official/56125.jpg	encounter					Standard PVP										false	false	false	
+79744902-f2f0-5063-815f-16bbcba47fe7	57037	57037	Whatever It Takes		Treachery	Encounter	/official/56126.jpg	encounter					Standard PVP										false	false	false	
+14f1e433-39a6-5aa5-9c44-a6d13917e0a1	57038	57038	Targeted Strike		Treachery	Encounter	/official/56127.jpg	encounter					Standard PVP										false	false	false	
+ea5313d1-983f-5bf7-b14d-6bcdc771c9e1	57039A	57039a	Choosing Sides		Side Scheme	Encounter	/official/56128A.jpg	multi_sided					Standard PVP			4							false	true	false	
+ea5313d1-983f-5bf7-b14d-6bcdc771c9e1	57039B	57039b	Now It's Personal		Obligation	Encounter	/official/56128B.jpg	multi_sided					Standard PVP										false	false	false	
+a98846cd-084f-5c5a-a102-02f1a185e0b1	57044A	57044a	Superhero Resistance		Main Scheme	Encounter	/official/57044A.jpg	multi_sided					Resistance	1A									false	false	false	
+a98846cd-084f-5c5a-a102-02f1a185e0b1	57044B	57044b	Protect Secret Identities		Main Scheme	Encounter	/official/57044B.jpg	multi_sided					Resistance	1B	0			1					false	false	false	
+ade96f58-e446-5cf5-88ca-43adbadd3519	57045A	57045a	Resistance Tactics		Main Scheme	Encounter	/official/57045A.jpg	multi_sided					Resistance	2A									false	false	false	
+ade96f58-e446-5cf5-88ca-43adbadd3519	57045B	57045b	Expose Overreach		Main Scheme	Encounter	/official/57045B.jpg	multi_sided					Resistance	2B	0			1					false	false	false	
+4877a10e-30af-5241-a08b-6e90729091f2	57078	57078	Righteous Cause		Treachery	Encounter	/official/56125.jpg	encounter					Standard PVP										false	false	false	
+ff823c62-61e9-53f9-aca5-579216cc7f29	57079	57079	Whatever It Takes		Treachery	Encounter	/official/56126.jpg	encounter					Standard PVP										false	false	false	
+308d89c0-936f-52ce-b281-3bb40f9b54f2	57080	57080	Targeted Strike		Treachery	Encounter	/official/56127.jpg	encounter					Standard PVP										false	false	false	
+e7782310-5761-5e3a-b983-4040d8bb6167	57081A	57081a	Choosing Sides		Side Scheme	Encounter	/official/56128A.jpg	multi_sided					Standard PVP			4							false	true	false	
+e7782310-5761-5e3a-b983-4040d8bb6167	57081B	57081b	Now It's Personal		Obligation	Encounter	/official/56128B.jpg	multi_sided					Standard PVP										false	false	false	

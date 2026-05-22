@@ -156,337 +156,17 @@
                 "deckListId": "Spider-Woman Rewards (Campaign)"
               }
             ]
-          }
-        ]
-      },
-      {
-        "label": "Scenarios",
-        "subMenus": [
-          {
-            "label": "Core Set",
-            "deckLists": [
-              {
-                "label": "Rhino",
-                "deckListId": "Rhino (Scenario)"
-              },
-              {
-                "label": "Klaw",
-                "deckListId": "Klaw (Scenario)"
-              },
-              {
-                "label": "Ultron",
-                "deckListId": "Ultron (Scenario)"
-              }
-            ]
           },
           {
-            "label": "The Green Goblin",
+            "label": "Synthezoid Smackdown",
             "deckLists": [
               {
-                "label": "Risky Business",
-                "deckListId": "Risky Business (Scenario)"
+                "label": "She-Hulk Rewards",
+                "deckListId": "She-Hulk Rewards (Campaign)"
               },
               {
-                "label": "Mutagen Formula",
-                "deckListId": "Mutagen Formula (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "The Rise of Red Skull",
-            "deckLists": [
-              {
-                "label": "Crossbones",
-                "deckListId": "Crossbones (Scenario)"
-              },
-              {
-                "label": "Absorbing Man",
-                "deckListId": "Absorbing Man (Scenario)"
-              },
-              {
-                "label": "Taskmaster",
-                "deckListId": "Taskmaster (Scenario)"
-              },
-              {
-                "label": "Zola",
-                "deckListId": "Zola (Scenario)"
-              },
-              {
-                "label": "Red Skull",
-                "deckListId": "Red Skull (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "The Wrecking Crew",
-            "deckLists": [
-              {
-                "label": "Wrecking Crew",
-                "deckListId": "Wrecking Crew (Scenario)"
-              },
-              {
-                "label": "Wrecker",
-                "deckListId": "Wrecker (Scenario)"
-              },
-              {
-                "label": "Thunderball",
-                "deckListId": "Thunderball (Scenario)"
-              },
-              {
-                "label": "Piledriver",
-                "deckListId": "Piledriver (Scenario)"
-              },
-              {
-                "label": "Bulldozer",
-                "deckListId": "Bulldozer (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "The Once and Future Kang",
-            "deckLists": [
-              {
-                "label": "Kang",
-                "deckListId": "Kang (Scenario)"
-              },
-              {
-                "label": "Expert Kang",
-                "deckListId": "Expert Kang (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "Galaxy's Most Wanted",
-            "deckLists": [
-              {
-                "label": "Brotherhood of Badoon",
-                "deckListId": "Brotherhood of Badoon (Scenario)"
-              },
-              {
-                "label": "Infiltrate the Museum",
-                "deckListId": "Infiltrate the Museum (Scenario)"
-              },
-              {
-                "label": "Escape the Museum",
-                "deckListId": "Escape the Museum (Scenario)"
-              },
-              {
-                "label": "Nebula",
-                "deckListId": "Nebula (Scenario)"
-              },
-              {
-                "label": "Ronan the Accuser",
-                "deckListId": "Ronan the Accuser (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "The Mad Titan's Shadow",
-            "deckLists": [
-              {
-                "label": "Ebony Maw",
-                "deckListId": "Ebony Maw (Scenario)"
-              },
-              {
-                "label": "Tower Defense",
-                "deckListId": "Tower Defense (Scenario)"
-              },
-              {
-                "label": "Thanos",
-                "deckListId": "Thanos (Scenario)"
-              },
-              {
-                "label": "Hela",
-                "deckListId": "Hela (Scenario)"
-              },
-              {
-                "label": "Loki",
-                "deckListId": "Loki (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "The Hood",
-            "deckLists": [
-              {
-                "label": "The Hood",
-                "deckListId": "The Hood (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "Sinister Motives",
-            "deckLists": [
-              {
-                "label": "Sandman",
-                "deckListId": "Sandman (Scenario)"
-              },
-              {
-                "label": "Venom",
-                "deckListId": "Venom (Scenario)"
-              },
-              {
-                "label": "Mysterio",
-                "deckListId": "Mysterio (Scenario)"
-              },
-              {
-                "label": "The Sinister Six",
-                "deckListId": "The Sinister Six (Scenario)"
-              },
-              {
-                "label": "Venom Goblin",
-                "deckListId": "Venom Goblin (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "Mutant Genesis",
-            "deckLists": [
-              {
-                "label": "Sabretooth",
-                "deckListId": "Sabretooth (Scenario)"
-              },
-              {
-                "label": "Project Wideawake",
-                "deckListId": "Project Wideawake (Scenario)"
-              },
-              {
-                "label": "Master Mold",
-                "deckListId": "Master Mold (Scenario)"
-              },
-              {
-                "label": "Mansion Attack",
-                "deckListId": "Mansion Attack (Scenario)"
-              },
-              {
-                "label": "Magneto",
-                "deckListId": "Magneto (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "MojoMania",
-            "deckLists": [
-              {
-                "label": "MaGog",
-                "deckListId": "MaGog (Scenario)"
-              },
-              {
-                "label": "Spiral",
-                "deckListId": "Spiral (Scenario)"
-              },
-              {
-                "label": "Mojo",
-                "deckListId": "Mojo (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "NeXt Evolution",
-            "deckLists": [
-              {
-                "label": "Morlock Siege",
-                "deckListId": "Morlock Siege (Scenario)"
-              },
-              {
-                "label": "On the Run",
-                "deckListId": "On the Run (Scenario)"
-              },
-              {
-                "label": "Juggernaut",
-                "deckListId": "Juggernaut (Scenario)"
-              },
-              {
-                "label": "Mister Sinister",
-                "deckListId": "Mister Sinister (Scenario)"
-              },
-              {
-                "label": "Stryfe",
-                "deckListId": "Stryfe (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "Age of Apocalypse",
-            "deckLists": [
-              {
-                "label": "Unus",
-                "deckListId": "Unus (Scenario)"
-              },
-              {
-                "label": "Four Horsemen",
-                "deckListId": "Four Horsemen (Scenario)"
-              },
-              {
-                "label": "Apocalypse",
-                "deckListId": "Apocalypse (Scenario)"
-              },
-              {
-                "label": "Dark Beast",
-                "deckListId": "Dark Beast (Scenario)"
-              },
-              {
-                "label": "En Sabah Nur",
-                "deckListId": "En Sabah Nur (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "Agents of S.H.I.E.L.D.",
-            "deckLists": [
-              {
-                "label": "Black Widow",
-                "deckListId": "Black Widow (Scenario)"
-              },
-              {
-                "label": "Batroc",
-                "deckListId": "Batroc (Scenario)"
-              },
-              {
-                "label": "M.O.D.O.K.",
-                "deckListId": "M.O.D.O.K. (Scenario)"
-              },
-              {
-                "label": "Thunderbolts",
-                "deckListId": "Thunderbolts (Scenario)"
-              },
-              {
-                "label": "Baron Zemo",
-                "deckListId": "Baron Zemo (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "Trickster Takeover",
-            "deckLists": [
-              {
-                "label": "Enchantress",
-                "deckListId": "Enchantress (Scenario)"
-              },
-              {
-                "label": "God of Lies",
-                "deckListId": "God of Lies (Scenario)"
-              }
-            ]
-          },
-          {
-            "label": "Civil War",
-            "deckLists": [
-              {
-                "label": "Iron Man",
-                "deckListId": "Iron Man (Leader)"
-              },
-              {
-                "label": "Captain Marvel",
-                "deckListId": "Captain Marvel (Leader)"
-              },
-              {
-                "label": "Captain America",
-                "deckListId": "Captain America (Leader)"
-              },
-              {
-                "label": "Spider-Woman",
-                "deckListId": "Spider-Woman (Leader)"
+                "label": "Vision Rewards",
+                "deckListId": "Vision Rewards (Campaign)"
               }
             ]
           }
@@ -1199,6 +879,398 @@
                 "deckListId": "Cloak & Dagger (Modular)"
               }
             ]
+          },
+          {
+            "label": "Synthezoid Smackdown",
+            "deckLists": [
+              {
+                "label": "S.H.I.E.L.D. Ops",
+                "deckListId": "S.H.I.E.L.D. Ops (Modular)"
+              },
+              {
+                "label": "Thunderbolts",
+                "deckListId": "Thunderbolts (Modular)"
+              },
+              {
+                "label": "Taskmaster",
+                "deckListId": "Taskmaster (Modular)"
+              },
+              {
+                "label": "Deadly Duo",
+                "deckListId": "Deadly Duo (Modular)"
+              },
+              {
+                "label": "Young Avengers",
+                "deckListId": "Young Avengers (Modular)"
+              },
+              {
+                "label": "Scarlet Twins",
+                "deckListId": "Scarlet Twins (Modular)"
+              },
+              {
+                "label": "Moon Knight",
+                "deckListId": "Moon Knight (Modular)"
+              },
+              {
+                "label": "Royal Guard",
+                "deckListId": "Royal Guard (Modular)"
+              }
+            ]
+          },
+          {
+            "label": "Hercules",
+            "deckLists": [
+              {
+                "label": "All Versus All",
+                "deckListId": "All Versus All (Modular)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Scenarios",
+        "subMenus": [
+          {
+            "label": "Core Set",
+            "deckLists": [
+              {
+                "label": "Rhino",
+                "deckListId": "Rhino (Scenario)"
+              },
+              {
+                "label": "Klaw",
+                "deckListId": "Klaw (Scenario)"
+              },
+              {
+                "label": "Ultron",
+                "deckListId": "Ultron (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Green Goblin",
+            "deckLists": [
+              {
+                "label": "Risky Business",
+                "deckListId": "Risky Business (Scenario)"
+              },
+              {
+                "label": "Mutagen Formula",
+                "deckListId": "Mutagen Formula (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Rise of Red Skull",
+            "deckLists": [
+              {
+                "label": "Crossbones",
+                "deckListId": "Crossbones (Scenario)"
+              },
+              {
+                "label": "Absorbing Man",
+                "deckListId": "Absorbing Man (Scenario)"
+              },
+              {
+                "label": "Taskmaster",
+                "deckListId": "Taskmaster (Scenario)"
+              },
+              {
+                "label": "Zola",
+                "deckListId": "Zola (Scenario)"
+              },
+              {
+                "label": "Red Skull",
+                "deckListId": "Red Skull (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Wrecking Crew",
+            "deckLists": [
+              {
+                "label": "Wrecking Crew",
+                "deckListId": "Wrecking Crew (Scenario)"
+              },
+              {
+                "label": "Wrecker",
+                "deckListId": "Wrecker (Scenario)"
+              },
+              {
+                "label": "Thunderball",
+                "deckListId": "Thunderball (Scenario)"
+              },
+              {
+                "label": "Piledriver",
+                "deckListId": "Piledriver (Scenario)"
+              },
+              {
+                "label": "Bulldozer",
+                "deckListId": "Bulldozer (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Once and Future Kang",
+            "deckLists": [
+              {
+                "label": "Kang",
+                "deckListId": "Kang (Scenario)"
+              },
+              {
+                "label": "Expert Kang",
+                "deckListId": "Expert Kang (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Galaxy's Most Wanted",
+            "deckLists": [
+              {
+                "label": "Brotherhood of Badoon",
+                "deckListId": "Brotherhood of Badoon (Scenario)"
+              },
+              {
+                "label": "Infiltrate the Museum",
+                "deckListId": "Infiltrate the Museum (Scenario)"
+              },
+              {
+                "label": "Escape the Museum",
+                "deckListId": "Escape the Museum (Scenario)"
+              },
+              {
+                "label": "Nebula",
+                "deckListId": "Nebula (Scenario)"
+              },
+              {
+                "label": "Ronan the Accuser",
+                "deckListId": "Ronan the Accuser (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Mad Titan's Shadow",
+            "deckLists": [
+              {
+                "label": "Ebony Maw",
+                "deckListId": "Ebony Maw (Scenario)"
+              },
+              {
+                "label": "Tower Defense",
+                "deckListId": "Tower Defense (Scenario)"
+              },
+              {
+                "label": "Thanos",
+                "deckListId": "Thanos (Scenario)"
+              },
+              {
+                "label": "Hela",
+                "deckListId": "Hela (Scenario)"
+              },
+              {
+                "label": "Loki",
+                "deckListId": "Loki (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "The Hood",
+            "deckLists": [
+              {
+                "label": "The Hood",
+                "deckListId": "The Hood (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Sinister Motives",
+            "deckLists": [
+              {
+                "label": "Sandman",
+                "deckListId": "Sandman (Scenario)"
+              },
+              {
+                "label": "Venom",
+                "deckListId": "Venom (Scenario)"
+              },
+              {
+                "label": "Mysterio",
+                "deckListId": "Mysterio (Scenario)"
+              },
+              {
+                "label": "The Sinister Six",
+                "deckListId": "The Sinister Six (Scenario)"
+              },
+              {
+                "label": "Venom Goblin",
+                "deckListId": "Venom Goblin (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Mutant Genesis",
+            "deckLists": [
+              {
+                "label": "Sabretooth",
+                "deckListId": "Sabretooth (Scenario)"
+              },
+              {
+                "label": "Project Wideawake",
+                "deckListId": "Project Wideawake (Scenario)"
+              },
+              {
+                "label": "Master Mold",
+                "deckListId": "Master Mold (Scenario)"
+              },
+              {
+                "label": "Mansion Attack",
+                "deckListId": "Mansion Attack (Scenario)"
+              },
+              {
+                "label": "Magneto",
+                "deckListId": "Magneto (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "MojoMania",
+            "deckLists": [
+              {
+                "label": "MaGog",
+                "deckListId": "MaGog (Scenario)"
+              },
+              {
+                "label": "Spiral",
+                "deckListId": "Spiral (Scenario)"
+              },
+              {
+                "label": "Mojo",
+                "deckListId": "Mojo (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "NeXt Evolution",
+            "deckLists": [
+              {
+                "label": "Morlock Siege",
+                "deckListId": "Morlock Siege (Scenario)"
+              },
+              {
+                "label": "On the Run",
+                "deckListId": "On the Run (Scenario)"
+              },
+              {
+                "label": "Juggernaut",
+                "deckListId": "Juggernaut (Scenario)"
+              },
+              {
+                "label": "Mister Sinister",
+                "deckListId": "Mister Sinister (Scenario)"
+              },
+              {
+                "label": "Stryfe",
+                "deckListId": "Stryfe (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Age of Apocalypse",
+            "deckLists": [
+              {
+                "label": "Unus",
+                "deckListId": "Unus (Scenario)"
+              },
+              {
+                "label": "Four Horsemen",
+                "deckListId": "Four Horsemen (Scenario)"
+              },
+              {
+                "label": "Apocalypse",
+                "deckListId": "Apocalypse (Scenario)"
+              },
+              {
+                "label": "Dark Beast",
+                "deckListId": "Dark Beast (Scenario)"
+              },
+              {
+                "label": "En Sabah Nur",
+                "deckListId": "En Sabah Nur (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Agents of S.H.I.E.L.D.",
+            "deckLists": [
+              {
+                "label": "Black Widow",
+                "deckListId": "Black Widow (Scenario)"
+              },
+              {
+                "label": "Batroc",
+                "deckListId": "Batroc (Scenario)"
+              },
+              {
+                "label": "M.O.D.O.K.",
+                "deckListId": "M.O.D.O.K. (Scenario)"
+              },
+              {
+                "label": "Thunderbolts",
+                "deckListId": "Thunderbolts (Scenario)"
+              },
+              {
+                "label": "Baron Zemo",
+                "deckListId": "Baron Zemo (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Trickster Takeover",
+            "deckLists": [
+              {
+                "label": "Enchantress",
+                "deckListId": "Enchantress (Scenario)"
+              },
+              {
+                "label": "God of Lies",
+                "deckListId": "God of Lies (Scenario)"
+              }
+            ]
+          },
+          {
+            "label": "Civil War",
+            "deckLists": [
+              {
+                "label": "Iron Man",
+                "deckListId": "Iron Man (Leader)"
+              },
+              {
+                "label": "Captain Marvel",
+                "deckListId": "Captain Marvel (Leader)"
+              },
+              {
+                "label": "Captain America",
+                "deckListId": "Captain America (Leader)"
+              },
+              {
+                "label": "Spider-Woman",
+                "deckListId": "Spider-Woman (Leader)"
+              }
+            ]
+          },
+          {
+            "label": "Synthezoid Smackdown",
+            "deckLists": [
+              {
+                "label": "She-Hulk",
+                "deckListId": "She-Hulk (Leader)"
+              },
+              {
+                "label": "Vision",
+                "deckListId": "Vision (Leader)"
+              }
+            ]
           }
         ]
       },
@@ -1456,6 +1528,14 @@
           {
             "label": "Hulkling",
             "deckListId": "Hulkling (Hero)"
+          },
+          {
+            "label": "Wonder Man",
+            "deckListId": "Wonder Man (Hero)"
+          },
+          {
+            "label": "Hercules",
+            "deckListId": "Hercules (Hero)"
           }
         ]
       },
@@ -1713,6 +1793,14 @@
           {
             "label": "Hulkling Nemesis",
             "deckListId": "Hulkling Nemesis (Nemesis)"
+          },
+          {
+            "label": "Wonder Man Nemesis",
+            "deckListId": "Wonder Man Nemesis (Nemesis)"
+          },
+          {
+            "label": "Hercules Nemesis",
+            "deckListId": "Hercules Nemesis (Nemesis)"
           }
         ]
       }
