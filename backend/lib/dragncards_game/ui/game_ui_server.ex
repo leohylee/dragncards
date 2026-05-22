@@ -207,8 +207,10 @@ defmodule DragnCardsGame.GameUIServer do
     # IO.inspect(path)
     # IO.inspect(:code.priv_dir(:dragncards))
     # gameui = put_in(gameui["pypid"], :erlang.pid_to_list(pypid))
+    cached_timeout = timeout_for_supporter_level(gameui["createdBy"])
+    gameui = Map.put(gameui, "cachedTimeout", cached_timeout)
     GameRegistry.add(gameui["roomSlug"], gameui)
-    {:ok, gameui, timeout(gameui)}
+    {:ok, gameui, cached_timeout}
   end
 
   def handle_call(:state, _from, state) do
@@ -217,6 +219,10 @@ defmodule DragnCardsGame.GameUIServer do
 
   def handle_call({:game_action, user_id, action, options}, _from, gameui) do
     Logger.debug("handle game_action #{user_id} #{action}")
+    gameui = case user_id && Users.get_user(user_id) do
+      nil -> gameui
+      user -> put_in(gameui, ["options", "language"], user.language)
+    end
     gameui = case Application.get_env(:dragncards, :env_mode) do
       :prod ->
         try do
@@ -398,29 +404,78 @@ defmodule DragnCardsGame.GameUIServer do
   end
 
   defp save_and_reply(new_gameui) do
-    # Async GameRegistry.update Should improve performance,
-    # but causes tests to fail.  Not sure it's a real failure
-    # spawn_link(fn ->
-
-    GameRegistry.update(new_gameui["roomSlug"], new_gameui)
-    # end)
+    Task.start(fn ->
+      GameRegistry.update(new_gameui["roomSlug"], new_gameui)
+    end)
 
     spawn_link(fn ->
       :ets.insert(:game_uis, {new_gameui["roomSlug"], new_gameui})
     end)
 
-    {:reply, new_gameui, new_gameui, timeout(new_gameui)}
+    {:reply, new_gameui, new_gameui, new_gameui["cachedTimeout"] || @timeout}
   end
 
   # timeout/1
   # Given the current state of the game, what should the
-  # GenServer timeout be? (Games with winners expire quickly)
-  defp timeout(_state) do
-    @timeout
+  # GenServer timeout be? Depends on room creator's supporter level.
+  defp timeout(state) do
+    state["cachedTimeout"] || @timeout
+  end
+
+  defp timeout_for_supporter_level(nil), do: @timeout
+  defp timeout_for_supporter_level(creator_id) do
+    level = Users.get_supporter_level(creator_id)
+    cond do
+      level >= 10 -> :timer.hours(168)   # 7 days
+      level >= 5  -> :timer.hours(72)    # 3 days
+      level >= 3  -> :timer.hours(24)    # 24 hours
+      true        -> @timeout            # 1 hour
+    end
+  end
+
+  def terminate({:shutdown, :timeout}, state) do
+    Logger.info("Room #{state["roomSlug"]} timed out due to inactivity")
+
+    # Auto-save the game before the room is cleaned up
+    try do
+      game = state["game"]
+      creator_id = state["createdBy"]
+      deltas = state["deltas"] || []
+      if game != nil and creator_id != nil do
+        case DragnCardsGame.Game.save_replay_to_db(game, creator_id, deltas) do
+          {:ok, _msg} -> Logger.info("Auto-saved game on timeout for room #{state["roomSlug"]}")
+          {:error, msg} -> Logger.error("Failed to auto-save on timeout: #{msg}")
+        end
+      end
+    rescue
+      e -> Logger.error("Error auto-saving on timeout for room #{state["roomSlug"]}: #{inspect e}")
+    end
+
+    game = state["game"]
+    plugin_id = if game, do: game["pluginId"], else: nil
+    game_uuid = if game, do: game["id"], else: nil
+
+    DragnCardsWeb.Endpoint.broadcast(
+      "room:#{state["roomSlug"]}",
+      "send_alert",
+      %{
+        "level" => "warning",
+        "text" => "This room has timed out due to inactivity. Your game has been saved.",
+        "action" => "room_timeout",
+        "autoClose" => false,
+        "pluginId" => plugin_id,
+        "replayUuid" => game_uuid
+      }
+    )
+    cleanup_room(state)
   end
 
   def terminate(reason, state) do
     Logger.info("Terminate #{inspect reason} for #{state["roomSlug"]}")
+    cleanup_room(state)
+  end
+
+  defp cleanup_room(state) do
     :ets.delete(:game_uis, state["roomSlug"])
     try do
       GameRegistry.remove(state["roomSlug"])

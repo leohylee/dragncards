@@ -11,23 +11,24 @@ export const useImportViaUrl = () => {
   const gameDef = useGameDefinition();
   const doActionList = useDoActionList();
   const cardDb = useCardDb();
-  return async () => {
+  return async (prefilledUrl) => {
     if (gameDef["pluginName"].includes("LotR Living Card Game")) {
-      await importViaUrlRingsDb(importLoadList, doActionList, playerN);
+      await importViaUrlRingsDb(importLoadList, doActionList, playerN, prefilledUrl);
     } else if (gameDef["pluginName"].includes("Marvel Champions: The Card Game")) {
-      await importViaUrlMarvelCdb(importLoadList, doActionList, playerN, cardDb);
+      await importViaUrlMarvelCdb(importLoadList, doActionList, playerN, cardDb, prefilledUrl);
     } else if (gameDef["pluginName"].includes("Earthborne Rangers")) {
-      await importViaUrlRangersDb(importLoadList, doActionList, playerN, cardDb);
+      await importViaUrlRangersDb(importLoadList, doActionList, playerN, cardDb, prefilledUrl);
     } else if (gameDef["pluginName"].includes("Arkham Horror Living Card Game")) {
-      await importViaUrlArkhamDb(importLoadList, doActionList, playerN, cardDb);
+      await importViaUrlArkhamDb(importLoadList, doActionList, playerN, cardDb, prefilledUrl);
     } else {
       alert("Importing via URL is not yet supported for this game. Please request this feature on Discord.");
     }
   }
 }
 
-const importViaUrlRingsDb = async (importLoadList, doActionList, playerN) => {
-  const ringsDbUrl = prompt("Paste full RingsDB URL","");
+const importViaUrlRingsDb = async (importLoadList, doActionList, playerN, prefilledUrl) => {
+  const ringsDbUrl = prefilledUrl || prompt("Paste full RingsDB URL","");
+  if (!ringsDbUrl) return;
   if (!ringsDbUrl.includes("ringsdb.com") && !ringsDbUrl.includes("localhost")) {
     alert("Only importing from RingsDB or localhost is supported at this time.");
     return;
@@ -61,8 +62,9 @@ const importViaUrlRingsDb = async (importLoadList, doActionList, playerN) => {
   return loadRingsDb(importLoadList, doActionList, playerN, ringsDbDomain, ringsDbType, ringsDbId);
 }
 
-const importViaUrlArkhamDb = async (importLoadList, doActionList, playerN) => {
-  const arkhamDbUrl = prompt("Paste full ArkhamDB/arkham.build URL","");
+const importViaUrlArkhamDb = async (importLoadList, doActionList, playerN, cardDb, prefilledUrl) => {
+  const arkhamDbUrl = prefilledUrl || prompt("Paste full ArkhamDB/arkham.build URL","");
+  if (!arkhamDbUrl) return;
   if (!arkhamDbUrl.includes("arkhamdb.com") && !arkhamDbUrl.includes("arkham.build")) {
     alert("Only importing from ArkhamDB or arkhamdb.com is supported at this time.");
     return;
@@ -87,8 +89,9 @@ const importViaUrlArkhamDb = async (importLoadList, doActionList, playerN) => {
   return loadArkhamDb(importLoadList, doActionList, playerN, arkhamDbType, arkhamDbId);
 }
 
-const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, cardDb) => {
-  const dbUrl = prompt("Paste full MarvelCDB URL","");
+const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, cardDb, prefilledUrl) => {
+  const dbUrl = prefilledUrl || prompt("Paste full MarvelCDB URL","");
+  if (!dbUrl) return;
   if (!dbUrl.includes("marvelcdb.com") && !dbUrl.includes("localhost")) {
     alert("Only importing from MarvelCDB or localhost is supported at this time.");
     return;
@@ -113,8 +116,9 @@ const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, card
   return loadMarvelCdb(importLoadList, doActionList, playerN, dbDomain, dbType, dbId, cardDb, urlBase);
 }
 
-const importViaUrlRangersDb = async (importLoadList, doActionList, playerN, cardDb) => {
-  const dbUrl = prompt("Paste full RangersDB URL","");
+const importViaUrlRangersDb = async (importLoadList, doActionList, playerN, cardDb, prefilledUrl) => {
+  const dbUrl = prefilledUrl || prompt("Paste full RangersDB URL","");
+  if (!dbUrl) return;
   if (!dbUrl.includes("rangersdb.com")) {
     alert("Only importing from RangersDB is supported at this time.");
     return;

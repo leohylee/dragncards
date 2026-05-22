@@ -1,11 +1,12 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import RoomProviders from "./RoomProviders";
 import {useSetMessages} from '../../contexts/MessagesContext';
 import useChannel from "../../hooks/useChannel";
 import { applyDeltaRedo, appendDelta, setGameUi, setPlayerInfo, setSockets, setDeltas, setSpectators } from "../store/gameUiSlice";
 import useProfile from "../../hooks/useProfile";
-import { resetPlayerUi, setAlert, setPluginRepoUpdateGameDef, setReplayStep, setPlayerUiValues, overridePlayerUiValues } from "../store/playerUiSlice";
+import { resetPlayerUi, setAlert, setPluginRepoUpdateGameDef, setReplayStep, setPlayerUiValues, overridePlayerUiValues, setRoomNotFound } from "../store/playerUiSlice";
 import { PluginProvider } from "../../contexts/PluginContext";
 import store from "../../store";
 import { mergeObjects } from "../myplugins/uploadPluginFunctions";
@@ -17,12 +18,14 @@ import { usePlayerN } from "./hooks/usePlayerN";
 
 export const Room = ({ slug }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const roomSlug = useSelector(state => state.gameUi.roomSlug);
   const setMessages = useSetMessages();
   const myUser = useProfile();
   const playerN = usePlayerN();
   const sendLocalMessage = useSendLocalMessage();
   const [outOfSync, setOutOfSync] = useState(false);
+  const roomNotFound = useSelector(state => state.playerUi.roomNotFound);
   const myUserId = myUser?.id;
   const isPluginAuthor = useIsPluginAuthor();
   //const plugin = usePlugin();
@@ -97,9 +100,8 @@ export const Room = ({ slug }) => {
       dispatch(setPlayerInfo(payload));
     } else if (event === "users_changed" && payload !== null) {
       dispatch(setSockets(payload));
-    } else if (event === "unable_to_get_state_on_join") {
-      alert("Unable to get game state. Room was closed.");
-      //setRoomClosed(true);
+    } else if (event === "unable_to_get_state_on_join" || event === "room_unavailable") {
+      dispatch(setRoomNotFound(true));
     } else if (event === "bad_game_state" && payload !== null) {
       const errors = payload.errors;
       console.error("Bad game state received:", errors);
@@ -110,13 +112,7 @@ export const Room = ({ slug }) => {
       }));
       setOutOfSync(true);
     } else if (event === "unable_to_get_state_on_request") {
-      dispatch(setAlert({
-        level: "crash",
-        text: "The room has crashed. Please go to the Menu and download the game state file. \
-          Then, create a new room and upload that file to continue where you left off.",
-        timestamp: Date.now()
-      }));
-      //setRoomClosed(true);
+      dispatch(setRoomNotFound(true));
     } else if (event === "phx_error") {
       dispatch(setAlert({
         level: "crash",
@@ -153,7 +149,7 @@ export const Room = ({ slug }) => {
       }
     }
 
-  }, [roomSlug]);
+  }, [dispatch, history, playerN, roomSlug, sendLocalMessage]);
 
   const onChatMessage = useCallback((event, payload) => {
     if (
@@ -175,15 +171,42 @@ export const Room = ({ slug }) => {
   const chatBroadcast = useChannel(`chat:${slug}`, onChatMessage, myUserId);
 
   // If game goes out of sync, send a "request_state" message to the server
-  if (outOfSync) {
-    gameBroadcast("request_state", {});
-    setOutOfSync(false);
-  }
+  useEffect(() => {
+    if (outOfSync) {
+      gameBroadcast("request_state", {});
+      setOutOfSync(false);
+    }
+  }, [outOfSync, gameBroadcast]);
 
-  console.log('Rendering Room',myUserId);
+  console.log('Rendering Room',{myUserId, roomNotFound, roomSlug, slug});
   // console.log("plugin room",plugin)
   //if (plugin === null) return (<div className="text-white m-4">Loading...</div>);
 
+  if (roomNotFound) return (
+    <div className="text-white flex flex-col items-center justify-center h-screen p-4">
+      <div className="bg-gray-700 rounded-lg p-6 max-w-md text-center">
+        <h2 className="text-xl font-bold mb-3">Room no longer accessible</h2>
+        <p className="text-gray-300 mb-4">
+          This room can no longer be reached from this browser session. It may have closed, timed out, or stayed on an older server during a deployment.
+        </p>
+        <p className="text-gray-300 mb-4">
+          If the game was saved, continue from your saved games in your profile.
+        </p>
+        <button
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mr-2"
+          onClick={() => { dispatch(setRoomNotFound(false)); history.push(myUser ? "/profile" : "/login"); }}
+        >
+          {myUser ? "Go to profile" : "Log in"}
+        </button>
+        <button
+          className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded"
+          onClick={() => { dispatch(setRoomNotFound(false)); history.push("/lobby"); }}
+        >
+          Go to lobby
+        </button>
+      </div>
+    </div>
+  );
   if (roomSlug !== slug) return (<div></div>);
   else {
     return (
