@@ -364,9 +364,9 @@ da567bf6-55c5-5630-962b-b5e33c8a0249	04053	04053	Uncertain Loyalties		Obligation
 467ecf5e-aed1-520c-8bf6-66c5998d7b3f	04055	04055	The Viper's Ambition		Side Scheme	Encounter	/official/04055.jpg	encounter					Spider-Woman Nemesis		2							1	false	false	false	
 1ce0fb5c-e959-5ce2-b94b-b058364ffbb0	04056	04056	Hydra Regular		Minion	Encounter	/official/04056.jpg	encounter	Hydra		2		Spider-Woman Nemesis										false	false	false	
 b6ca08f7-0514-506a-9d06-a3881f5eaaa4	04057	04057	Hail Hydra!		Treachery	Encounter	/official/04057.jpg	encounter					Spider-Woman Nemesis										false	false	false	
-3d3b8346-5e56-508d-95cc-2df86fe055c5	04058	04058	Crossbones		Villain	Encounter	/official/04058.jpg	villain	Hydra,Mercenary		12		Crossbones	I									false	false	false	
-efd7b5c0-89cb-59a5-a555-9feb7f6802db	04059	04059	Crossbones		Villain	Encounter	/official/04059.jpg	villain	Hydra,Mercenary		14		Crossbones	II									false	false	false	
-adf4e02a-e687-5859-8a4e-b587e7571dac	04060	04060	Crossbones		Villain	Encounter	/official/04060.jpg	villain	Hydra,Mercenary		16		Crossbones	III									false	false	false	
+3d3b8346-5e56-508d-95cc-2df86fe055c5	04058	04058	Crossbones		Villain	Encounter	/official/04058.jpg	villain	Hydra,Mercenary			12	Crossbones	I									false	false	false	
+efd7b5c0-89cb-59a5-a555-9feb7f6802db	04059	04059	Crossbones		Villain	Encounter	/official/04059.jpg	villain	Hydra,Mercenary			14	Crossbones	II									false	false	false	
+adf4e02a-e687-5859-8a4e-b587e7571dac	04060	04060	Crossbones		Villain	Encounter	/official/04060.jpg	villain	Hydra,Mercenary			16	Crossbones	III									false	false	false	
 177f2082-ec29-5925-ae77-2c006485f70c	04061A	04061a	Attack on Mount Athena		Main Scheme	Encounter	/official/04061A.jpg	multi_sided					Crossbones	1A									false	false	false	
 177f2082-ec29-5925-ae77-2c006485f70c	04061B	04061b	Attack on Mount Athena		Main Scheme	Encounter	/official/04061B.jpg	multi_sided					Crossbones	1B	0			1					false	false	false	
 83df5d46-e2a1-5dc8-aab7-d0ccd21d83c9	04062A	04062a	The Infinity Stone		Main Scheme	Encounter	/official/04062A.jpg	multi_sided					Crossbones	2A									false	false	false	
@@ -4179,6 +4179,7 @@ c2946bad-3064-5d1d-b658-ff065dc58e74	57034	57034	Make Me Angry		Upgrade	Basic	/o
 c894118b-2eae-5562-a16a-10a05fa27678	57041	57041	Vision		Leader	Encounter	/official/57041.jpg	encounter	Aerial,Avenger			18	Vision	II									false	false	false	
 fdb0f4a1-51d8-5af4-bd7b-59f68440e6b4	57042	57042	Vision		Leader	Encounter	/official/57042.jpg	encounter	Aerial,Avenger			18	Vision	III									false	false	false	
 eff44211-f503-50c8-9588-08008feb748b	57043	57043	Vision		Leader	Encounter	/official/57043.jpg	encounter	Aerial,Avenger			22	Vision	IV									false	false	false	
+d5d8d1bc-72aa-57a9-9369-4aad56b16f9f	57046A	57046a	Dense		Attachment	Encounter	/official/57046A.jpg	multi_sided	Superpower				Vision										false	true	false	
 d5d8d1bc-72aa-57a9-9369-4aad56b16f9f	57046B	57046b	Intangible		Attachment	Encounter	/official/57046B.jpg	multi_sided	Superpower				Vision										false	true	false	
 bf25f30d-4277-5c6a-ad10-86f604000d4d	57047	57047	Solar Gem		Attachment	Encounter	/official/57047.jpg	encounter	Item				Vision										false	false	false	
 23034610-1092-58fe-b25f-2f5cbd561d87	57048	57048	Vision's Cape		Attachment	Encounter	/official/57048.jpg	encounter	Item				Vision										false	false	false	
