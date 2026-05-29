@@ -1,8 +1,8 @@
 
 {
     "imageUrlPrefix": {
-        "Default": "https://cerebrodatastorage.blob.core.windows.net/cerebro-cards",
-        "English": "https://cerebrodatastorage.blob.core.windows.net/cerebro-cards",
+        "Default": "/mc-cards",
+        "English": "/mc-cards",
         "Italian": "https://carte-marvel-championslcg.s3.eu-north-1.amazonaws.com",
         "Portuguese": "https://dario666.s3.us-east-1.amazonaws.com"
     }

@@ -10,49 +10,49 @@
             {
               "id": "incrementDamage",
               "label": "",
-              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/damage.svg",
+              "imageUrl": "/mc-cards/tokens/damage.svg",
               "actionType": "token",
               "tokenType": "damage"
             },
             {
               "id": "incrementThreat",
               "label": "",
-              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/threat.svg",
+              "imageUrl": "/mc-cards/tokens/threat.svg",
               "actionType": "token",
               "tokenType": "threat"
             },
             {
               "id": "incrementGeneric",
               "label": "",
-              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/generic.svg",
+              "imageUrl": "/mc-cards/tokens/generic.svg",
               "actionType": "token",
               "tokenType": "generic"
             },
             {
               "id": "incrementAcceleration",
               "label": "",
-              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/acceleration.svg",
+              "imageUrl": "/mc-cards/tokens/acceleration.svg",
               "actionType": "token",
               "tokenType": "acceleration"
             },
             {
               "id": "incrementConfused",
               "label": "",
-              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/confused.svg",
+              "imageUrl": "/mc-cards/tokens/confused.svg",
               "actionType": "token",
               "tokenType": "confused"
             },
             {
               "id": "incrementStunned",
               "label": "",
-              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/stunned.svg",
+              "imageUrl": "/mc-cards/tokens/stunned.svg",
               "actionType": "token",
               "tokenType": "stunned"
             },
             {
               "id": "incrementTough",
               "label": "",
-              "imageUrl": "https://raw.githubusercontent.com/hone/dragncards-mc-plugin/main/tokens/tough.svg",
+              "imageUrl": "/mc-cards/tokens/tough.svg",
               "actionType": "token",
               "tokenType": "tough"
             },

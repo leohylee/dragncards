@@ -1,5 +1,5 @@
 {
   "pluginName": "Marvel Champions: The Card Game",
   "tutorialUrl": "https://github.com/hone/dragncards-mc-plugin/wiki",
-  "backgroundUrl": "https://dragncards-misc.s3.us-east-1.amazonaws.com/mcbackground.jpg"
+  "backgroundUrl": "/mc-cards/mcbackground.jpg"
 }

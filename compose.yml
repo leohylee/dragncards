@@ -38,7 +38,7 @@ services:
       - WDS_SOCKET_PORT=3000
     depends_on:
       - backend
-    command: sh -c "npm install --legacy-peer-deps && npm start"
+    command: sh -c "npm install --legacy-peer-deps --prefer-offline --no-audit --no-fund || echo 'npm install failed (offline?); reusing existing node_modules volume'; npm start"
     stdin_open: true
     tty: true
 #uncomment apache if you're running pure offline mode. Other steps required
