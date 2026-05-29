@@ -47,12 +47,14 @@ PLUGINS = {
         "local_name": "Marvel Champions",
         "mirror": REPO / "frontend/public/mc-cards",
         "fallback_prefix": "https://cerebrodatastorage.blob.core.windows.net/cerebro-cards",
+        "plugin_dir": REPO / "backend/priv/dragncards-mc-plugin",
     },
     "lotr": {
         "live_id": 1,
         "local_name": "Lord of the Rings LCG",
         "mirror": REPO / "frontend/public/lotrlcg-cards",
         "fallback_prefix": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/",
+        "plugin_dir": REPO / "backend/priv/dragncards-lotrlcg-plugin",
     },
 }
 
@@ -320,19 +322,243 @@ def _git_report():
         print(f"(git upstream check skipped: {e})")
 
 
+# ---------- integrate new playable content (cards / decks / menu) ----------
+import re
+
+
+def _strip_comments(txt):
+    # mirror backend Merger.remove_comments: drop // line comments but keep http:// / https://
+    return re.sub(r"(?<!:)//[^\n\r]*", "", txt)
+
+
+def card_sides(card):
+    """Return {sideLetter: face} for a live card, handling flat {A,B} and {sides:{A,B}}."""
+    if not isinstance(card, dict):
+        return {}
+    if isinstance(card.get("sides"), dict):
+        return card["sides"]
+    return {k: v for k, v in card.items() if k in "ABCDEFGH" and isinstance(v, dict)}
+
+
+def tsv_header(plugin_key):
+    tdir = PLUGINS[plugin_key]["plugin_dir"] / "tsvs"
+    files = sorted(tdir.glob("*.tsv"))
+    files.sort(key=lambda f: (f.name != "marvelcdb.tsv"))  # prefer marvelcdb.tsv for MC
+    if not files:
+        raise SystemExit(f"no existing TSV to read a header from in {tdir}")
+    with open(files[0]) as f:
+        return f.readline().rstrip("\r\n").split("\t")
+
+
+def _npk(face):
+    try:
+        return int(face.get("numberInPack") or 0)
+    except Exception:
+        return 0
+
+
+def card_to_rows(cardid, card, header):
+    """Live card -> TSV rows (A, plus B.. for multi_sided). Faithful to TsvProcess row ordering."""
+    sides = card_sides(card)
+    A = sides.get("A", {})
+
+    def row(face, force_id=False):
+        out = []
+        for col in header:
+            v = face.get(col)
+            if col == "databaseId" and v in (None, "") and force_id:
+                v = cardid
+            out.append("" if v is None else str(v))
+        return out
+
+    rows = [row(A)]
+    if A.get("cardBack") == "multi_sided":
+        for letter in "BCDEFGH":
+            if letter in sides:
+                rows.append(row(sides[letter], force_id=True))
+    return rows
+
+
+def simulate_tsv(rows):
+    """Mini TsvProcess for validation: rows incl header -> {id: {A,B,..}}."""
+    header = rows[0]
+    db, ms_id, ms_side = {}, "", "A"
+    nxt = {"B": "C", "C": "D", "D": "E", "E": "F", "F": "G", "G": "H"}
+    for r in rows[1:]:
+        face = {header[j]: r[j] for j in range(len(header))}
+        did = face["databaseId"]
+        if did == ms_id:
+            db[did][ms_side] = face
+            ms_side = nxt.get(ms_side, "X")
+        else:
+            db[did] = {"A": face, "B": {**{h: None for h in header}, "name": face["cardBack"]}}
+            ms_id, ms_side = (did, "B") if face["cardBack"] == "multi_sided" else ("", "A")
+    return db
+
+
+def gen_tsvs(plugin_key, new_ids, cdb, header, apply):
+    """Group new cards by setUuid (per-set file, matching ALeP convention) else one synced file."""
+    tdir = PLUGINS[plugin_key]["plugin_dir"] / "tsvs"
+    groups = {}
+    for cid in new_ids:
+        setu = card_sides(cdb[cid]).get("A", {}).get("setUuid")
+        fname = f"{setu}.tsv" if setu else f"zz-synced-{plugin_key}.tsv"
+        groups.setdefault(fname, []).append(cid)
+    plan = []
+    for fname, ids in sorted(groups.items()):
+        ids.sort(key=lambda c: _npk(card_sides(cdb[c]).get("A", {})))
+        path = tdir / fname
+        rows = []
+        for cid in ids:
+            rows += card_to_rows(cid, cdb[cid], header)
+        plan.append((path, len(ids), rows))
+        if apply:
+            if path.exists():
+                with open(path, "a") as f:
+                    f.writelines("\t".join(r) + "\n" for r in rows)
+            else:
+                with open(path, "w") as f:
+                    f.write("\t".join(header) + "\n")
+                    f.writelines("\t".join(r) + "\n" for r in rows)
+    return plan
+
+
+def gen_decks(plugin_key, new_deck_keys, live_pbd, apply):
+    path = PLUGINS[plugin_key]["plugin_dir"] / "jsons" / f"zz-synced-{plugin_key}-decks.json"
+    existing = json.loads(path.read_text()).get("preBuiltDecks", {}) if path.exists() else {}
+    added = {k: live_pbd[k] for k in new_deck_keys if k in live_pbd}
+    if apply and added:
+        path.write_text(json.dumps({"preBuiltDecks": {**existing, **added}}, indent=2, ensure_ascii=False) + "\n")
+    return path, added
+
+
+def _menu_files(plugin_key):
+    out = []
+    for f in sorted((PLUGINS[plugin_key]["plugin_dir"] / "jsons").glob("*.json")):
+        try:
+            j = json.loads(_strip_comments(f.read_text()))
+        except Exception:
+            continue
+        if isinstance(j, dict) and "deckMenu" in j:
+            out.append((f, j, "//" in f.read_text()))
+    return out
+
+
+def _clone_live_subtree(live_dm, path_labels):
+    cur = live_dm
+    for lab in path_labels:
+        cur = next((s for s in cur.get("subMenus", []) or [] if s.get("label") == lab), None)
+        if cur is None:
+            return None
+    return json.loads(json.dumps(cur))  # deep copy
+
+
+def integrate_menu(plugin_key, new_set, live, apply):
+    """Surface new decks in the menu. New top-level cycles -> auto-written synced menu file.
+    Additions into an EXISTING cycle -> returned as manual-insert instructions (preserve formatting)."""
+    live_dm = live["game_def"].get("deckMenu", {})
+    # holding nodes = nodes whose deckLists reference a new deck id; key by full label-path
+    holders = {}
+    def walk(node, path):
+        if not isinstance(node, dict):
+            return
+        here = path + ([node["label"]] if node.get("label") is not None else [])
+        if any(dl.get("deckListId") in new_set for dl in node.get("deckLists", []) or []):
+            holders[tuple(here)] = node
+        for s in node.get("subMenus", []) or []:
+            walk(s, here)
+    for s in live_dm.get("subMenus", []) or []:
+        walk(s, [])
+
+    local_top = {}
+    for f, j, has_c in _menu_files(plugin_key):
+        for s in j["deckMenu"].get("subMenus", []) or []:
+            local_top.setdefault(s.get("label"), f)
+
+    synced_path = PLUGINS[plugin_key]["plugin_dir"] / "jsons" / f"zz-synced-{plugin_key}.menu.json"
+    synced = json.loads(synced_path.read_text()) if synced_path.exists() else {"deckMenu": {"subMenus": []}}
+    auto, manual = [], []
+    for path_labels, node in sorted(holders.items()):
+        new_dls = [dl for dl in node.get("deckLists", []) or [] if dl.get("deckListId") in new_set]
+        L1 = path_labels[0]
+        if L1 not in local_top:
+            # brand-new top-level cycle: safe to add as a separate file (lists concat on merge)
+            sub = _clone_live_subtree(live_dm, list(path_labels[:1]))
+            if sub is not None:
+                synced["deckMenu"]["subMenus"].append(sub)
+                auto.append((str(synced_path), " > ".join(path_labels)))
+        else:
+            manual.append({
+                "owning_file": str(local_top[L1]),
+                "path": " > ".join(path_labels),
+                "insert_node": node if (len(path_labels) >= 2) else {"deckLists": new_dls},
+                "new_deckLists": new_dls,
+            })
+    if apply and auto:
+        synced_path.write_text(json.dumps(synced, indent=4, ensure_ascii=False) + "\n")
+    return auto, manual
+
+
+def cmd_integrate(args):
+    for key in keys_for(args.which):
+        p = PLUGINS[key]
+        print(f"\n========== INTEGRATE {key.upper()} ('{p['local_name']}') ==========")
+        pid = local_plugin_id(p["local_name"])
+        if pid is None:
+            print("  local plugin not in DB (is docker up + imported?). Skipping."); continue
+        live = fetch_live(key, args.refresh)
+        lcards = live.get("card_db", {})
+        live_pbd = live["game_def"].get("preBuiltDecks", {})
+        local_cards = local_card_keys(pid) or set()
+        local_decks = local_deck_keys(pid)
+        new_ids = [k for k in lcards if k not in local_cards]
+        new_decks = [k for k in live_pbd if k not in local_decks]
+        print(f"  new cards: {len(new_ids)} | new decks: {len(new_decks)}")
+        if not new_ids and not new_decks:
+            print("  nothing to integrate."); continue
+
+        header = tsv_header(key)
+        tsv_plan = gen_tsvs(key, new_ids, lcards, header, args.apply) if new_ids else []
+        deck_path, added = gen_decks(key, new_decks, live_pbd, args.apply)
+        auto_menu, manual_menu = integrate_menu(key, set(new_decks), live, args.apply)
+
+        # validate
+        for path, ncards, rows in tsv_plan:
+            sim = simulate_tsv([header] + rows)
+            print(f"  {'WROTE' if args.apply else 'PLAN'} TSV {path.name}: {ncards} cards, {len(rows)} rows (sim -> {len(sim)} entries)")
+        if added:
+            known = local_cards | set(new_ids)
+            unresolved = sorted({c["databaseId"] for d in added.values() for c in d.get("cards", []) if c["databaseId"] not in known})
+            print(f"  {'WROTE' if args.apply else 'PLAN'} decks -> {deck_path.name}: {len(added)} decks; unresolved card refs: {len(unresolved)}")
+            if unresolved:
+                print("    WARNING unresolved:", unresolved[:5])
+        for fpath, path in auto_menu:
+            print(f"  {'WROTE' if args.apply else 'PLAN'} menu (new cycle) -> {Path(fpath).name}: {path}")
+        for m in manual_menu:
+            print(f"  MENU EDIT NEEDED in {Path(m['owning_file']).name}: insert under existing cycle path '{m['path']}'")
+            print("    node to add (or merge its deckLists into the matching node):")
+            print("    " + json.dumps(m["insert_node"], ensure_ascii=False))
+
+        if args.apply:
+            print("  -> next: images --apply, then re-import + restart backend.")
+        else:
+            print("  (dry-run; re-run with --apply to write card/deck/new-cycle files)")
+
+
 def main():
     ap = argparse.ArgumentParser(description="Sync DragnCards plugin resources from live upstream.")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("report", "images"):
+    for name in ("report", "images", "integrate"):
         s = sub.add_parser(name)
         s.add_argument("which", nargs="?", default="all", choices=["mc", "lotr", "all"])
         s.add_argument("--refresh", action="store_true")
         s.add_argument("--retry-unavailable", action="store_true")
         s.add_argument("--workers", type=int, default=8)
-        if name == "images":
-            s.add_argument("--apply", action="store_true", help="actually download missing images")
+        if name in ("images", "integrate"):
+            help_txt = "actually download missing images" if name == "images" else "actually write card/deck/new-cycle files"
+            s.add_argument("--apply", action="store_true", help=help_txt)
     args = ap.parse_args()
-    (cmd_images if args.cmd == "images" else cmd_report)(args)
+    {"images": cmd_images, "integrate": cmd_integrate}.get(args.cmd, cmd_report)(args)
 
 
 if __name__ == "__main__":
