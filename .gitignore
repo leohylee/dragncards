@@ -44,3 +44,6 @@ stats_eda.ipynb
 vagrant/
 winrates.csv
 winrates.parquet
+
+# Local backup artifacts produced by scripts/backup_offline_resources.sh (never commit; upload off-machine)
+dragncards-backup_*.zip
