@@ -72,7 +72,11 @@ backup_sibling_db() {
   else
     WARN+=("$name: mysqldump produced no output (check creds/container)")
   fi
-  [ "$started" = "1" ] && { echo "   stopping $container (restoring prior state)…"; dc -f "$compose" down >/dev/null 2>&1; }
+  # IMPORTANT: use `stop`, never `down`. `docker compose down` REMOVES the containers
+  # (and the compose network); `stop` just halts what we started, leaving the container
+  # in place. Either way named data volumes are untouched, but `down` would delete the
+  # user's sibling containers — only stop them.
+  [ "$started" = "1" ] && { echo "   stopping $container (leaving it as a stopped container)…"; dc -f "$compose" stop >/dev/null 2>&1; }
 }
 
 if [ "$DO_SIBLINGS" = "1" ]; then
