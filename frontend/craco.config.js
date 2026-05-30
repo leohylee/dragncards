@@ -1,6 +1,19 @@
 const webpack = require('webpack');
 
 module.exports = {
+  // Dev server: never let the browser cache the bundle. The CRA dev server
+  // otherwise sends only an ETag with no Cache-Control, and Safari (desktop +
+  // iOS) heuristic-caches the JS, so devices keep running a stale bundle.js
+  // (e.g. an old WebSocket URL or a missing settings control) even after edits.
+  devServer: (devServerConfig) => {
+    devServerConfig.headers = {
+      ...(devServerConfig.headers || {}),
+      "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+      "Pragma": "no-cache",
+      "Expires": "0",
+    };
+    return devServerConfig;
+  },
   webpack: {
     configure: (webpackConfig) => {
       // Add Node.js polyfills for webpack 5

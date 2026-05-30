@@ -127,7 +127,12 @@ export const DragContainer = React.memo(({}) => {
 
   const updateMouseDown = (e) => {
     const {clientX, clientY} = getXY(e);
-    const rect = e.target.parentElement.parentElement.getBoundingClientRect();
+    // This is a document-wide mousedown/touchstart listener, so e.target can be
+    // any element (empty space, top-level nodes, etc.). Guard against a missing
+    // grandparent so a tap outside a card/stack doesn't throw (crashes on iPad).
+    const container = e.target?.parentElement?.parentElement;
+    if (!container) return;
+    const rect = container.getBoundingClientRect();
     const x = clientX - rect.left;
     const y = clientY - rect.top;
     console.log(`Relative mouse position: ${x}, ${y}`);
