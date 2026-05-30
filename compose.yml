@@ -32,7 +32,11 @@ services:
       - frontend-node-modules:/app/node_modules
     environment:
       - NODE_OPTIONS=--openssl-legacy-provider
-      - REACT_APP_WS_URL=ws://127.0.0.1:4000/socket
+      # Use the host machine's LAN IP (not 127.0.0.1) so the realtime game
+      # socket works from other devices (e.g. an iPad). 127.0.0.1 resolves to
+      # whatever device the browser runs on, so loopback only works on this PC.
+      # Update this if your LAN IP changes (find it with `ipconfig getifaddr en0`).
+      - REACT_APP_WS_URL=ws://192.168.50.38:4000/socket
       - REACT_APP_BE_HOSTNAME=backend
       - CHOKIDAR_USEPOLLING=true
       - WDS_SOCKET_PORT=3000
