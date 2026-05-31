@@ -1,5 +1,5 @@
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { DragDropContext } from "@seastan/react-beautiful-dnd";
 import { useSelector, useDispatch } from 'react-redux';
 import { setStackIds, setCardIds, setGroupById } from "../store/gameUiSlice";
@@ -57,6 +57,17 @@ export const DragContainer = React.memo(({}) => {
   const [isDragging, setIsDragging] = useState(false);
   const getRegionFromId = useGetRegionFromId();
   const hoverStackIdAndDirection = useHoverStackIdAndDirection();
+  const archerContainerRef = useRef(null);
+  const draggingStackId = useSelector(state => state?.playerUi?.dragging?.stackId);
+
+  // Refresh arrow positions whenever a drag completes and card positions settle.
+  // react-archer uses ResizeObserver which only fires on size changes, not position
+  // changes, so absolutely-positioned free-region cards never trigger auto-refresh.
+  useEffect(() => {
+    if (!draggingStackId) {
+      archerContainerRef.current?.refreshScreen();
+    }
+  }, [draggingStackId]);
 
   const updateMousePosition = (e) => {
     const draggingStackId = store.getState()?.playerUi?.dragging?.stackId;  
@@ -116,7 +127,12 @@ export const DragContainer = React.memo(({}) => {
 
   const updateMouseDown = (e) => {
     const {clientX, clientY} = getXY(e);
-    const rect = e.target.parentElement.parentElement.getBoundingClientRect();
+    // This is a document-wide mousedown/touchstart listener, so e.target can be
+    // any element (empty space, top-level nodes, etc.). Guard against a missing
+    // grandparent so a tap outside a card/stack doesn't throw (crashes on iPad).
+    const container = e.target?.parentElement?.parentElement;
+    if (!container) return;
+    const rect = container.getBoundingClientRect();
     const x = clientX - rect.left;
     const y = clientY - rect.top;
     console.log(`Relative mouse position: ${x}, ${y}`);
@@ -277,9 +293,10 @@ export const DragContainer = React.memo(({}) => {
 
   return(
 
-      <ArcherContainer 
-        className="h-full w-full" 
-        strokeColor="rgba(255,0,0,0.6)" 
+      <ArcherContainer
+        ref={archerContainerRef}
+        className="h-full w-full"
+        strokeColor="rgba(255,0,0,0.6)"
         strokeWidth="15"
         svgContainerStyle={{ 
           zIndex: Z_INDEX.Arrows,

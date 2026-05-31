@@ -1,6 +1,10 @@
 name: CI
 
-on: push
+# Disabled 2026-05-29: this stale workflow (Elixir 1.9 / OTP 22 / postgres:11 / deprecated
+# @v1.0.0 actions) failed at "Initialize containers" on every push, before any test ran.
+# Switched to manual-only so it no longer runs automatically. To re-enable, restore `on: push`
+# (and ideally first modernize: actions/checkout@v4 + erlef/setup-beam Elixir 1.14/OTP 26 + postgres:16).
+on: workflow_dispatch
 
 jobs:
   test:
