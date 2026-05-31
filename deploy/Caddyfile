@@ -1,0 +1,47 @@
+# Caddy config for the DragnCards single-user AWS deployment.
+#
+# Caddy terminates TLS (automatic Let's Encrypt cert) for the public domain and
+# reverse-proxies the two backend paths to the Phoenix server, serving
+# everything else as the static React build.
+#
+# Routing facts (verified against the code):
+#   - HTTP API: the frontend calls the RELATIVE path "/be/..." when
+#     REACT_APP_BE_HOSTNAME is unset (frontend/src/components/App.js). In dev,
+#     frontend/src/setupProxy.js proxies "/be" to :4000 and STRIPS the prefix
+#     (pathRewrite ^/be -> ""). The Phoenix router has NO /be scope (routes are
+#     under /api, /api/v1). So Caddy must likewise STRIP /be -> use handle_path.
+#   - WebSocket: the socket is mounted at "/socket" (no /be prefix). Build the
+#     frontend with REACT_APP_WS_URL=wss://dragncards.leohyl.app/socket.
+#
+# Install location on the box: /etc/caddy/Caddyfile  (then: systemctl reload caddy)
+
+dragncards.leohyl.app {
+	encode zstd gzip
+
+	# Lock down public signup: this is a single-user instance, so reject new
+	# account registration at the edge. The frontend POSTs to /be/api/v1/registration
+	# (router.ex: POST /api/v1/registration). Login/everything else still works.
+	@register path /be/api/v1/registration*
+	handle @register {
+		respond "Registration is disabled on this server." 403
+	}
+
+	# Phoenix HTTP API. handle_path strips the /be prefix before forwarding,
+	# mirroring setupProxy.js (e.g. /be/api/v1/session -> /api/v1/session).
+	handle_path /be/* {
+		reverse_proxy 127.0.0.1:4000
+	}
+
+	# Phoenix realtime websocket (mounted at /socket, no prefix to strip).
+	# Caddy proxies WS upgrades automatically.
+	handle /socket/* {
+		reverse_proxy 127.0.0.1:4000
+	}
+
+	# Everything else: the static React build (SPA fallback to index.html).
+	handle {
+		root * /srv/dragncards/frontend/build
+		try_files {path} /index.html
+		file_server
+	}
+}

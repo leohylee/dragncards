@@ -1,0 +1,56 @@
+# Production stack for the AWS EC2 single-user deployment.
+#
+# Differences from the dev compose.yml:
+#   - No `frontend` dev service. In prod the React app is a STATIC build
+#     (`frontend/build/`) served by the Caddy container; we do not run the Node
+#     dev server. See deploy/README-aws.md.
+#   - A `caddy` service terminates TLS and reverse-proxies /be/* and /socket/*
+#     to the backend. It uses host networking so it can bind :80/:443 and reach
+#     the backend on 127.0.0.1:4000.
+#   - The backend port is bound to 127.0.0.1 only; Postgres is not published.
+#
+# Bring up with:  docker compose -f compose.prod.yml up -d
+services:
+  postgres:
+    image: docker.io/library/postgres:16
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    image: elixir:1.14.4
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    # Bind to loopback so only Caddy (on the host) can reach the backend.
+    ports:
+      - "127.0.0.1:4000:4000"
+    volumes:
+      - ./backend:/app
+    entrypoint: /app/scripts/local-dev.sh
+    working_dir: /app
+    environment:
+      - DB_HOSTNAME=postgres
+
+  caddy:
+    image: docker.io/library/caddy:2
+    restart: unless-stopped
+    # Host networking so Caddy can bind :80/:443 and reach the backend's
+    # published 127.0.0.1:4000 port directly.
+    network_mode: host
+    depends_on:
+      - backend
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./frontend/build:/srv/dragncards/frontend/build:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:

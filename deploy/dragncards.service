@@ -1,0 +1,30 @@
+# systemd unit: on every boot, point DNS at this instance's new public IP, then
+# bring up the production Docker Compose stack. Because EBS persists across
+# stop/start, the compiled Elixir _build and Postgres data survive, so this is a
+# fast container start rather than a full recompile.
+#
+# Install:
+#   sudo cp deploy/dragncards.service /etc/systemd/system/dragncards.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now dragncards.service
+#
+# Adjust WorkingDirectory / User to match where you cloned the repo.
+[Unit]
+Description=DragnCards (Route53 update + docker compose prod stack)
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/srv/dragncards
+# 1) Update Route 53 A record to this instance's current public IP.
+ExecStartPre=/srv/dragncards/deploy/update-route53.sh
+# 2) Start the prod stack (postgres + backend; Caddy runs as its own service).
+ExecStart=/usr/bin/docker compose -f compose.prod.yml up -d
+# Stop the stack cleanly on shutdown.
+ExecStop=/usr/bin/docker compose -f compose.prod.yml down
+
+[Install]
+WantedBy=multi-user.target
