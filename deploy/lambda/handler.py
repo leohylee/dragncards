@@ -1,5 +1,5 @@
 """
-Phone on/off button for the DragnCards EC2 instance.
+Phone on/off button for the LCG apps EC2 instance (DragnCards + RingsDB + MarvelCDB).
 
 Deployed as a Lambda behind a Function URL (auth type NONE; we guard with a
 shared secret token instead). Save the URL as a home-screen bookmark / iOS
@@ -15,7 +15,7 @@ Environment variables:
   SECRET_TOKEN  a long random string; must match ?token=
 
 After a start it takes ~2-3 min for the box to boot, update DNS, and bring the
-containers up before https://dragncards.leohyl.app is live.
+containers up before https://lcg.leohyl.app is live.
 """
 import json
 import os
@@ -25,7 +25,7 @@ import boto3
 ec2 = boto3.client("ec2")
 INSTANCE_ID = os.environ["INSTANCE_ID"]
 SECRET_TOKEN = os.environ["SECRET_TOKEN"]
-SITE_URL = os.environ.get("SITE_URL", "https://dragncards.leohyl.app")
+SITE_URL = os.environ.get("SITE_URL", "https://lcg.leohyl.app")
 
 
 def _state():
@@ -37,7 +37,7 @@ def _html(state, msg=""):
     note = f"<p>{msg}</p>" if msg else ""
     return f"""<!doctype html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DragnCards power</title>
+<title>LCG apps power</title>
 <style>
  body{{font-family:system-ui;margin:0;padding:2rem;text-align:center;background:#111;color:#eee}}
  .state{{font-size:1.4rem;margin:1rem 0}}
@@ -45,7 +45,7 @@ def _html(state, msg=""):
        text-decoration:none;font-size:1.2rem;color:#fff}}
  .start{{background:#1f8f3a}} .stop{{background:#b32424}} .open{{background:#2451b3}}
 </style></head><body>
- <h1>DragnCards</h1>
+ <h1>LCG apps</h1>
  <div class="state">status: <b>{state}</b></div>
  {note}
  <a class="btn start" href="?token={SECRET_TOKEN}&action=start">Start</a>

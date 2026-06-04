@@ -1,21 +1,29 @@
-# Caddy config for the DragnCards single-user AWS deployment.
+# Caddy config for the LCG single-user AWS deployment.
 #
-# Caddy terminates TLS (automatic Let's Encrypt cert) for the public domain and
-# reverse-proxies the two backend paths to the Phoenix server, serving
-# everything else as the static React build.
+# One box now hosts three apps; Caddy terminates TLS (automatic Let's Encrypt)
+# for each subdomain and reverse-proxies to the right container:
+#   - lcg.leohyl.app       -> DragnCards (Phoenix :4000 + static React build)
+#   - ringsdb.leohyl.app   -> RingsDB     (Symfony/Apache container, host :8001)
+#   - marvelcdb.leohyl.app -> MarvelCDB   (Symfony/Apache container, host :8000)
 #
-# Routing facts (verified against the code):
+# The two *DB apps are separate docker-compose projects whose web containers
+# publish to 127.0.0.1:8001 / :8000. Caddy reaches them over host loopback
+# (this container uses network_mode: host). Their APIs already send
+# Access-Control-Allow-Origin: * so DragnCards' browser-side deck import can
+# fetch decks from them cross-origin.
+#
+# Routing facts for DragnCards (verified against the code):
 #   - HTTP API: the frontend calls the RELATIVE path "/be/..." when
 #     REACT_APP_BE_HOSTNAME is unset (frontend/src/components/App.js). In dev,
 #     frontend/src/setupProxy.js proxies "/be" to :4000 and STRIPS the prefix
 #     (pathRewrite ^/be -> ""). The Phoenix router has NO /be scope (routes are
 #     under /api, /api/v1). So Caddy must likewise STRIP /be -> use handle_path.
 #   - WebSocket: the socket is mounted at "/socket" (no /be prefix). Build the
-#     frontend with REACT_APP_WS_URL=wss://dragncards.leohyl.app/socket.
+#     frontend with REACT_APP_WS_URL=wss://lcg.leohyl.app/socket.
 #
 # Install location on the box: /etc/caddy/Caddyfile  (then: systemctl reload caddy)
 
-dragncards.leohyl.app {
+lcg.leohyl.app {
 	encode zstd gzip
 
 	# Lock down public signup: this is a single-user instance, so reject new
@@ -44,4 +52,16 @@ dragncards.leohyl.app {
 		try_files {path} /index.html
 		file_server
 	}
+}
+
+# RingsDB (LOTR LCG deckbuilder). Symfony app in /srv/ringsdb, web on host :8001.
+ringsdb.leohyl.app {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:8001
+}
+
+# MarvelCDB (Marvel Champions deckbuilder). Symfony app in /srv/marvelsdb, web on host :8000.
+marvelcdb.leohyl.app {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:8000
 }

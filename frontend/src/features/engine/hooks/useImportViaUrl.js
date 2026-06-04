@@ -29,7 +29,7 @@ export const useImportViaUrl = () => {
 const importViaUrlRingsDb = async (importLoadList, doActionList, playerN, prefilledUrl) => {
   const ringsDbUrl = prefilledUrl || prompt("Paste full RingsDB URL","");
   if (!ringsDbUrl) return;
-  if (!ringsDbUrl.includes("ringsdb.com") && !ringsDbUrl.includes("localhost")) {
+  if (!ringsDbUrl.includes("ringsdb.com") && !ringsDbUrl.includes("ringsdb.leohyl.app") && !ringsDbUrl.includes("localhost")) {
     alert("Only importing from RingsDB or localhost is supported at this time.");
     return;
   }
@@ -40,6 +40,8 @@ const importViaUrlRingsDb = async (importLoadList, doActionList, playerN, prefil
   let ringsDbDomain;
   if (ringsDbUrl.includes("localhost")) {
     ringsDbDomain = "localhost";
+  } else if (ringsDbUrl.includes("ringsdb.leohyl.app")) {
+    ringsDbDomain = "leohyl";
   } else if (ringsDbUrl.includes("test.ringsdb.com")) {
     ringsDbDomain = "test";
   } else {
@@ -92,7 +94,7 @@ const importViaUrlArkhamDb = async (importLoadList, doActionList, playerN, cardD
 const importViaUrlMarvelCdb = async (importLoadList, doActionList, playerN, cardDb, prefilledUrl) => {
   const dbUrl = prefilledUrl || prompt("Paste full MarvelCDB URL","");
   if (!dbUrl) return;
-  if (!dbUrl.includes("marvelcdb.com") && !dbUrl.includes("localhost")) {
+  if (!dbUrl.includes("marvelcdb.com") && !dbUrl.includes("marvelcdb.leohyl.app") && !dbUrl.includes("localhost")) {
     alert("Only importing from MarvelCDB or localhost is supported at this time.");
     return;
   }
@@ -141,6 +143,8 @@ export const loadRingsDb = (importLoadList, doActionList, playerN, ringsDbDomain
   let urlBase;
   if (ringsDbDomain === "localhost") {
     urlBase = "http://localhost:8001/api/";
+  } else if (ringsDbDomain === "leohyl") {
+    urlBase = "https://ringsdb.leohyl.app/api/";
   } else if (ringsDbDomain === "test") {
     urlBase = "https://test.ringsdb.com/api/";
   } else {
