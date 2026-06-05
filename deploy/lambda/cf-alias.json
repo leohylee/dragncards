@@ -1,0 +1,29 @@
+{
+  "Comment": "Alias lcg-admin.leohyl.app -> CloudFront distribution E25499GEISRY1V",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "lcg-admin.leohyl.app.",
+        "Type": "A",
+        "AliasTarget": {
+          "HostedZoneId": "Z2FDTNDATAQYW2",
+          "DNSName": "d1sxtptf4m1aux.cloudfront.net.",
+          "EvaluateTargetHealth": false
+        }
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "lcg-admin.leohyl.app.",
+        "Type": "AAAA",
+        "AliasTarget": {
+          "HostedZoneId": "Z2FDTNDATAQYW2",
+          "DNSName": "d1sxtptf4m1aux.cloudfront.net.",
+          "EvaluateTargetHealth": false
+        }
+      }
+    }
+  ]
+}

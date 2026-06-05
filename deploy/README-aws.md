@@ -121,6 +121,71 @@ docker compose -f compose.prod.yml restart backend   # bust the ETS plugin cache
 - On your phone, bookmark `https://<function-url>/?token=SECRET_TOKEN`. It shows a
   page with **Start / Stop / Open site**. Tap **Start**, wait ~2-3 min, tap **Open site**.
 
+## 6b. Custom domain for the on/off button (CloudFront)
+
+To serve the button from **`https://lcg-admin.leohyl.app`**, front the Lambda
+with CloudFront (you can't just CNAME straight to the AWS endpoint — its TLS cert
+is for the AWS domain, so a bare CNAME fails the handshake).
+
+> **Note (this account):** the Lambda is reached through an **API Gateway HTTP
+> API** (`dragncards-power-api`, id `zbs3acv146`,
+> `https://zbs3acv146.execute-api.eu-west-2.amazonaws.com`), *not* the Function
+> URL — the Function URL currently returns `403 Forbidden` at the auth layer even
+> though its AuthType is `NONE`, while the API Gateway invokes the handler
+> correctly. So CloudFront's origin is the **API Gateway**. If you ever resurrect
+> the Function URL, just swap the origin `DomainName` back.
+
+CloudFront has **no hourly/idle charge** (unlike an ALB or an Elastic IP), only
+per-request + data-out, and the perpetual free tier (1 TB out, 10M req/mo)
+swallows single-user use — so this stays within the "pay nothing while off" goal.
+
+**Region gotcha:** the ACM cert for CloudFront **must** be in **us-east-1**, even
+though everything else (EC2, Lambda) is in **eu-west-2**. The Function URL origin
+stays in eu-west-2; CloudFront reaches it cross-region fine.
+
+Real values from this account: instance `i-02003176ba4106fcc`, Lambda
+`dragncards-power`, API Gateway origin host
+`zbs3acv146.execute-api.eu-west-2.amazonaws.com`, hosted zone
+`Z10405232A9O7PPCBA791` (`leohyl.app`).
+
+```bash
+# 1. ACM cert in us-east-1 (DNS validated)
+CERT_ARN=$(aws acm request-certificate --region us-east-1 \
+  --domain-name lcg-admin.leohyl.app --validation-method DNS \
+  --query CertificateArn --output text)
+
+# 2. Add the validation CNAME to Route 53, then wait until ISSUED
+aws acm describe-certificate --region us-east-1 --certificate-arn "$CERT_ARN" \
+  --query 'Certificate.DomainValidationOptions[0].ResourceRecord'
+#   -> UPSERT that Name/Value as a CNAME in zone Z10405232A9O7PPCBA791
+aws acm wait certificate-validated --region us-east-1 --certificate-arn "$CERT_ARN"
+
+# 3. CloudFront distribution: origin = the API Gateway host (no https://, no
+#    trailing slash), https-only origin, alias lcg-admin.leohyl.app, the cert,
+#    managed CachingDisabled (4135ea2d-6df8-44a3-9df3-4b5a84be39ad) +
+#    AllViewerExceptHostHeader (b689b0a8-53d0-40ab-baf2-68738e2966ac).
+#    CachingDisabled keeps every tap fresh (state changes); AllViewerExceptHost
+#    forwards the ?token=&action= query string while stripping the Host header
+#    (Function URLs reject a foreign Host).  PriceClass_100 = cheapest edges.
+aws cloudfront create-distribution --distribution-config file://cf-dist.json
+
+# 4. Route 53 A + AAAA ALIAS -> the distribution (CloudFront zone is always
+#    Z2FDTNDATAQYW2)
+aws route53 change-resource-record-sets --hosted-zone-id Z10405232A9O7PPCBA791 \
+  --change-batch file://cf-alias.json
+```
+
+Provisioned for this account: cert
+`arn:aws:acm:us-east-1:128844309521:certificate/07426a04-dd08-40f8-ad23-d893dfebefba`,
+CloudFront distribution **`E25499GEISRY1V`** (`d1sxtptf4m1aux.cloudfront.net`),
+`lcg-admin.leohyl.app` A/AAAA → that distribution.
+
+New phone bookmark: **`https://lcg-admin.leohyl.app/?token=SECRET_TOKEN`**
+(the direct API Gateway URL keeps working too). Allow ~5-15 min after first
+create for the distribution to deploy and DNS to propagate. Verified working:
+`curl https://lcg-admin.leohyl.app/?token=x` returns the handler's own
+`403 forbidden` token-guard page via CloudFront.
+
 ## 7. (Optional) auto-stop so you never forget
 Add a CloudWatch alarm on low `NetworkOut`/`CPUUtilization` for N minutes → SNS →
 a tiny "stop" Lambda; or a cron on the box that self-stops after an idle window.
