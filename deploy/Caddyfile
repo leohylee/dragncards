@@ -77,6 +77,14 @@ marvelcdb.leohyl.app {
 ashes.leohyl.app {
 	encode zstd gzip
 
+	# Single-user instance: reject public account registration at the edge.
+	# The client POSTs to /api/account/register (server/api/account.js). Login and
+	# everything else still works.
+	@register path /api/account/register
+	handle @register {
+		respond "Registration is disabled on this server." 403
+	}
+
 	# ashteki gamenode realtime socket.io. Caddy proxies WS upgrades automatically.
 	handle /gamenode1/* {
 		reverse_proxy 127.0.0.1:10000
