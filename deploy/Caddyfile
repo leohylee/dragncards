@@ -65,3 +65,25 @@ marvelcdb.leohyl.app {
 	encode zstd gzip
 	reverse_proxy 127.0.0.1:8000
 }
+
+# ashteki (Ashes Ascendancy online). Node app in /srv/ashteki (compose.prod.yml):
+#   - lobby   on host :4100 — static dist build, REST API, lobby socket.io (/socket.io)
+#   - gamenode on host :10000 — separate socket.io server at path /gamenode1/socket.io
+# The browser connects to the gamenode directly via a runtime "handoff" that
+# advertises wss://ashes.leohyl.app/gamenode1/socket.io (GAMENODE_HOST=ashes.leohyl.app
+# in compose.prod.yml; the prod gamenode advertises port 80, which the client strips).
+# Order matters: match the gamenode path FIRST and do NOT strip it (use handle, not
+# handle_path) — the gamenode listens on the full /gamenode1/socket.io path.
+ashes.leohyl.app {
+	encode zstd gzip
+
+	# ashteki gamenode realtime socket.io. Caddy proxies WS upgrades automatically.
+	handle /gamenode1/* {
+		reverse_proxy 127.0.0.1:10000
+	}
+
+	# Everything else -> lobby: static SPA, REST API, and the lobby socket.io.
+	handle {
+		reverse_proxy 127.0.0.1:4100
+	}
+}

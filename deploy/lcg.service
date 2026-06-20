@@ -7,8 +7,9 @@
 #   - DragnCards: /srv/dragncards/compose.prod.yml  (postgres + backend + Caddy)
 #   - RingsDB:    /srv/ringsdb/docker-compose.yml    (mariadb + php/apache :8001)
 #   - MarvelCDB:  /srv/marvelsdb/docker-compose.yml  (mysql + php/apache :8000)
-# Caddy (in the DragnCards stack, host networking) reverse-proxies the two *DB
-# subdomains to the host ports the *DB web containers publish on loopback.
+#   - ashteki:    /srv/ashteki/compose.prod.yml      (mongo + redis + lobby :4100 + gamenode :10000)
+# Caddy (in the DragnCards stack, host networking) reverse-proxies the *DB and
+# ashes subdomains to the host ports those containers publish on loopback.
 #
 # Install:
 #   sudo cp deploy/lcg.service /etc/systemd/system/lcg.service
@@ -16,7 +17,7 @@
 #   sudo systemctl enable --now lcg.service
 #   # (if migrating from the old unit: sudo systemctl disable --now dragncards.service)
 [Unit]
-Description=LCG apps (Route53 update + DragnCards/RingsDB/MarvelCDB docker compose stacks)
+Description=LCG apps (Route53 update + DragnCards/RingsDB/MarvelCDB/ashteki docker compose stacks)
 Requires=docker.service
 After=docker.service network-online.target
 Wants=network-online.target
@@ -33,7 +34,10 @@ ExecStart=/usr/bin/docker compose -f /srv/dragncards/compose.prod.yml up -d
 ExecStart=/usr/bin/docker compose -f /srv/ringsdb/docker-compose.yml up -d
 # 4) Start the MarvelCDB stack.
 ExecStart=/usr/bin/docker compose -f /srv/marvelsdb/docker-compose.yml up -d
+# 5) Start the ashteki stack (mongo + redis + lobby + gamenode).
+ExecStart=/usr/bin/docker compose -f /srv/ashteki/compose.prod.yml up -d
 # Stop all stacks cleanly on shutdown (reverse order).
+ExecStop=/usr/bin/docker compose -f /srv/ashteki/compose.prod.yml down
 ExecStop=/usr/bin/docker compose -f /srv/marvelsdb/docker-compose.yml down
 ExecStop=/usr/bin/docker compose -f /srv/ringsdb/docker-compose.yml down
 ExecStop=/usr/bin/docker compose -f /srv/dragncards/compose.prod.yml down

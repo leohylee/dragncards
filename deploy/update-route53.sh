@@ -3,8 +3,8 @@
 # public IPv4. Run on every boot so we can avoid paying for an Elastic IP: a
 # stopped instance gets a new public IP on start, and this points DNS at it.
 #
-# One box hosts three apps, so we upsert three records in a single batch:
-#   lcg.leohyl.app  ringsdb.leohyl.app  marvelcdb.leohyl.app
+# One box hosts four apps, so we upsert four records in a single batch:
+#   lcg.leohyl.app  ringsdb.leohyl.app  marvelcdb.leohyl.app  ashes.leohyl.app
 #
 # Requires: AWS CLI v2 + an instance IAM role allowing
 #   route53:ChangeResourceRecordSets and route53:ListHostedZonesByName
@@ -13,7 +13,7 @@ set -euo pipefail
 
 ZONE_NAME="leohyl.app."     # trailing dot required by Route 53
 TTL=60
-DOMAINS=(lcg.leohyl.app ringsdb.leohyl.app marvelcdb.leohyl.app)
+DOMAINS=(lcg.leohyl.app ringsdb.leohyl.app marvelcdb.leohyl.app ashes.leohyl.app)
 
 # --- Get this instance's public IPv4 via IMDSv2 (token-based metadata) --------
 TOKEN="$(curl -fsS -X PUT 'http://169.254.169.254/latest/api/token' \
