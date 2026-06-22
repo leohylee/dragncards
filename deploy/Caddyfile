@@ -1,5 +1,10 @@
 # Caddy config for the LCG single-user AWS deployment.
 #
+# CANONICAL SOURCE: lcg-ops/edge/Caddyfile (github.com/leohylee/lcg-ops).
+# The box's live config is shipped from there by `ops.sh edge`. This copy exists
+# ONLY because the Caddy service (this repo's compose.prod.yml) mounts
+# ./deploy/Caddyfile. Edit the routing in lcg-ops, not here.
+#
 # One box now hosts three apps; Caddy terminates TLS (automatic Let's Encrypt)
 # for each subdomain and reverse-proxies to the right container:
 #   - lcg.leohyl.app       -> DragnCards (Phoenix :4000 + static React build)
