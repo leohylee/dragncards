@@ -3,7 +3,7 @@
 # Differences from the dev compose.yml:
 #   - No `frontend` dev service. In prod the React app is a STATIC build
 #     (`frontend/build/`) served by the Caddy container; we do not run the Node
-#     dev server. See deploy/README-aws.md.
+#     dev server. Deploy/runbook: github.com/leohylee/lcg-ops.
 #   - A `caddy` service terminates TLS and reverse-proxies /be/* and /socket/*
 #     to the backend. It uses host networking so it can bind :80/:443 and reach
 #     the backend on 127.0.0.1:4000.
@@ -45,7 +45,11 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      # Shared edge config is owned by lcg-ops, not this repo. `ops.sh edge` (and
+      # `ops.sh deploy` for any caddy-bearing stack) ships lcg-ops/edge/Caddyfile
+      # to /srv/edge/Caddyfile on the box; we mount that absolute path. Routing for
+      # ALL four subdomains is edited in lcg-ops, never here.
+      - /srv/edge/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./frontend/build:/srv/dragncards/frontend/build:ro
       - caddy_data:/data
       - caddy_config:/config
